@@ -1,0 +1,136 @@
+@layout('Layout/default')
+
+@section('body')
+ 
+    <div class="">
+      <div class="my-4 text-center">
+        <h1>Unsere Fahrzeuge</h1>
+      </div>
+      <div class="my-4">
+        <div class="d-flex justify-content-center flex-wrap">
+            <div class="p-4 bd-highlight text-center">
+              <a href="#" onclick="scrolltoclass('.cat-Limousine')" class="text-dark">
+                <img height="40px" src="/assets/img/custom-icon/limousine_old.png">
+                <br/>
+                Limousine
+              </a>
+            </div>
+            <div class="p-4 bd-highlight text-center">
+              <a href="#" onclick="scrolltoclass('.cat-Cabrio')" class="text-dark">
+                <img height="40px" src="/assets/img/custom-icon/cabriolet_old.png">
+                <br/>
+                Cabriolet
+              </a>
+            </div>
+            <div class="p-4 bd-highlight text-center">
+              <a href="#" onclick="scrolltoclass('.cat-Coupe')" class="text-dark">
+                <img height="40px" src="/assets/img/custom-icon/coupe_old.png">
+                <br/>
+                Coupé
+              </a>
+            </div>
+        </div>
+      </div>
+    </div>
+
+  @if(size(cars) != 0)
+
+    <div class=" ">
+      <div class=" ">
+        <div class="">
+          
+            @each(car in cars)
+
+            <div class="">
+              @if($loop.index % 2)
+              <div class="card mb-0 border-0 cat-{{car.category}}" >
+                @else
+                  <div class="card mb-0 border-0 cat-{{car.category}}" style="background:#f7f7f9">
+                  @endif
+
+                <div class="container">
+                  <div class="row no-gutters">
+                    <div class="col-md-8">
+                      <div class="card-body">
+
+                        <h2 class="card-title text-dark mb-0" style="text-transform: none;">{{{car.title}}}</h2>
+                        <p class="card-text mb-2"><small class="text-muted">{{formatCurr(car.price)}} € / Tag inklusive
+                            MwSt.</small></p>
+                        <p class="card-text">
+
+                          <table  class="table table-sm mt-4 border-0">
+                            <tbody >
+                              <tr >
+                                <td class="border-0" style="width: 20px;text-align:center">
+                                  <img height="15px" src="/assets/img/Auto/Klassen.png" />
+                                </td>
+                                <td class="border-0 text-dark"><b>Klasse:</b> {{car.category}}</td>
+                                <td class="border-0	d-none d-md-table-cell" style="width: 20px;text-align:center">
+                                  <img height="15px" src="/assets/img/Auto/Getriebe.png" />
+                                </td>
+                                <td class="border-0 text-dark	d-none d-md-table-cell"><b>Getriebe:</b> {{car.engine}}</td>
+                              </tr>
+                              <tr>
+                                <td class="border-0" style="width: 20px;text-align:center">
+                                  <img height="15px" src="/assets/img/Auto/vMax.png" />
+                                </td>
+                                <td class="border-0 text-dark "><b>V/max:</b> {{car.vmax}} km/h</td>
+                                <td class="border-0	d-none d-md-table-cell" style="width: 20px;text-align:center">
+                                  <img height="15px" src="/assets/img/Auto/Kraftstoff.png" />
+                                </td>
+                                <td class="border-0 text-dark	d-none d-md-table-cell"><b>Kraftstoff:</b> {{car.petrol}}</td>
+                              </tr>
+                              <tr >
+                                
+                                <td class="border-0" style="width: 20px;text-align:center">
+                                  <img height="15px" src="/assets/img/Auto/Motorleistung.png" />
+                                </td>
+                              <td class="border-0 text-dark"><b>Motorleistung:</b> {{car.power}}</td>
+                                <td class="border-0	d-none d-md-table-cell" style="width: 20px;text-align:center">
+                                  <img height="15px" src="/assets/img/Auto/MaxPassagiere.png" />
+                                </td>
+                                <td class="border-0 text-dark	d-none d-md-table-cell"><b>Max Passagiere:</b> {{car.passengers}}</td>
+                              </tr>
+                              <tr >
+                                
+                                <td class="border-0" style="width: 20px;text-align:center">
+                                  <img height="15px" src="/assets/img/Auto/AnzahlTUR.png" />
+                                </td>
+                                <td class="border-0 text-dark"><b>Türen:</b> {{car.doors}}</td>
+                                <td class="border-0	d-none d-md-table-cell" style="width: 20px;text-align:center">
+                                  <img height="15px" src="/assets/img/Auto/Mindestalter.png" />
+                                </td>
+                                <td class="border-0 text-dark	d-none d-md-table-cell"><b>Mindestalter des Fahrers:</b> {{car.age}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="col-md-4 pt-4">
+                      <img src="/uploads/{{car.mainimg.id}}.{{car.mainimg.location}}" class="card-img mt-3">
+                    </div>
+                  </div>
+
+                  @if($loop.index % 2)
+                    <div class="card-footer text-right bg-light border-bottom-0 border-left-0 border-right-0 ">
+                        @else
+                    <div class="card-footer text-right " style="background:#f7f7f9">
+                        @endif
+                    <a href="/fahrzeuge/{{car.id}}/{{slugify(car.title.replace(/<[^>]*>?/gm, ''))}}" class="btn btn-danger">Buchen</a>
+                  </div>
+                </div>
+              </div>
+              
+              </div>
+              @endeach
+
+            </div>
+        </div>
+        
+    </div>
+
+  @endif
+
+  @endsection

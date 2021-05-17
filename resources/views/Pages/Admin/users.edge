@@ -1,0 +1,54 @@
+@layout('Layout/admin')
+
+@section('content')
+<div class="row">
+    <div class="col-6 py-5">
+      <h4>Accounts</h4>
+      
+    </div>
+    <div class=" ml-auto col-4 py-5 text-right">
+      <a href="/admin/users/add" class="btn btn-outline-secondary" >Hinzufügen</a>
+    </div>
+</div>
+<div class="row">
+  <div class="col">
+    
+    <div class="card  shadow h-100">
+        <div class="item-wrapper">
+          <div class="table-responsive" style="overflow-x: inherit;">
+            <table class="table info-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>E-Mail</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                @each(item in users)
+                <tr>
+                    <td >
+                        {{item.firstname}} {{item.lastname}} 
+                    </td>
+                    <td >{{item.email}}</td>
+                    <td class="actions">
+                        <div class="dropdown dropleft">
+                            <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="far fa-edit"></i>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="/admin/users/edit/{{item.id}}">Einstellungen</a>
+                            <a class="dropdown-item" href="/admin/users/delete/{{item.id}}">Löschen</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                @endeach
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+@endsection

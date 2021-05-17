@@ -1,0 +1,23 @@
+@layout('Layout/admin')
+
+
+
+@section('content')
+<script>
+    window.data = {
+        
+        blocked:{{{JSON.stringify(books)}}}
+    }
+</script>
+    <div id="calender">
+    </div>
+@endsection
+
+@section('CSS')
+
+@endsection
+
+@section('JS')
+
+{{ script(versionjs('main')) }}
+@endsection

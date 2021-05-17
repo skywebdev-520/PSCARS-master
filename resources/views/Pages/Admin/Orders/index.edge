@@ -1,0 +1,74 @@
+@layout('Layout/admin')
+
+
+
+@section('content')
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Buchungen</h1>
+    </div>
+    <div class="row">
+            <div class="col-lg-12 mb-4">
+
+                    <!-- Illustrations -->
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                        
+              <div class="table-responsive">
+                    <table class="table " id="dataTable" width="100%" cellspacing="0">
+                      <thead >
+                        <tr >
+                          <th>ID</th>
+                          <th>Kunde</th>
+                          <th>Fahrzeug (Kennzeichen)</th>
+                          <th>Abholung</th>
+                          <th>Abgabe</th>
+                          <th>Status</th>
+                          <th>Bezahlmethode</th>
+                          <th>Erstellt am</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @each(order in orders)
+                        <tr>
+                            <td>{{order.id}}</td>
+                            <td>{{order.customer_firstname}} {{order.customer_lastname}}</td>
+                            <td>{{{order.car.title}}} <small style="font-size: 70%;">({{order.car.plate}})</small></td>
+                            <td>{{order.checkin}}<br/><small style="font-size: 70%;">{{order.checkin_time}}</small></td>
+                            <td>{{order.checkout}}<br/><small style="font-size: 70%;">{{order.checkout_time}}</small></td>
+                            <td>{{order.status}}</td>
+                            @if(order.paymentType == 'banktransfer')
+                            <td>Überweisung</td>
+                            @else
+                            <td>Kreditkarte</td>
+                            @endif
+                            <td>{{moment(order.created_at).format("DD.MM.YYYY HH:mm")}} Uhr</td>
+                            <td>
+                                <a class="btn btn-outline-primary btn-sm" href="/admin/orders/{{order.id}}"><i class="fas fa-eye"></i></a>
+                                <a class="btn btn-outline-danger btn-sm" href="/admin/orders/{{order.id}}/delete"><i class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
+                        @endeach
+                      </tbody>
+                    </table>
+                  </div>
+                    </div>
+                </div>
+    
+            </div>
+
+          </div>
+</div>
+@endsection
+
+@section('CSS')
+{{style('/vendor/datatables/dataTables.bootstrap4.min.css')}}
+@endsection
+
+@section('JS')
+
+{{ script('vendor/datatables/jquery.dataTables.min.js') }}
+{{ script('vendor/datatables/dataTables.bootstrap4.min.js') }}
+{{ script('/js/tables.js') }}
+@endsection

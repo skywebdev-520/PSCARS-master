@@ -1,0 +1,298 @@
+@layout('Layout/admin')
+
+
+
+@section('content')
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Fahrzeug {{{car.title}}}</h1>
+    </div>
+    <ul class="nav nav-pills mb-3">
+        <li class="nav-item">
+            <a class="nav-link active" href="/admin/cars/edit/{{car.id}}">Informationen</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/cars/edit/{{car.id}}/images">Bilder</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/cars/edit/{{car.id}}/features">Leistungen</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/cars/edit/{{car.id}}/kilometers">Kilometerpakete</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/cars/edit/{{car.id}}/damages">Schäden</a>
+        </li>
+    </ul>
+    <form method="POST" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-lg-6 col-12 mb-4">
+
+                <div class="card shadow mb-4">
+                    <div class="card-header ">
+                        Fahrzeuginformationen
+                    </div>
+                    <div class="card-body">
+
+                            <div class="form-group form-check">
+                                    <input 
+                                    @if(car.published) 
+                                    checked="checked" 
+                                    @endif
+                                     value="1" name="published" type="radio"
+                                        class="form-check-input" id="exampleCheck1">
+                                    <label class="form-check-label" for="exampleCheck1">Veröffentlicht</label>
+                                </div>
+                                <div class="form-group form-check">
+                                    <input 
+                                    @if(!car.published) 
+                                    checked="checked"
+                                    @endif
+                                     value="0" name="published" type="radio"
+                                        class="form-check-input" id="exampleCheck2">
+                                    <label class="form-check-label" for="exampleCheck2">Ungelisted</label>
+                                </div>
+                        <div class="form-group">
+                            <label>Fahrgestellnummer</label>
+                            <input name="vin" value="{{car.vin}}" type="text" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label>Art</label>
+                            <select class="form-control" name="type" >
+                                @if(car.type == 'New')
+                                <option value="New" selected="">New</option>
+                                @else
+                                <option value="New">New</option>
+                                @endif
+                                @if(car.type == 'Old')
+                                <option value="Old" selected="">Old</option>
+                                @else
+                                <option value="Old">Old</option>
+                                @endif
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Kategorie</label>
+                            <select class="form-control" name="category" >
+                                @if(car.category == 'Cabrio')
+                                <option value="Cabrio" selected="">Cabrio</option>
+                                @else
+                                <option value="Cabrio">Cabrio</option>
+                                @endif
+                                @if(car.category == 'Limousine')
+                                <option value="Limousine" selected="">Limousine</option>
+                                @else
+                                <option value="Limousine">Limousine</option>
+                                @endif
+                                @if(car.category == 'SUV')
+                                <option value="SUV" selected="">SUV</option>
+                                @else
+                                <option value="SUV">SUV</option>
+                                @endif
+                                @if(car.category == 'Coupé')
+                                <option value="Coupé" selected="">Coupé</option>
+                                @else
+                                <option value="Coupé">Coupé</option>
+                                @endif
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Titel</label>
+                            <input name="title" value="{{car.title}}" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label>Bereifung</label>
+                            <input name="location" value="{{car.location}}" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label>Kennzeichen</label>
+                            <input name="plate" value="{{car.plate}}" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label>Kilometerstand</label>
+                            <input name="kilometer" value="{{car.kilometer}}" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Extra Kosten pro Kilometer</label>
+                            <input name="extra_price_km" value="{{car.extra_price_km}}" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label>Versicherung</label>
+                            <input name="insurance" value="{{car.insurance}}" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label>Fahrzeugbrief-Nr</label>
+                            <input name="letter" value="{{car.letter}}" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label>Hubraum</label>
+                            <div class="input-group mb-3 input-group-sm">
+                                <input name="ccm" value="{{car.ccm}}" type="text" class="form-control form-control-sm">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">cm<sup>3</sup></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>PS/kW</label>
+                            <input name="power" value="{{car.power}}" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label>V/Max</label>
+                            <input name="vmax" value="{{car.vmax}}" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label>Türen</label>
+                            <input name="doors" value="{{car.doors}}" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label>Kaution</label>
+                            <input name="prepayment" value="{{car.prepayment}}" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Getriebe</label>
+                            <input name="engine" value="{{car.engine}}" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label>Kraftstoff</label>
+                            <input name="petrol" value="{{car.petrol}}" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label>Max Passagiere</label>
+                            <input name="passengers" value="{{car.passengers}}" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label>Min. Alter</label>
+                            <input name="age" value="{{car.age}}" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label>Selbstbeteiligung</label>
+                            <input name="deductible" value="{{car.deductible}}" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label>Führerscheinbesitz</label>
+                            <input name="license" value="{{car.license}}" class="form-control form-control-sm">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card shadow mb-4">
+                    <div class="card-header ">
+                        Beschreibung
+                    </div>
+                    <div class="card-body">
+                        <textarea id="summernote" name="description">{{car.description}}</textarea>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-6 col-12 mb-4">
+
+                <div class="card shadow mb-4">
+                    <div class="card-header ">
+                        Preise
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label>8-Stunden-Preis  </label>
+                            <div class="input-group mb-3 input-group-sm">
+                                <input name="priceOneDay" value="{{car.priceOneDay}}"
+                                    class="form-control form-control-sm">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">€ / Tag</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Wochen-Preis  </label>
+                            <div class="input-group mb-3 input-group-sm">
+                                <input name="price" value="{{car.price}}"
+                                    class="form-control form-control-sm">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">€ / Tag</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Wochenend-Preis </label>
+                            <div class="input-group mb-3 input-group-sm">
+                                <input name="priceWeekend" value="{{car.priceWeekend}}"
+                                    class="form-control form-control-sm">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">€ / Tag</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Anzahlung</label>
+                            <div class="input-group mb-3 input-group-sm">
+                                <input name="deposit" value="{{car.deposit}}"
+                                    class="form-control form-control-sm">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Inklusiv Kilometers 8 Stunden</label>
+                            <input name="inclKilometers" value="{{car.inclKilometers}}" 
+                                class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label>Inklusiv Kilometers 24 Stunden</label>
+                            <input name="inclKilometers_day" value="{{car.inclKilometers_day}}" 
+                                class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label>Inklusiv Kilometers Wochenende</label>
+                            <input name="inclKilometers_weekend" value="{{car.inclKilometers_weekend}}" 
+                                class="form-control form-control-sm">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="card shadow mb-4">
+                    <div class="card-header ">
+                        Hauptbild
+                    </div>
+                    <div class="card-body">
+
+                        <div class="d-flex bd-highlight">
+                            <div class="p-2 w-20 bd-highlight">
+                                <img class="img-fluid rounded border" style="height: 120px"
+                                    src="/uploads/{{main_img.id}}.{{main_img.location}}" />
+                            </div>
+                            <div class="p-2 w-80 bd-highlight">
+                                <div class="custom-file">
+                                    <input name="main_img" lang="de" type="file"
+                                        class="custom-file-input form-control-sm" id="customFile">
+                                    <label class="custom-file-label" for="customFile">Datei auswählen</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{ csrfField() }}
+
+                <div class="col-sm text-right">
+                    <button class="btn btn-primary" type="submit">Speichern</button>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+@endsection
+
+@section('JS')
+{{ script('https://code.jquery.com/jquery-3.2.1.slim.min.js') }}
+{{ script('https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js') }}
+{{ script('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js') }}
+{{ style('https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css') }}
+{{ script('https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js') }}
+{{ script('/js/editor.js') }}
+@endsection

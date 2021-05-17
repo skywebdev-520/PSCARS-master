@@ -1,0 +1,94 @@
+@layout('Layout/admin')
+
+@section('content')
+<div class="row">
+    <div class="col-6 py-5">
+      <h4>Account hinzufügen</h4>
+      
+    </div>
+    <div class=" ml-auto col-4 py-5 text-right">
+            
+            <a href="/admin/users" class="btn btn-outline-secondary" >Zurück</a>
+  
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="card card-body  shadow h-100">
+            @if(hasErrorFor('email'))
+            <div class="alert alert-danger">
+              Diese E-Mail ist einem Account schon zugeordnet
+            </div>
+            @endif
+            <div class="grid-body">
+                <form action="/admin/users/add" method="POST">
+              <div class="item-wrapper">
+                
+                <div class="row my-3">
+                    <div class="col-md-8 mx-auto">
+                      <div class="form-group row showcase_row_area">
+                        <div class="col-md-3 showcase_text_area">
+                          <label>Vorname</label>
+                        </div>
+                        <div class="col-md-9 showcase_content_area">
+                          <input name="firstname" type="text" class="form-control" value="" required>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row my-3">
+                    <div class="col-md-8 mx-auto">
+                      <div class="form-group row showcase_row_area">
+                        <div class="col-md-3 showcase_text_area">
+                          <label>Nachname</label>
+                        </div>
+                        <div class="col-md-9 showcase_content_area">
+                          <input name="lastname" type="text" class="form-control" value="" required>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <div class="row my-3">
+                  <div class="col-md-8 mx-auto">
+                    <div class="form-group row showcase_row_area">
+                      <div class="col-md-3 showcase_text_area">
+                        <label>E-Mail</label>
+                      </div>
+                      <div class="col-md-9 showcase_content_area">
+                        <input name="email" type="email" class="form-control" value="" required>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row my-3">
+                  <div class="col-md-8 mx-auto">
+                    <div class="form-group row showcase_row_area">
+                      <div class="col-md-3 showcase_text_area">
+                        <label>Passwort</label>
+                      </div>
+                      <div class="col-md-9 showcase_content_area">
+                        <input name="password" type="password" class="form-control" value="" required>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="row my-3">
+                  <div class="col-md-8 mx-auto">
+                    <div class="form-group row showcase_row_area">
+                      <div class="col-md-3 showcase_text_area">
+                      </div>
+                      <div class="col-md-9 showcase_content_area pt-2">
+                        {{ csrfField() }}
+                        <button type="submit" class="btn btn-sm btn-primary">Speichern</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                </form>
+            </div>
+          </div>
+    </div>
+</div>
+@endsection

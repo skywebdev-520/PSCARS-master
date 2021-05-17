@@ -1,0 +1,65 @@
+@layout('Layout/admin')
+
+
+
+@section('content')
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Fahrzeug {{{car.title}}}</h1>
+    </div>
+    <ul class="nav nav-pills mb-3">
+        <li class="nav-item">
+            <a class="nav-link " href="/admin/cars/edit/{{car.id}}">Informationen</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="/admin/cars/edit/{{car.id}}/images">Bilder</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/cars/edit/{{car.id}}/features">Leistungen</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/cars/edit/{{car.id}}/kilometers">Kilometerpakete</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/cars/edit/{{car.id}}/damages">Schäden</a>
+        </li>
+    </ul>
+        <div class="row">
+
+            <div class="col-xl-3 col-lg-4 col-12 col-md-6 mb-4">
+                <div class="card" >
+                    <div class="card-header">Bild hinzufügen</div>
+                    <div class="card-body">
+                        <form method="POST" enctype="multipart/form-data">
+                            <div class="custom-file mb-2">
+                                <input name="image" type="file" class="custom-file-input" id="customFile">
+                                <label class="custom-file-label" for="customFile">Datei auswählen</label>
+                            </div>
+                            {{ csrfField() }}
+                            <button type="submit" class="btn btn-primary btn-sm btn-block">Hinzufügen</button> 
+                        </form>
+                    </div>
+                </div>
+            </div>
+            @each(img in images)
+                <div class="col-xl-2 col-lg-3 col-12 col-md-4 mb-4">
+                    <div class="card" >
+                        <img src="/uploads/{{img.id}}.{{img.location}}" class="card-img-top" >
+                        <div class="card-body">
+                            <a class="btn btn-danger btn-sm btn-block" href="/admin/cars/edit/{{car.id}}/images/{{img.id}}/delete">Löschen</a> 
+                        </div>
+                    </div>
+                </div>
+            @endeach
+        </div>
+</div>
+@endsection
+
+@section('JS')
+{{ script('https://code.jquery.com/jquery-3.2.1.slim.min.js') }}
+{{ script('https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js') }}
+{{ script('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js') }}
+{{ style('https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css') }}
+{{ script('https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js') }}
+{{ script('/js/editor.js') }}
+@endsection

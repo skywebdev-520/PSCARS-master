@@ -1,0 +1,107 @@
+@layout('Layout/admin')
+
+
+
+@section('content')
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Fahrzeug {{{car.title}}}</h1>
+    </div>
+    <ul class="nav nav-pills mb-3">
+        <li class="nav-item">
+            <a class="nav-link " href="/admin/cars/edit/{{car.id}}">Informationen</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " href="/admin/cars/edit/{{car.id}}/images">Bilder</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/cars/edit/{{car.id}}/features">Leistungen</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/cars/edit/{{car.id}}/kilometers">Kilometerpakete</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="/admin/cars/edit/{{car.id}}/damages">Schäden</a>
+        </li>
+    </ul>
+    <div class="row">
+        <div class="col-lg-12 mb-4">
+
+                <!-- Illustrations -->
+            <div class="card shadow mb-4">
+                <div class="card-header ">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/admin/cars">Schäden</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    
+          <div class="table-responsive">
+                <table class="table " id="dataTable" width="100%" cellspacing="0">
+                  <thead class="">
+                    <tr >
+                        <th>Titel</th>
+                      <th>Kunde</th>
+                      <th>Buchungs Nr.</th>
+                      <th>Typ</th>
+                      <th>Verursacher</th>
+                      <th>Erstellt am</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @each(car in car.damages)
+                    <tr>
+
+                        <td>{{car.title}}</td>
+                        @if(car.customer)
+                        <td>{{{car.customer}}}</td>
+                        @else
+                        <td>Keiner</td>                          
+                        @endif
+
+                        @if(car.order_id)
+                        <td>{{{car.order_id}}}</td>
+                        @else
+                        <td>Keine</td>                          
+                        @endif
+
+                        <td>{{car.damage_type}}</td>
+
+                        @if(car.accident_creator)
+                        <td>{{{car.accident_creator}}}</td>
+                        @else
+                        <td>Nicht ausgewählt</td>                          
+                        @endif
+
+                        <td>{{car.created_at}}</td>
+
+                        <td>
+                                <a class="btn btn-outline-primary btn-sm" href="/admin/damages/view/{{car.id}}"><i class="fas fa-edit"></i></a>
+                                {{--  <a class="btn btn-outline-danger btn-sm" href="/admin/cars/delete/{{car.id}}"><i class="fas fa-trash-alt"></i></a>  --}}
+                        </td>
+                    </tr>
+                    @endeach
+                  </tbody>
+                </table>
+              </div>
+                </div>
+            </div>
+
+        </div>
+
+      </div>
+
+</div>
+@endsection
+
+@section('JS')
+{{ script('https://code.jquery.com/jquery-3.2.1.slim.min.js') }}
+{{ script('https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js') }}
+{{ script('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js') }}
+{{ style('https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css') }}
+{{ script('https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js') }}
+{{ script('/js/editor.js') }}
+@endsection

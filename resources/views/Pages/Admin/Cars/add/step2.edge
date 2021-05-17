@@ -1,0 +1,230 @@
+@layout('Layout/admin')
+
+
+
+@section('content')
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Fahrzeug hinzufügen</h1>
+    </div>
+    <form method="POST" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-lg-6 col-12 mb-4">
+
+                <!-- Illustrations -->
+                <div class="card shadow mb-4">
+                    <div class="card-header ">
+                        Fahrzeuginformationen
+                    </div>
+                    <div class="card-body">
+
+                        <div class="form-group">
+                            <label>Fahrgestellnummer</label>
+                                <input name="vin" type="text" class="form-control form-control-sm">
+                            
+                        </div>
+
+                        <div class="form-group">
+                            <label>Titel</label>
+                            <input name="title" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label>Art</label>
+                            <select class="form-control" name="type" id="exampleFormControlSelect2">
+                                <option value="New">New</option>
+                                <option value="Old">Old</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Kategorie</label>
+                            <select class="form-control" name="category" id="exampleFormControlSelect1">
+                                <option value="Cabrio">Cabrio</option>
+                                <option value="Limousine">Limousine</option>
+                                <option value="SUV">SUV</option>
+                                <option value="Coupe">Coupé</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Bereifung</label>
+                            <input name="location" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label>Kennzeichen</label>
+                            <input name="plate" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label>Kilometerstand</label>
+                            <input name="kilometer" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label>Versicherung</label>
+                            <input name="insurance" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label>Fahrzeugbrief-Nr</label>
+                            <input name="letter" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label>Hubraum</label>
+                            <div class="input-group mb-3 input-group-sm">
+                                <input name="ccm" type="text" class="form-control form-control-sm">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">cm<sup>3</sup></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>PS/kW</label>
+                            <input name="power" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label>V/Max</label>
+                            <input name="vmax" value="" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label>Türen</label>
+                            <input name="doors" value="" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label>Kaution</label>
+                            <input name="prepayment" value="" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label>Extra Kosten pro Kilometer</label>
+                            <input name="extra_price_km" value="" class="form-control form-control-sm">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Getriebe</label>
+                            <input name="engine" value="" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label>Kraftstoff</label>
+                            <input name="petrol" value="" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label>Max Passagiere</label>
+                            <input name="passengers" value="" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label>Min. Alter</label>
+                            <input name="age" value="" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label>Selbstbeteiligung</label>
+                            <input name="deductible" value="" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label>Führerscheinbesitz</label>
+                            <input name="license" value="" class="form-control form-control-sm">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-6 col-12 mb-4">
+
+                <div class="card shadow mb-4">
+                    <div class="card-header ">
+                        Preise
+                    </div>
+                    <div class="card-body">
+
+                        <div class="form-group">
+                            <label>8-Stunden-Preis  </label>
+                            <div class="input-group mb-3 input-group-sm">
+                                <input name="price" value="{{car.priceOneDay}}" 
+                                    class="form-control form-control-sm">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">€ / Tag</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Preis</label>
+                            
+                            <div class="input-group mb-3 input-group-sm">
+                                <input  name="priceOneDay" class="form-control form-control-sm">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">€ / Tag</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Wochenend-Preis</label>
+                            <div class="input-group mb-3 input-group-sm">
+                                <input name="priceWeekend"  class="form-control form-control-sm">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">€ / Tag</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Anzahlung</label>
+                            <div class="input-group mb-3 input-group-sm">
+                                <input name="deposit" type="number" class="form-control form-control-sm">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Inklusiv Kilometers</label>
+                                <input name="inclKilometers" value="" type="number"
+                                    class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label>Inklusiv Kilometers 24 Stunden</label>
+                            <input name="inclKilometers_day" value="" type="number"
+                                class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label>Inklusiv Kilometers Wochenende</label>
+                            <input name="inclKilometers_weekend" value="" type="number"
+                                class="form-control form-control-sm">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="card shadow mb-4">
+                    <div class="card-header ">
+                        Hauptbild
+                    </div>
+                    <div class="card-body">
+                        <div class="custom-file">
+                            <input name="main_img" lang="de" type="file" class="custom-file-input form-control-sm"
+                                id="customFile">
+                            <label class="custom-file-label" for="customFile">Datei auswählen</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="card shadow mb-4">
+                    <div class="card-header ">
+                        Beschreibung
+                    </div>
+                    <div class="card-body">
+                        <textarea id="summernote" name="description"></textarea>
+                    </div>
+                </div>
+                {{ csrfField() }}
+                <div class="col-sm text-right">
+                    <button class="btn btn-primary" type="submit">Speichern</button>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+@endsection
+
+@section('JS')
+{{ script('https://code.jquery.com/jquery-3.2.1.slim.min.js') }}
+{{ script('https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js') }}
+{{ script('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js') }}
+{{ style('https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css') }}
+{{ script('https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js') }}
+{{ script('/js/editor.js') }}
+@endsection

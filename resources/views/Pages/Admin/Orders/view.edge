@@ -1,0 +1,207 @@
+@layout('Layout/admin')
+
+
+
+@section('content')
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Buchung {{book.id}}</h1>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 mb-4">
+            <h6 class="mt-3 ">Rechnungsadresse</h6>
+            <div class="list-group  shadow">
+                <div href="#" class="list-group-item p-2 list-group-item-action ">
+                    <small>Typ</small>
+                    <p class="mb-0 text-uppercase">{{book.customer_type}}</p>
+                    @if(book.customer_company)
+                    <small>Firma</small>
+                    <p class="mb-0">{{book.customer_company}}</p>
+                    @endif
+                    @if(book.customer_vat)
+                    <small>Ustd.ID</small>
+                    <p class="mb-0">{{book.customer_vat}}</p>
+                    @endif
+                    @if(book.customer_firstname)
+                    <small>Vorname u. Nachname</small>
+                    <p class="mb-0">{{book.customer_firstname}} {{book.customer_lastname}}</p>
+                    @endif
+                    @if(book.customer_address)
+                    <small>Adresse</small>
+                    <p class="mb-0">{{book.customer_address}}, {{book.customer_postcode}} {{customer_city}}</p>
+                    @endif
+                    @if(book.customer_phone)
+                    <small>Telefon</small>
+                    <p class="mb-0">{{book.customer_phone}}</p>
+                    @endif
+                    @if(book.customer_email)
+                    <small>E-Mail</small>
+                    <p class="mb-0">{{book.customer_email}}</p>
+                    @endif
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+
+            <div class="card shadow mb-4">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <div class="flex-fill">
+                        <h5>Von</h5>
+                        {{moment(book.checkin).format("DD.MM.YYYY")}} {{book.checkin_time}} Uhr
+                        </div>
+                        <div class="flex-fill">
+                        <h5>Bis</h5>
+                        {{moment(book.checkout).format("DD.MM.YYYY")}} {{book.checkout_time}} Uhr
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow mb-4">
+                <div class="card-body">
+                    <div class="text-center">
+                        <h5>Status</h5>
+                        {{book.status}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @if(book.perso_front_file)
+                <div class="col-lg-6">
+                    <div class="card shadow mb-4">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <h5>Personalausweis</h5>
+                                <img src="/uploads/{{book.perso_front_file}}" style="max-width: 100%" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+                @if(book.perso_back_file)
+                <div class="col-lg-6">
+                    <div class="card shadow mb-4">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <h5>Personalausweis</h5>
+                                <img src="/uploads/{{book.perso_back_file}}" style="max-width: 100%" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+                @if(book.license_front_file)
+                <div class="col-lg-6">
+                    <div class="card shadow mb-4">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <h5>Führerschein</h5>
+                                <img src="/uploads/{{book.license_front_file}}" style="max-width: 100%" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+                @if(book.license_back_file)
+                <div class="col-lg-6">
+                    <div class="card shadow mb-4">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <h5>Führerschein</h5>
+                                <img src="/uploads/{{book.license_back_file}}" style="max-width: 100%" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+
+                @if(book.perso_2_front_file)
+                <div class="col-lg-6">
+                    <div class="card shadow mb-4">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <h5>Personalausweis 2. Fahrer</h5>
+                                <img src="/uploads/{{book.perso_2_front_file}}" style="max-width: 100%" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+                @if(book.perso_2_back_file)
+                <div class="col-lg-6">
+                    <div class="card shadow mb-4">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <h5>Personalausweis 2. Fahrer</h5>
+                                <img src="/uploads/{{book.perso_2_back_file}}" style="max-width: 100%" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+                @if(book.license_2_front_file)
+                <div class="col-lg-6">
+                    <div class="card shadow mb-4">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <h5>Führerschein 2. Fahrer</h5>
+                                <img src="/uploads/{{book.license_2_front_file}}" style="max-width: 100%" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+                @if(book.license_2_back_file)
+                <div class="col-lg-6">
+                    <div class="card shadow mb-4">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <h5>Führerschein 2. Fahrer</h5>
+                                <img src="/uploads/{{book.license_2_back_file}}" style="max-width: 100%" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+            </div>
+        </div>
+        <div class="col-lg-3 mb-4">
+            <h6 class="mt-3 ">Funktionen</h6>
+            <div class="card shadow mb-4">
+                <div class="card-body">
+                    <div class="text-center">
+                        @if(book.status == "UNBEZAHLT")
+                        <a href="{{book.id}}/setPrePaid" type="submit" class="btn btn-secondary btn-block">Anzahlung bezahlt</a>
+                        @endif
+                        @if(!book.isDelivered)
+                        <a href="{{book.id}}/pickup" type="submit" class="btn btn-primary btn-block">Abholung</a>
+                        @endif
+                        @if(!book.isReturned && book.isDelivered)
+                        <a href="{{book.id}}/return" type="submit" class="btn btn-primary btn-block">Rückgabe</a>
+                        @endif
+                        <hr>
+                        <a href="{{book.id}}/contract" target="_blank" type="submit" class="btn btn-primary btn-block">Vertrag öffnen</a>
+                        <hr>
+                        @if(!book.isReturned )
+                        <a href="{{book.id}}/cancel" type="submit" class="btn btn-danger btn-block">Stornieren</a>
+                        @endif
+                    </div>
+                </div>
+              </div>
+        </div>
+
+    </div>
+</div>
+@endsection
+
+@section('CSS')
+{{style('/vendor/datatables/dataTables.bootstrap4.min.css')}}
+@endsection
+
+@section('JS')
+
+{{ script('vendor/datatables/jquery.dataTables.min.js') }}
+{{ script('vendor/datatables/dataTables.bootstrap4.min.js') }}
+{{ script('/js/tables.js') }}
+@endsection

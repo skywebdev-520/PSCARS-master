@@ -1,0 +1,18 @@
+@layout('Layout/default')
+
+@section('body')
+<script>
+    window.data = {
+        checkin:"{{params.checkin}}",
+        checkout:"{{params.checkout}}",
+        timeCheckin:"{{params.timecheckin}}",
+        timeCheckout:"{{params.timecheckout}}",
+        car:{{{carJSON}}},
+        blocked:{{{disabled}}}
+    }
+</script>
+    <div id="Checkout">
+    </div>
+
+
+@endsection

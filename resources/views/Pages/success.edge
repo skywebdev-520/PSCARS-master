@@ -1,0 +1,172 @@
+@layout('Layout/default')
+
+@section('body')
+<div class="container my-4 pt-4">
+
+    <div class=" swal2-icon swal2-success swal2-animate-success-icon" style="display: flex;">
+        <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);"></div>
+        <span class="swal2-success-line-tip"></span>
+        <span class="swal2-success-line-long"></span>
+        <div class="swal2-success-ring"></div>
+        <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div>
+        <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);"></div>
+    </div>
+    <h1 class="text-center">Buchungsnummer {{book.id}}</h1>
+    <h4 class="text-center">Vielen Dank für Ihre Buchung. In Kürze erhalten Sie Ihre Rechnung per E-Mail.</h4>
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card mb-4">
+                <div class="card-header">BUCHUNGSSTATUS</div>
+                <div class="card-body">
+                    <h3 class="text-center">Warten auf Zahlung</h3>
+                </div>
+            </div>
+        </div>
+        
+        <!--  <div class="col-12 mt-4 text-right">
+            <a href="" class="btn btn-primary"><i class="fas fa-download mr-2"></i> Rechnung</a>
+            <a href="" class="btn btn-primary"><i class="fas fa-download mr-2"></i> Buchungsbestätigung</a>
+        </div>  -->
+
+        <div class="col-12">
+          <div class="card" style="border-radius: 5px;max-width:100%;box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;">
+              <div class="card-header">ZUSAMMENFASSUNG</div>
+              <table class="table mb-0 table-bordered " style="overflow:auto;max-width:100%">
+                <tbody >
+                  <tr>
+                    <td>
+                      <h5 class="mb-0" v-html="car.title">{{{book.car.title}}}</h5>
+                      <small>VON: {{moment(book.checkin).format("DD.MM.YYYY")}} {{book.checkin_time}} UHR BIS: {{moment(book.checkout).format("DD.MM.YYYY")}} {{book.checkout_time}} UHR</small>
+                    </td>
+                  @if(book.rangeType == 'single')
+                    
+                    <td  >
+                      <h5
+                      class="mb-0"
+                      >8</h5>
+                      <small>Stunden</small>
+                    </td>
+
+                      <td>
+                          <h5
+                          class="mb-0"
+                          >{{curr.format(book.car.priceOneDay, { code: 'EUR' })}}</h5>
+                      </td>
+                      </tr>
+                  @else
+                      <td >
+                          <h5
+                          class="mb-0"
+                          >{{getDays}} </h5>
+                          <small>Tage</small>
+                      </td>
+                    <td>
+                        <h5
+                        class="mb-0"
+                        >{{curr.format((getDays*book.car.price) + (weekendDays*book.car.priceWeekend - weekendDays*book.car.price), { code: 'EUR' })}}</h5>
+                        <small>Einzel: {{curr.format(((getDays*book.car.price) + (weekendDays*book.car.priceWeekend - weekendDays*book.car.price)) / getDays, { code: 'EUR' })}}</small>
+                    </td>
+                  @endif
+                  
+                  @if(book.coupon_id)
+                  <tr >
+                    <td class="py-2 text-right" colspan="2">
+                      <h6 class="mb-0">
+                        {{book.coupon.description}}<br/>
+                        <small class="text-muted">Gutschein</small>
+                      </h6>
+                    </td>
+                    
+                    <td class="py-2">
+                      <h5 class="mb-0">- {{curr.format(book.coupon_price, { code: 'EUR' })}}</h5>
+                    </td>
+                  </tr>
+                  @endif
+                  
+                  @each(featu in featur)
+                  <tr>
+                    <td class="py-2">
+                      <h6 class="mb-0">{{featu.title}}</h6>
+                    </td>
+
+                    @if(featu.perday)
+                    <td class="py-2">
+                    <h5 class="mb-0">{{getDays}} Tage</h5>
+                    </td>
+                    <td class="py-2" >
+                      <h5 class="mb-0">{{curr.format(featu.price*getDays, { code: 'EUR' } )}} </h5>
+                      <small>Einzel: {{curr.format(featu.price, { code: 'EUR' } )}}</small>
+                    </td>
+                    @else
+                    <td class="py-2" >
+                      <h5 class="mb-0">1X</h5>
+                    </td>
+                    <td class="py-2" >
+                      <h5 class="mb-0">{{curr.format(featu.price, { code: 'EUR' } )}}</h5>
+                    </td>
+                    @endif
+                  </tr>
+                  @endeach
+    
+                  <tr>
+                    <td class="py-2">
+                      <h6 class="mb-0">Inklusive Kilometer</h6>
+                    </td>
+                    <td class="py-2">
+                      @if(book.rangeType=='multi')
+                      <h5 class="mb-0">{{book.car.inclKilometers_day * getDays}} km</h5>
+                      @else
+                      <h5 class="mb-0">{{book.car.inclKilometers * getDays}} km</h5>
+                      @endif
+                    </td>
+                    <td class="py-2">
+                      <h5 class="mb-0">{{curr.format(0, { code: 'EUR' })}}</h5>
+                    </td>
+                  </tr>
+                  @if(book.kilometer)
+                  <tr >
+                    <td class="py-2">
+                      <h6 class="mb-0">Zusätzliches Kilometerpaket</h6>
+                    </td>
+                    <td class="py-2">
+                      <h5 class="mb-0">{{book.kilometer.kilometers}} km</h5>
+                    </td>
+                    <td class="py-2">
+                      <h5 class="mb-0">{{curr.format(book.kilometer.price, { code: 'EUR' })}}</h5>
+                    </td>
+                  </tr>
+                  @endif
+
+                  <tr>
+                    <td class="py-2 text-right" colspan="2">
+                      <h6 class="mb-0">inkl. MwSt.</h6>
+                    </td>
+                    <td class="py-2">
+                      <h5 class="mb-0">{{curr.format(book.price_total / 119 * 19, { code: 'EUR' })}}</h5>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 text-right" colspan="2">
+                      <h4 class="mb-0" style="font-weight: 800">Gesamtsumme</h4>
+                    </td>
+                    <td class="py-2">
+                      <h4 class="mb-0">{{curr.format(book.price_total , { code: 'EUR' })}}</h4>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 text-right" colspan="2">
+                      <h6 class="mb-0" style="font-weight:600">ANZAHLUNG {{book.car.deposit}}%</h6>
+                    </td>
+                    <td class="py-2">
+                      <h6 class="mb-0">{{curr.format(book.price_total/100*book.car.deposit, { code: 'EUR' })}} </h6>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+    </div>
+</div>
+
+
+@endsection

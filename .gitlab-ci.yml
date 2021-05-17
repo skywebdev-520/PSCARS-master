@@ -1,0 +1,21 @@
+stages:
+  - deploy
+
+deploy_production:
+  stage: deploy
+  image: node:8.15.1-jessie
+  only:
+    - staging
+  before_script:
+      - apt-get update -y
+      - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+      - mkdir -p ~/.ssh
+      - eval $(ssh-agent -s)
+      - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+      - ssh-add <(echo "$STAGING_PRIVATE_KEY")
+      - apt-get -y install rsync
+  script:
+    - rsync -rav -e ssh --exclude='.git/' --exclude='.env' --exclude='database/adonis.sqlite' --exclude='public/uploads/' --exclude='.gitlab-ci.yml' ./ T14_pscars@main.tecoyo.com:/home/T14_pscars/shop/
+    - ssh -p22 T14_pscars@main.tecoyo.com "cd /home/T14_pscars/shop/ && npm i"
+  only:
+    - master

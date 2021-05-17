@@ -1,0 +1,85 @@
+@layout('Layout/admin')
+
+
+
+@section('content')
+
+<script>
+    window.data = {{{dmg.id}}}
+</script>
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Schadensfall {{dmg.id}}</h1>
+    </div>
+    <ul class="nav nav-pills mb-3">
+        <li class="nav-item">
+            <a class="nav-link " href="/admin/damages/view/{{dmg.id}}">Informationen</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="/admin/damages/view/{{dmg.id}}/images">Einzelschäden</a>
+        </li>
+    </ul>
+    <form method="POST" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-lg-4 col-12 mb-4">
+
+                <div class="card shadow mb-4" >
+                    <div class="card-header ">
+                        Schaden hinzufügen
+                    </div>
+                    <div class="card-body" >
+                        <div id="DamageAdd">
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-8 col-12 mb-4">
+
+                <div class="card shadow mb-4">
+                    <div class="card-header ">
+                        Einzelschäden
+                    </div>
+                    <table class="table">
+                        <tbody>
+
+                        @each(item in dmg.entries)
+                          <tr>
+                            <td>
+                                <div
+                                style="background: url(/img/car_dmg/{{item.type}}.png) 0% 0% / cover;height:94px;width:200px" 
+                                >
+                                <img src="{{item.mark}}" style="width:200px" />
+                                </div>
+                            </td>
+                            <td>
+                                @if(item.image)
+                                <img src="/uploads/{{item.image}}" style="height:94px" />
+                                @endif
+                            </td>
+                            <td>
+                                @if(item.description)
+                                {{item.description}}  
+                                @endif
+                            </td>
+                            <td>
+                                <a href="/admin/damages/view/{{dmg.id}}/images/{{item.id}}/del" class="btn btn-danger">Löschen</a>
+                            </td>
+                          </tr>
+                          @endeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+@endsection
+
+@section('JS')
+{{ script('js/dmgs') }}
+@endsection

@@ -1,0 +1,12 @@
+Neue Buchung<br/>
+<br/>
+Fahrzeug:<br/>
+{{book.car.title.replace(/<\/?[^>]+(>|$)/g, "")}}<br/>
+<br/>
+Von:<br/>
+{{moment(book.checkin).format("DD.MM.YYYY")}} {{book.checkin_time}} Uhr<br/>
+<br/>
+Bis:<br/>
+{{moment(book.checkout).format("DD.MM.YYYY")}} {{book.checkout_time}} Uhr<br/>
+<br/>
+https://buchen.premium-sport-cars.de/admin/orders/{{book.id}}

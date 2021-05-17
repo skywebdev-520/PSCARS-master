@@ -1,0 +1,15 @@
+
+  {{ script('/vendor/jquery/jquery.min.js') }}
+  {{ script('/vendor/bootstrap/js/bootstrap.bundle.min.js') }}
+  {{ script('/vendor/jquery-easing/jquery.easing.min.js') }}
+  {{ script('/js/sb-admin-2.min.js') }}
+  {{ script('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js') }}
+  {{ script('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.de.min.js') }}
+  <script type="text/javascript">$('.datepicker').datepicker({
+    language:"de"
+  });</script>
+  {{ script(versionjs('main')) }}
+  @!section('JS')
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+@layout('Layout/admin')
+
+
+
+@section('content')
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Fahrzeug {{{car.title}}}</h1>
+    </div>
+    <ul class="nav nav-pills mb-3">
+        <li class="nav-item">
+            <a class="nav-link " href="/admin/cars/edit/{{car.id}}">Informationen</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " href="/admin/cars/edit/{{car.id}}/images">Bilder</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="/admin/cars/edit/{{car.id}}/features">Leistungen</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/cars/edit/{{car.id}}/kilometers">Kilometerpakete</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/cars/edit/{{car.id}}/damages">Schäden</a>
+        </li>
+    </ul>
+    <form>
+        <div class="row">
+            <div class="col-lg-6 col-12 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        Verfügbare Leistungen
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        @each(sel in notSelected)
+                    <li class="list-group-item"><a href="/admin/cars/edit/{{car.id}}/features/add/{{sel.id}}">{{sel.title}} ({{sel.price}} €) </a></li>
+                        @endeach
+                    </ul>
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-6 col-12 mb-4">
+
+                    <div class="card">
+                        <div class="card-header">
+                            Aktivierte Leistungen
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            @each(sel in selected)
+                            <li class="list-group-item"><a href="/admin/cars/edit/{{car.id}}/features/remove/{{sel.id}}">{{sel.title}} ({{sel.price}} €) </a></li>
+                            @endeach
+                        </ul>
+                    </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+@endsection
+
+@section('JS')
+{{ script('https://code.jquery.com/jquery-3.2.1.slim.min.js') }}
+{{ script('https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js') }}
+{{ script('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js') }}
+{{ style('https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css') }}
+{{ script('https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js') }}
+{{ script('/js/editor.js') }}
+@endsection

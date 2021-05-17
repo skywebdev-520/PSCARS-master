@@ -1,0 +1,194 @@
+@layout('Layout/default')
+<!---->
+@section('body')
+
+<script>
+  window.data = {{{JSON.stringify(car.images)}}}
+</script>
+<div class="py-4" style="background:#f4f4f4" >
+<div class="container ">
+  <div class="row"  >
+    <div class="col-12">
+      <a href="/fahrzeuge" class="btn btn-primary">Zurück</a>
+      <div class="card mb-3 border-0 bg-light" >
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <div
+              class="main-product-image"
+              
+              style="background-color:#fff;background-size: contain;background-position:center;background-repeat: no-repeat;background-image:url(/uploads/{{ car.mainimg.id }}.{{ car.mainimg.location }});"
+            >
+            <a href="/uploads/{{ car.mainimg.id }}.{{ car.mainimg.location }}" 
+            style="display:inline-block" 
+            data-fancybox="gallery">
+              <canvas height="400"></canvas>
+            </a>
+            </div>
+
+            <div class="card-footer  bg-light text-muted border-right-0 border-bottom-0 border-left-0">
+              @each(img in car.images)
+              <a
+                href="/uploads/{{ img.id }}.{{ img.location }}"
+                style="display:inline-block;height:60px;background-image:url(/uploads/{{ img.id }}.{{ img.location }});background-size: cover;max-width:24%"
+                onmouseover="selectPrevImg({{ $loop.index }})"
+                onmouseout="selectPrevImg('{{ car.mainimg.id }}.{{ car.mainimg.location }}',true)"
+                data-fancybox="gallery"
+
+                class="col-3 p-0"
+              >
+              </a>
+              @endeach
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <div class="row bd-highlight">
+                <div class="col-12 col-md-6 bd-highlight">
+                  <h1 class="mb-0 h3" style="text-transform: none">{{{ car.title }}}</h1>
+                  
+                </div>
+                <div class="col  ml-auto text-md-right mt-2 mt-md-0 flex-shrink-1 bd-highlight">
+                  <h3 class="mb-0" style="text-transform:none">{{ formatCurr(car.price) }} € / Tag</h3>
+                  <small>inklusive MwSt.</small>
+                </div>
+              </div>
+              <table  class="table table-sm mt-4 border-0 mb-0">
+                  <tbody >
+                    <tr >
+                      <td class="border-0 text-dark " style="width: 20px; text-align:center">
+                        <img height="15px" src="/assets/img/Auto/Klassen.png" />
+                      </td>
+                      <td class="border-0 text-dark "><b>Klasse:</b> {{car.category}}</td>
+                      <td class="border-0 text-dark d-none d-md-table-cell" style="width: 20px; text-align:center">
+                        <img height="15px" src="/assets/img/Auto/Getriebe.png" />
+                      </td>
+                      <td class="border-0 text-dark d-none d-md-table-cell"><b>Getriebe:</b> {{car.engine}}</td>
+                    </tr>
+                    <tr >
+                      <td class="border-0 text-dark " style="width: 20px; text-align:center">
+                        <img height="15px" src="/assets/img/Auto/vMax.png" />
+                      </td>
+                      <td class="border-0 text-dark "><b>V/max:</b> {{car.vmax}} km/h</td>
+                      <td class="border-0 text-dark d-none d-md-table-cell" style="width: 20px; text-align:center">
+                        <img height="15px" src="/assets/img/Auto/Kraftstoff.png" />
+                      </td>
+                      <td class="border-0 text-dark d-none d-md-table-cell"><b>Kraftstoff:</b> {{car.petrol}}</td>
+                    </tr>
+                    <tr >
+                      
+                      <td class="border-0 text-dark " style="width: 20px; text-align:center">
+                        <img height="15px" src="/assets/img/Auto/Motorleistung.png" />
+                      </td>
+                    <td class="border-0 text-dark "><b>Motorleistung:</b> {{car.power}}</td>
+                      <td class="border-0 text-dark d-none d-md-table-cell" style="width: 20px; text-align:center">
+                        <img height="15px" src="/assets/img/Auto/MaxPassagiere.png" />
+                      </td>
+                      <td class="border-0 text-dark d-none d-md-table-cell"><b>Max Passagiere:</b> {{car.passengers}}</td>
+                    </tr>
+                    <tr >
+                      
+                      <td class="border-0 text-dark " style="width: 20px; text-align:center">
+                        <img height="15px" src="/assets/img/Auto/AnzahlTUR.png" />
+                      </td>
+                      <td class="border-0 text-dark "><b>Türen:</b> {{car.doors}}</td>
+                      <td class="border-0 text-dark d-none d-md-table-cell" style="width: 20px; text-align:center">
+                        <img height="15px" src="/assets/img/Auto/Mindestalter.png" />
+                      </td>
+                      <td class="border-0 text-dark d-none d-md-table-cell"><b>Mindestalter des Fahrers:</b> {{car.age}}</td>
+                    </tr>
+                    <tr >
+                      
+                      <td class="border-0 text-dark " style="width: 20px; text-align:center">
+                        <img height="15px" src="/assets/img/Auto/Kaution.png" />
+                      </td>
+                    <td class="border-0 text-dark "><b>Kaution:</b> {{car.prepayment}}</td>
+                      <td class="border-0 text-dark d-none d-md-table-cell" style="width: 20px; text-align:center">
+                        <img height="15px" src="/assets/img/Auto/selbstbeteiligung.svg" />
+                      </td>
+                    <td class="border-0 text-dark d-none d-md-table-cell"><b>Selbstbeteiligung:</b> {{car.deductible}}</td>
+                    </tr>
+                    <tr >
+                      <td class="border-0 text-dark " style="width: 20px; text-align:center">
+                        <img height="15px" src="/assets/img/Auto/fuhrerschein.png" />
+                      </td>
+                    <td class="border-0 text-dark " colspan="2"><b>Führerscheinbesitz:</b> {{car.license}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+              <table  class="table table-sm mt-0 border-0 d-table d-md-none">
+                <tbody >
+                  <tr >
+                    <td class="border-0 text-dark " style="width: 20px; text-align:center">
+                      <img height="15px" src="/assets/img/Auto/Getriebe.png" />
+                    </td>
+                    <td class="border-0 text-dark "><b>Getriebe:</b> {{car.engine}}</td>
+                  </tr>
+                  <tr >
+                    <td class="border-0 text-dark " style="width: 20px; text-align:center">
+                      <img height="15px" src="/assets/img/Auto/Kraftstoff.png" />
+                    </td>
+                    <td class="border-0 text-dark "><b>Kraftstoff:</b> {{car.petrol}}</td>
+                  </tr>
+                  <tr >
+                    
+                    <td class="border-0 text-dark " style="width: 20px; text-align:center">
+                      <img height="15px" src="/assets/img/Auto/MaxPassagiere.png" />
+                    </td>
+                    <td class="border-0 text-dark "><b>Max Passagiere:</b> {{car.passengers}}</td>
+                  </tr>
+                  <tr >
+                    
+                    <td class="border-0 text-dark " style="width: 20px; text-align:center">
+                      <img height="15px" src="/assets/img/Auto/Mindestalter.png" />
+                    </td>
+                    <td class="border-0 text-dark "><b>Mindestalter des Fahrers:</b> {{car.age}}</td>
+                  </tr>
+                  <tr >
+                    
+                    <td class="border-0 text-dark " style="width: 20px; text-align:center">
+                      <img height="15px" src="/assets/img/Auto/selbstbeteiligung.svg" />
+                    </td>
+                    <td class="border-0 text-dark "><b>Selbstbeteiligung:</b> {{car.deductible}}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="card-text text-dark">
+                  {{{car.description}}}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="overflow-x:auto; max-width:100%">
+        <table class="table text-dark table-striped table-sm bg-light " >
+          <tbody>
+              <tr>
+                <td class="text-primary"><b>Mietdauer</b></td>
+                <td class="text-primary"><b>8 Stunden</b></td>
+                <td class="text-primary"><b>24 Stunden</b></td>
+                <td class="text-primary"><b>1 Wochenende (Fr. - Mo.)</b></td>
+              </tr>
+              <tr>
+                <td class="text-primary"><b>Inklusive Kilometer</b></td>
+                <td>{{car.inclKilometers *1}} km</td>
+                <td>{{car.inclKilometers_day * 1}} km</td>
+                <td>{{(car.inclKilometers_weekend * 3 )| 0}} km</td>
+              </tr>
+              <tr>
+                <td class="text-primary"><b>Preis</b></td>
+                <td>{{formatCurr(car.priceOneDay)}} €</td>
+                <td>{{formatCurr(car.price) }} €</td>
+                <td>{{formatCurr(car.priceWeekend * 3)}} €</td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+      <a href="/buchen/{{ car.id }}" class="btn btn-danger btn-block">Zeitraum prüfen & Buchen</a>
+      {{--  <a href="https://premium-sport-cars.de/kontakt/" class="btn btn-danger btn-block">Jetzt Anfragen</a>  --}}
+    </div>
+  </div>
+</div>
+</div>
+
+@endsection
