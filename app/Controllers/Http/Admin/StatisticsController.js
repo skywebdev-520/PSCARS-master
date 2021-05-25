@@ -26,8 +26,7 @@ class StatisticsController {
         });        
         const cars = await Car.query().with("bookings",(builder) => {
             builder.where("checkout", ">", moment().format("YYYY-MM-DD")).where("status","NOT LIKE","STORNIERT")
-        }).fetch()           
-        console.log("--------------", cars.toJSON()[3].title)             
+        }).fetch()                            
         return view.render('Pages/Admin/Statistics/index',{ moment,cars: cars.toJSON(), counts: count, totals:total })
     }
     

@@ -6668,8 +6668,7 @@ function reduce (state, action, calendar) {
     for (var _i = 0, _a = calendar.pluginSystem.hooks.reducers; _i < _a.length; _i++) {
         var reducerFunc = _a[_i];
         nextState = reducerFunc(nextState, action, calendar);
-    }
-    // console.log(action.type, nextState)
+    }    
     return nextState;
 }
 function reduceViewType(currentViewType, action) {
@@ -13747,8 +13746,7 @@ function formatCurr(numb) {
     moment: moment__WEBPACK_IMPORTED_MODULE_0___default.a
   },
   data: function data() {
-    var fromTo = null;
-    console.log(window.data.checkout);
+    var fromTo = null;    
 
     if (window.data.checkout != "undefined") {
       fromTo = {

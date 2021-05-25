@@ -50,8 +50,7 @@ class DashboardController {
         const books = await Booking.query().with("car").where("status","NOT LIKE","STORNIERT").fetch()
         
         let blocked = await Blocks.query().with("car").fetch()
-        //const carIds = await Database.select('id').from('blockeds')
-        console.log(blocked.toJSON())
+        //const carIds = await Database.select('id').from('blockeds')        
         let bkings = books.toJSON().concat(blocked.toJSON())        
         let disabled=[]
         for (let id in bkings) {
