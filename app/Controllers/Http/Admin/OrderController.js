@@ -13,7 +13,7 @@ const Mail = use('Mail')
 
 class OrderController {
     async index({ view }) {        
-        let orders = await Booking.query().with("car").with("customer").orderBy("id","DESC").fetch()
+        let orders = await Booking.query().with("car").with("customer").orderBy("id","DESC").fetch()        
         return view.render('Pages/Admin/Orders/index',{orders:orders.toJSON(),moment})
     }
 
@@ -768,6 +768,93 @@ class OrderController {
                                 ]
                             ]
                         },
+                    ]
+                ]
+            }
+        ]
+        response.header('X-Frame-Options', 'SAMEORIGIN')
+        response.response.setHeader('Content-type', 'application/pdf')
+        response.implicitEnd = false
+        try{
+            PDF.create(content, response.response)
+        }catch(e){
+            console.log(e)
+        }
+    }
+
+    async getAgreement({response,params,auth}){
+        let book = await Booking.findOrFail(params.id)
+        await book.loadMany(["car","car.mainimg","car.damages","car.kilometers","car.features","car.damages.entries"])
+        book = book.toJSON()        
+        let featId = JSON.parse(book.features)
+        let features = await Feature.query().whereIn("id",featId).fetch()
+        features = features.toJSON()
+
+        let signature_div_customer = {text: "\n\n"}
+        let signature_div = {text: "\n\n"}
+        if(book.isSigned) {
+            if(book.signature_customer){
+                signature_div_customer = {width:100,image:book.signature_customer}
+            }
+            if(book.signature){
+                signature_div = {width:100,image:book.signature}
+            }
+        } 
+        const content = [
+            { 
+                style:"default",
+                columns: [
+                    [
+                        " "," ",
+                        {
+                            table: {
+                                headerRows: 1,
+                                widths: [ '40%', '*' ],
+                                body: [
+                                    [ 
+                                        { text:'MIETER INFORMATIONEN', alignment:'center',colSpan: 2,bold: true, fontSize:18,border:[false,false,false,false] }, 
+                                        "" 
+                                    ],
+                                    [ 
+                                        {rowSpan:2,text:'Mietverhältnis:\n'+'Vorname',fontSize:12,borderColor:["#4A4D52","#4A4D52","#4A4D52","#fff"]}, 
+                                        {rowSpan:2,text:''+book.customer_type+'\n'+book.customer_firstname,fontSize:12,borderColor:["#4A4D52","#4A4D52","#4A4D52","#fff"]} 
+                                    ],
+                                    [ 
+                                        '', 
+                                        ''
+                                    ],
+                                    [ 
+                                        {rowSpan:2,text:'Nachname:\n'+'Rechnungsadresse',fontSize:12,borderColor:["#4A4D52","#4A4D52","#4A4D52","#fff"]}, 
+                                        {rowSpan:2,text:''+book.customer_lastname+'\n'+book.customer_address,fontSize:12,borderColor:["#4A4D52","#4A4D52","#4A4D52","#fff"]} 
+                                    ],
+                                    [ 
+                                        '', 
+                                        ''
+                                    ],
+                                    [ 
+                                        {rowSpan:2,text:'Postleitzahl:\n'+'Stadt',fontSize:12,borderColor:["#4A4D52","#4A4D52","#4A4D52","#fff"]}, 
+                                        {rowSpan:2,text:+book.customer_postcode+'\n'+book.customer_city,fontSize:12,borderColor:["#4A4D52","#4A4D52","#4A4D52","#fff"]} 
+                                    ],    
+                                    [ 
+                                        '', 
+                                        ''
+                                    ],                               
+                                    [ 
+                                        {rowSpan:2,text:'E-Mail :\n'+'Telefon',fontSize:12,borderColor:["#4A4D52","#4A4D52","#4A4D52","#fff"]}, 
+                                        {rowSpan:2,text:''+book.customer_email+'\n'+book.customer_phone,fontSize:12,borderColor:["#4A4D52","#4A4D52","#4A4D52","#fff"]} 
+                                    ],
+                                    [ 
+                                        '', 
+                                        ''
+                                    ],
+                                    [ 
+                                        '', 
+                                        {text:'Vertragsnummer: '+book.id,fontSize:12,borderColor:["#4A4D52","#4A4D52","#4A4D52","#4A4D52"]} 
+                                    ],
+                                ]
+                            }
+                        },
+                        
                     ]
                 ]
             }

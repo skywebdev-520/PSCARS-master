@@ -1,8 +1,7 @@
 <template>
     <form>
- 
-      <div
-        v-bind:style="{ background: 'url(/img/car_dmg/'+cartype+'.png) 0% 0% / cover',height:215+'px'}" 
+      <div class="ImageDev"
+        v-bind:style="{ background: 'url(/img/car_dmg/'+cartype+'.png) 0% 0% / contain', height:215+'px'}" 
         >
             <Konva-stage :config="configKonva" :ref="'stage'" >
                 <Konva-layer :ref="'layer'">
@@ -24,8 +23,8 @@
         <div class="form-group">
             <label for="exampleInputEmail1">Bild hochladen</label>
             <div class="custom-file">
-                <input ref="file" v-on:change="onChangeFileUpload()" type="file" class="custom-file-input" id="inputGroupFile01">
-                <label class="custom-file-label" for="inputGroupFile01">Datei auswählen</label>
+                <input ref="file" type="file" name="files" class="custom-file-input" id="inputGroupFile01" multiple="multiple">
+                <label class="custom-file-label" for="inputGroupFile01">Datei mehrerewählen</label>
             </div>
         </div>
 
@@ -36,7 +35,12 @@
         <button type="button" v-on:click="submitForm()" class="btn btn-primary btn-block">Speichern</button>
     </form>
 </template>
-
+<style scoped>
+.ImageDev{
+     background-repeat: no-repeat !important;
+     background-position: center !important
+}
+</style>
 
 <script>
 import {Circle} from "Konva";
@@ -56,7 +60,12 @@ export default {
       async submitForm(){
 
             let formData = new FormData();
-            formData.append('file', this.file);
+             for( var i = 0; i < this.$refs.file.files.length; i++ ){
+                  let file = this.$refs.file.files[i];
+                  formData.append('files[' + i + ']', file);
+              }
+
+            formData.append('length', this.$refs.file.files.length);
             formData.append('mark', this.$refs["stage"].getNode().toDataURL());
             formData.append('description', this.description);
             formData.append('type', this.cartype);
@@ -75,10 +84,6 @@ export default {
               location.reload()
             });
       },
-
-      onChangeFileUpload(){
-        this.file = this.$refs.file.files[0];
-      }
   },
   mounted() {
         this.stage = this.$refs["stage"].getNode();

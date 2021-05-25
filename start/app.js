@@ -23,7 +23,7 @@ const providers = [
   '@adonisjs/mail/providers/MailProvider',
   '@adonisjs/antl/providers/AntlProvider',
   '@adonisjs/validator/providers/ValidatorProvider',
-  'adonis-pdf/providers/PDFProvider'
+  'adonis-pdf/providers/PDFProvider'  
 ]
 
 /*

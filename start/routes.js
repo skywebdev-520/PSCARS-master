@@ -45,8 +45,7 @@ Route.group(() => {
     Route.post("/users/add","Admin/UserController.create").middleware(["auth"])
     Route.post("/users/edit/:id","Admin/UserController.edit").middleware(["auth"])
     Route.get("/users/edit/:id","Admin/UserController.editShow").middleware(["auth"])
-    Route.get("/users/delete/:id","Admin/UserController.delete").middleware(["auth"])
-
+    Route.get("/users/delete/:id","Admin/UserController.delete").middleware(["auth"])    
     // Route.on('/login').render('Pages/Admin/login')
     // Route.on('/forgot').render('Pages/Admin/forgot')
     // Route.on('/forgot/send').render('Pages/Admin/forgot_send')
@@ -92,6 +91,7 @@ Route.group(() => {
     Route.get('/orders/:id/cancel', "Admin/OrderController.cancel").middleware(["auth"])
     Route.get('/orders/:id/delete', "Admin/OrderController.delete").middleware(["auth"])
     Route.get('/orders/:id/contract', "Admin/OrderController.getContract").middleware(["auth"])
+    Route.get('/orders/:id/agreement', "Admin/OrderController.getAgreement").middleware(["auth"])
 
     Route.get('/coupons',"Admin/CouponController.index").middleware(["auth"])
     Route.post('/coupons',"Admin/CouponController.add").middleware(["auth"])

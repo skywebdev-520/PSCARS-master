@@ -56,9 +56,9 @@
                                 </div>
                             </td>
                             <td>
-                                @if(item.image)
-                                <img src="/uploads/{{item.image}}" style="height:94px" />
-                                @endif
+                                @each(img in item.image.split(","))
+                                <img src="/uploads/{{img}}" style="height:94px" />
+                                @endeach
                             </td>
                             <td>
                                 @if(item.description)

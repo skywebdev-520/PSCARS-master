@@ -74,7 +74,7 @@
                                 <td class="border-0" style="width: 20px;text-align:center">
                                   <img height="15px" src="/assets/img/Auto/vMax.png" />
                                 </td>
-                                <td class="border-0 text-dark "><b>V/max:</b> {{car.vmax}} km/h</td>
+                                <td class="border-0 text-dark "><b>Lenkard:</b> {{car.vmax}} km/h</td>
                                 <td class="border-0	d-none d-md-table-cell" style="width: 20px;text-align:center">
                                   <img height="15px" src="/assets/img/Auto/Kraftstoff.png" />
                                 </td>
@@ -113,12 +113,73 @@
                     </div>
                   </div>
 
+                  <div style="overflow-x:auto; max-width:100%">
+                    <table class="table text-dark table-striped table-sm bg-light " >
+                      <tbody>
+                          <tr>
+                            <td class="text-primary"><b>Modell</b></td>
+                            <td class="text-primary"><b>3 Stunden<br>100 km</b></td>
+                            <td class="text-primary"><b>1 Tag<br>200 km</b></td>                            
+                          </tr>
+                          <tr>
+                            <td class="text-primary">Mercedes-Benz 280 SL - 1969</td>
+                            <td>90,-€</td>
+                            <td>249,-€</td>                            
+                          </tr>
+                          <tr>
+                            <td class="text-primary">Jaguar XK 140 - 1955</td>
+                            <td>90,-€</td>
+                            <td>349,-€</td>                            
+                          </tr>
+                          <tr>
+                            <td class="text-primary">Porsche 356 SC - 1969</td>
+                            <td>90,-€</td>
+                            <td>299,-€</td>                            
+                          </tr>
+                          <tr>
+                            <td class="text-primary">BMW 502 V8 - 1957</td>
+                            <td>90,-€</td>
+                            <td>429,-€</td>                            
+                          </tr>
+                      </tbody>
+                    </table>
+                    <table class="table text-dark table-striped table-sm bg-light " >
+                      <tbody>
+                          <tr>
+                            <td class="text-primary"><b>Modell<br>Vermietung nur mit Chauffeur</b></td>
+                            <td class="text-primary"><b>4 Stunden<br>Wochentag</b></td>
+                            <td class="text-primary"><b>4 Stunden<br>Wochenende</b></td>                            
+                          </tr>
+                          <tr>
+                            <td class="text-primary">Mercedes-Benz 220 A - 1955</td>
+                            <td>199,-€</td>
+                            <td>249,-€</td>                            
+                          </tr>
+                          <tr>
+                            <td class="text-primary">Bentley Continental - 1956</td>
+                            <td>299,-€</td>
+                            <td>349,-€</td>                            
+                          </tr>
+                          <tr>
+                            <td class="text-primary">Mercedes-Benz 280 SE 3.5 - 1969</td>
+                            <td>249,-€</td>
+                            <td>299,-€</td>                            
+                          </tr>
+                          <tr>
+                            <td class="text-primary">Rolls Royce Silver Cloud - 1960</td>
+                            <td>379,-€</td>
+                            <td>429,-€</td>                            
+                          </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
                   @if($loop.index % 2)
                     <div class="card-footer text-right bg-light border-bottom-0 border-left-0 border-right-0 ">
                         @else
-                    <div class="card-footer text-right " style="background:#f7f7f9">
+                    <div class="card-footer text-center" style="background:#f7f7f9;">
                         @endif
-                    <a href="/fahrzeuge/{{car.id}}/{{slugify(car.title.replace(/<[^>]*>?/gm, ''))}}" class="btn btn-danger">Buchen</a>
+                    <a href="https://wa.me/4942159661040" style="font-size: 15px;" class="btn btn-danger">Jetzt Anrufen<i style="margin-left: 10px;" class="fa fa-arrow-right"></i></a>
                   </div>
                 </div>
               </div>

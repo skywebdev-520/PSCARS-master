@@ -48,7 +48,12 @@
                   
                 </div>
                 <div class="col  ml-auto text-md-right mt-2 mt-md-0 flex-shrink-1 bd-highlight">
+                  @if(weekend==0)
                   <h3 class="mb-0" style="text-transform:none">{{ formatCurr(car.price) }} € / Tag</h3>
+                  @endif
+                  @if(weekend==1)
+                  <h3 class="mb-0" style="text-transform:none">{{ formatCurr(car.priceWeekend) }} € / Tag</h3>
+                  @endif
                   <small>inklusive MwSt.</small>
                 </div>
               </div>
@@ -68,7 +73,7 @@
                       <td class="border-0 text-dark " style="width: 20px; text-align:center">
                         <img height="15px" src="/assets/img/Auto/vMax.png" />
                       </td>
-                      <td class="border-0 text-dark "><b>V/max:</b> {{car.vmax}} km/h</td>
+                      <td class="border-0 text-dark "><b>V/MAX:</b> {{car.vmax}} km/h</td>
                       <td class="border-0 text-dark d-none d-md-table-cell" style="width: 20px; text-align:center">
                         <img height="15px" src="/assets/img/Auto/Kraftstoff.png" />
                       </td>

@@ -41,7 +41,14 @@ class CheckoutController {
             disabled.push(bkings[id].checkout)
             disabled.push(bkings[id].checkin)
         }
-        return view.render("Pages/checkout", { slugify,disabled:JSON.stringify(disabled),params, car: carJSN, carJSON: JSON.stringify(carJSN) })
+        var dt = new Date();     
+        var weekend;
+        if(dt.getDay() == 6 || dt.getDay() == 0){
+            weekend = 1;
+        }else{
+            weekend = 0;
+        }  
+        return view.render("Pages/checkout", { slugify,disabled:JSON.stringify(disabled),params, car: carJSN, carJSON: JSON.stringify(carJSN), weekend: weekend })
     }
     async coupon({request}) {
         let code = request.input("code", false)

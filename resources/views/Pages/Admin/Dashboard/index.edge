@@ -8,62 +8,97 @@
         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
     </div>
     <div class="row">
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-4 col-md-4 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Aktive/Kommende Buchungen</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{books.length}}</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
+      <!-- Earnings (Monthly) Card Example -->
+      <div class="col-xl-4 col-md-4 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Aktive/Kommende Buchungen</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">{{books.length}}</div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-calendar fa-2x text-gray-300"></i>
               </div>
             </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-4 col-md-4 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Fahrzeuge</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{cars.length}}</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-car fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Pending Requests Card Example -->
-            <div class="col-xl-4 col-md-4 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Schäden</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{damages.length}}</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-exclamation-triangle fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            
-
           </div>
-</div>
+        </div>
+      </div>
+
+      <!-- Earnings (Monthly) Card Example -->
+      <div class="col-xl-4 col-md-4 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Fahrzeuge</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">{{cars.length}}</div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-car fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pending Requests Card Example -->
+      <div class="col-xl-4 col-md-4 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Schäden</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">{{{damages.length}}}</div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-exclamation-triangle fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-4 col-md-4 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2" style="border-left: .25rem solid #e13649 !important;">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1" style="color:#e13649 !important;">Top-Buchungswagen</div>
+                <div style="display:flex; justify-content: space-between;">
+                  <span class="h5 mb-0 font-weight-bold text-gray-800">{{{cars[topBookingCarId].title}}}</span>
+                  <span class="h5 mb-0 font-weight-bold text-gray-800">{{topBookingNumber}}</span>
+                </div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-car fa-2x text-gray-300" style="color:#64db80!important;"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-4 col-md-4 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2" style="border-left: .25rem solid #df39d5 !important;">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1" style="color:#df39d5 !important;">Top-Verkaufswagen</div>
+                <div style="display:flex; justify-content: space-between;">
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">{{{cars[topSaleCarId].title}}}</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">€{{topSaleNumber}}</div>
+                </div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-car fa-2x text-gray-300" style="color:#64db80!important;"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 @endsection
 
 @section('CSS')

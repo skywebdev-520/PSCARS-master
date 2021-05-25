@@ -29,7 +29,14 @@ class ProductController {
     await car.load('features')
     await car.load('mainimg')
     let carJSN = car.toJSON()
-    return view.render("Pages/car", {JSON,formatCurr,params, car: carJSN})
+    var dt = new Date();     
+    var weekend;
+    if(dt.getDay() == 6 || dt.getDay() == 0){
+      weekend = 1;
+    }else{
+      weekend = 0;
+    }    
+    return view.render("Pages/car", {JSON,formatCurr,params, car: carJSN, weekend: weekend})
   }
 
   async index({ params, view }) {

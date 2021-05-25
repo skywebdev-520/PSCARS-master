@@ -9,6 +9,7 @@ const moment = use('moment')
 const Helpers = use('Helpers')
 const Damage = use('App/Models/Damage')
 const DamageEntry = use('App/Models/DamageEntry')
+const { tr } = require('date-fns/locale')
 const uuidv1 = require('uuid/v1');
 
 class DamageController {
@@ -71,29 +72,34 @@ class DamageController {
         return view.render('Pages/Admin/Damages/images',{moment,dmg:dmg.toJSON()})
     }
     async addImages({request,params}){
-        const dmg = await Damage.findOrFail(params.id)
-        const newImg = request.file('file', {
-            types: ['image'],
-            size: '20mb'
-        })
-        let imgPath = ""
-        if(newImg){
-            imgPath = uuidv1()+"."+newImg.extname
-            let moved = await newImg.move(Helpers.publicPath('uploads'), {
-                name:imgPath,
-                overwrite: true
-            })
-            if (!newImg.moved()) {
-                return newImg.error()
-            }
-        }
         let body = request.all()
         let dmgEntry = new DamageEntry()
+        const dmg = await Damage.findOrFail(params.id)
+        const count = body.length;        
+        let imagePath = "";
+        for (let i = 0; i < count; i ++) {
+            const newImg = request.file('files[' + i +']', {
+                types: ['image'],
+                size: '20mb'
+            })            
+            let imgPath = ""
+            if(newImg){
+                imgPath = uuidv1()+"."+newImg.extname
+                let moved = await newImg.move(Helpers.publicPath('uploads'), {
+                    name:imgPath,
+                    overwrite: true
+                })
+                if (!newImg.moved()) {
+                    return newImg.error()
+                }
+            }            
+            imagePath = imagePath + (i < count && i > 0 ? ',' : '') + imgPath            
+        }
+        dmgEntry.image = imagePath
         dmgEntry.damage_id = params.id
         dmgEntry.description = body.description
         dmgEntry.mark = body.mark
         dmgEntry.type = body.type
-        dmgEntry.image = imgPath
         await dmgEntry.save()
         return true;
     }
