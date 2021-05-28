@@ -798,19 +798,19 @@ class OrderController {
                         " ",
                         {text:'zwischen',fontSize:11},
                         " ",
-                        {text:'Name: '+book.customer_firstname+' '+book.customer_lastname,bold:true,fontSize:11,marginLeft:50},
+                        {text:'Name: '+book.customer_firstname+' '+book.customer_lastname,bold:true,fontSize:11,marginLeft:40},
                         " ",
-                        {text:'Anschrift: '+book.customer_address,bold:true,fontSize:11,marginLeft:50},
+                        {text:'Anschrift: '+book.customer_address,bold:true,fontSize:11,marginLeft:40},
                         " ",
-                        {text:'PLZ / Stadt: '+book.customer_postcode+'/'+book.customer_city,bold:true,fontSize:11,marginLeft:50},                                                                 
-                        {text:"- im Folgenden \"Vermieter\" genannt -",marginLeft:50,fontSize:11},
+                        {text:'PLZ / Stadt: '+book.customer_postcode+'/'+book.customer_city,bold:true,fontSize:11,marginLeft:40},                                                                 
+                        {text:"- im Folgenden \"Vermieter\" genannt -",marginLeft:40,fontSize:11},
                         " ",
-                        {text:"und",marginLeft:50,fontSize:11},
+                        {text:"und",marginLeft:40,fontSize:11},
                         " ",
-                        {text:"Premium Sport-Cars GmbH",bold:true,marginLeft:50,fontSize:11},
-                        {text:"Ludwig-Erhard-Str. 8",marginLeft:50,fontSize:11},
-                        {text:"28197 Bremen",marginLeft:50,fontSize:11},                        
-                        {text:"- im Folgenden \"Vermieter\" genannt -",marginLeft:50,fontSize:11},                        
+                        {text:"Premium Sport-Cars GmbH",bold:true,marginLeft:40,fontSize:11},
+                        {text:"Ludwig-Erhard-Str. 8",marginLeft:40,fontSize:11},
+                        {text:"28197 Bremen",marginLeft:40,fontSize:11},                        
+                        {text:"- im Folgenden \"Vermieter\" genannt -",marginLeft:40,fontSize:11},                        
                         " ",
                         {text:"wird folgende Haftungsvereinbarung geschlossen:",fontSize:11},
                         " ",
@@ -820,53 +820,54 @@ class OrderController {
                         " ",
                         {
                             columns: [
-                                {text:"•",width:20,fontSize:15,bold:true,marginLeft:30},
-                                {text:"Der Mieter ist verpflichtet den Motor des überlassenen Fahrzeuges vor der Nutzung warmlaufen zu lassen, um Motorschäden zu vermeiden.",marginLeft:30,fontSize:11}
+                                {text:"•",width:20,fontSize:15,bold:true,marginLeft:20},
+                                {text:"Der Mieter ist verpflichtet den Motor des überlassenen Fahrzeuges vor der Nutzung warmlaufen zu lassen, um Motorschäden zu vermeiden.",marginLeft:20,fontSize:11}
                             ]
                         },                        
                         " ",
-                        {text:"Zu Achten: Betriebstemperatur, Getriebetemperatur und Öltemperatur.",marginLeft:50,fontSize:11},
+                        {text:"Zu Achten: Betriebstemperatur, Getriebetemperatur und Öltemperatur.",marginLeft:40,fontSize:11},
                         " ",
                         {
                             columns: [
-                                {text:"•",width:20,fontSize:15,bold:true,marginLeft:30},
-                                {text:"Kein Kick-Down! Belastung langsam steigern.",marginLeft:30,fontSize:11}
+                                {text:"•",width:20,fontSize:15,bold:true,marginLeft:20},
+                                {text:"Kein Kick-Down! Belastung langsam steigern.",marginLeft:20,fontSize:11}
                             ]
                         }, 
                         " ",
                         {
                             columns: [
-                                {text:"•",width:20,fontSize:15,bold:true,marginLeft:30},
-                                {text:"Der Mieter ist dazu verpflichtet, vor dem Losfahren die Handbremse zu lösen.",marginLeft:30,fontSize:11}
+                                {text:"•",width:20,fontSize:15,bold:true,marginLeft:20},
+                                {text:"Der Mieter ist dazu verpflichtet, vor dem Losfahren die Handbremse zu lösen.",marginLeft:20,fontSize:11}
                             ]
                         }, 
                         " ",
                         {
                             columns: [
-                                {text:"•",width:20,fontSize:15,bold:true,marginLeft:30},
-                                {text:"Der Mieter ist verpflichtet den gesetzlich vorgeschriebenen Mindestabstand eizuhalten, um Steinschläge durch das vorausfahrende Fahrzeug zu vermeiden.",marginLeft:30,fontSize:11}
+                                {text:"•",width:20,fontSize:15,bold:true,marginLeft:20},
+                                {text:"Der Mieter ist verpflichtet den gesetzlich vorgeschriebenen Mindestabstand eizuhalten, um Steinschläge durch das vorausfahrende Fahrzeug zu vermeiden.",marginLeft:20,fontSize:11}
                             ]
                         }, 
                         " ",
                         {
                             columns: [
-                                {text:"•",width:20,fontSize:15,bold:true,marginLeft:30},
-                                {text:"Der Mieter ist verpflichtet reifenschädigendes bremsen zu umgehen, um ein starkes abnutzen der Reifen zu vermeiden.",marginLeft:30,fontSize:11}
+                                {text:"•",width:20,fontSize:15,bold:true,marginLeft:20},
+                                {text:"Der Mieter ist verpflichtet reifenschädigendes bremsen zu umgehen, um ein starkes abnutzen der Reifen zu vermeiden.",marginLeft:20,fontSize:11}
                             ]
                         }, 
                         " ",
                         {
                             columns: [
-                                {text:"•",width:20,fontSize:15,bold:true,marginLeft:30},
-                                {text:"Der Mieter ist dazu verpflichtet sich an Ruhezeiten in z.B. Wohngebieten zu halten und Lärmbelästigungen zu unterlassen.",marginLeft:30,fontSize:11}
+                                {text:"•",width:20,fontSize:15,bold:true,marginLeft:20},
+                                {text:"Der Mieter ist dazu verpflichtet sich an Ruhezeiten in z.B. Wohngebieten zu halten und Lärmbelästigungen zu unterlassen.",marginLeft:20,fontSize:11}
                             ]
                         }, 
                         " ",
                         {text:"Im Haftungsfall hat der Mieter folgende Schäden als Gesamtschuldner zu ersetzen:",fontSize:11},
                         {text:"Die Schadenersatzpflicht des Mieters erstreckt sich unabhängig von der vertraglich vereinbarten Selbstbeteiligung auf die gesamten Reparaturkosten zzgl. einer eventuellen Wertminderung oder bei einem Totalschaden des Fahrzeuges auf den Wiederbeschaffungswert des überlassenen Fahrzeuges abzgl. des Restwertes. Weiter haftet der Mieter – soweit angefallen – für Abschleppkosten, Bergung und Rückführung, Sachverständigengebühren und etwaige weitere dem Vermieter entstehende Kosten und Kosten für den Ausfall in Höhe von 80 % der Tagessätze der jeweils gültigen Preisliste",fontSize:11},
                         " ",
-                        {text:"Hinweis:",fontSize:10,bold:true},
-                        {text:"Unsere Fahrzeuge sind mit GPS-Ortung ausgestattet, wer unberechtigt mit dem Mietfahrzeug ins Ausland fährt, muss damit rechnen, dass das Fahrzeug bei Diebstahlverdacht stillgelegt wird und die Kosten für den entstandenen Aufwand tragen. Auswertung und Analyse von Fahrverhalten und Fahrweise ist Nachvollziehbar!",fontSize:10},
+                        {text:"Hinweis:",fontSize:9,bold:true},
+                        {text:"Unsere Fahrzeuge sind mit GPS-Ortung ausgestattet, wer unberechtigt mit dem Mietfahrzeug ins Ausland fährt, muss damit rechnen, dass das Fahrzeug bei Diebstahlverdacht stillgelegt wird und die Kosten für den entstandenen Aufwand tragen. Auswertung und Analyse von Fahrverhalten und Fahrweise ist Nachvollziehbar!",fontSize:9},
+                        " ",
                         " ",
                         " ",
                         {text:"Bremen, den "+moment(book.checkin).format("DD.MM.YYYY"),fontSize:11},
@@ -893,6 +894,119 @@ class OrderController {
             console.log(e)
         }
     }
+
+    async getReceiptDeposit({response,params,auth}){
+        let book = await Booking.findOrFail(params.id)
+        await book.loadMany(["car","car.mainimg","car.damages","car.kilometers","car.features","car.damages.entries"])
+        book = book.toJSON()        
+        let featId = JSON.parse(book.features)
+        let features = await Feature.query().whereIn("id",featId).fetch()
+        features = features.toJSON()         
+        const content = [
+            { 
+                style:"default",
+                columns: [
+                    [                        
+                        {text:'Haftungsvereinbarung',bold:true,fontSize:12},
+                        " ",
+                        {text:'zwischen',fontSize:11},
+                        " ",
+                        {text:'Name: '+book.customer_firstname+' '+book.customer_lastname,bold:true,fontSize:11,marginLeft:40},
+                        " ",
+                        {text:'Anschrift: '+book.customer_address,bold:true,fontSize:11,marginLeft:40},
+                        " ",
+                        {text:'PLZ / Stadt: '+book.customer_postcode+'/'+book.customer_city,bold:true,fontSize:11,marginLeft:40},                                                                 
+                        {text:"- im Folgenden \"Vermieter\" genannt -",marginLeft:40,fontSize:11},
+                        " ",
+                        {text:"und",marginLeft:40,fontSize:11},
+                        " ",
+                        {text:"Premium Sport-Cars GmbH",bold:true,marginLeft:40,fontSize:11},
+                        {text:"Ludwig-Erhard-Str. 8",marginLeft:40,fontSize:11},
+                        {text:"28197 Bremen",marginLeft:40,fontSize:11},                        
+                        {text:"- im Folgenden \"Vermieter\" genannt -",marginLeft:40,fontSize:11},                        
+                        " ",
+                        {text:"wird folgende Haftungsvereinbarung geschlossen:",fontSize:11},
+                        " ",
+                        {text:"Der o.g. Mieter haftet unbeschränkt für alle Schäden am durch den Vermieter überlassenem Fahrzeug, die aufgrund von Bedienungsfehlern oder Überbeanspruchung während der Zeit der Überlassung zurückzuführen sind.",fontSize:11},
+                        " ",
+                        {text:"Pflichten des Mieters gegen Schäden durch Bedienungsfehler und Überbeanspruchung:",fontSize:11},
+                        " ",
+                        {
+                            columns: [
+                                {text:"•",width:20,fontSize:15,bold:true,marginLeft:20},
+                                {text:"Der Mieter ist verpflichtet den Motor des überlassenen Fahrzeuges vor der Nutzung warmlaufen zu lassen, um Motorschäden zu vermeiden.",marginLeft:20,fontSize:11}
+                            ]
+                        },                        
+                        " ",
+                        {text:"Zu Achten: Betriebstemperatur, Getriebetemperatur und Öltemperatur.",marginLeft:40,fontSize:11},
+                        " ",
+                        {
+                            columns: [
+                                {text:"•",width:20,fontSize:15,bold:true,marginLeft:20},
+                                {text:"Kein Kick-Down! Belastung langsam steigern.",marginLeft:20,fontSize:11}
+                            ]
+                        }, 
+                        " ",
+                        {
+                            columns: [
+                                {text:"•",width:20,fontSize:15,bold:true,marginLeft:20},
+                                {text:"Der Mieter ist dazu verpflichtet, vor dem Losfahren die Handbremse zu lösen.",marginLeft:20,fontSize:11}
+                            ]
+                        }, 
+                        " ",
+                        {
+                            columns: [
+                                {text:"•",width:20,fontSize:15,bold:true,marginLeft:20},
+                                {text:"Der Mieter ist verpflichtet den gesetzlich vorgeschriebenen Mindestabstand eizuhalten, um Steinschläge durch das vorausfahrende Fahrzeug zu vermeiden.",marginLeft:20,fontSize:11}
+                            ]
+                        }, 
+                        " ",
+                        {
+                            columns: [
+                                {text:"•",width:20,fontSize:15,bold:true,marginLeft:20},
+                                {text:"Der Mieter ist verpflichtet reifenschädigendes bremsen zu umgehen, um ein starkes abnutzen der Reifen zu vermeiden.",marginLeft:20,fontSize:11}
+                            ]
+                        }, 
+                        " ",
+                        {
+                            columns: [
+                                {text:"•",width:20,fontSize:15,bold:true,marginLeft:20},
+                                {text:"Der Mieter ist dazu verpflichtet sich an Ruhezeiten in z.B. Wohngebieten zu halten und Lärmbelästigungen zu unterlassen.",marginLeft:20,fontSize:11}
+                            ]
+                        }, 
+                        " ",
+                        {text:"Im Haftungsfall hat der Mieter folgende Schäden als Gesamtschuldner zu ersetzen:",fontSize:11},
+                        {text:"Die Schadenersatzpflicht des Mieters erstreckt sich unabhängig von der vertraglich vereinbarten Selbstbeteiligung auf die gesamten Reparaturkosten zzgl. einer eventuellen Wertminderung oder bei einem Totalschaden des Fahrzeuges auf den Wiederbeschaffungswert des überlassenen Fahrzeuges abzgl. des Restwertes. Weiter haftet der Mieter – soweit angefallen – für Abschleppkosten, Bergung und Rückführung, Sachverständigengebühren und etwaige weitere dem Vermieter entstehende Kosten und Kosten für den Ausfall in Höhe von 80 % der Tagessätze der jeweils gültigen Preisliste",fontSize:11},
+                        " ",
+                        {text:"Hinweis:",fontSize:9,bold:true},
+                        {text:"Unsere Fahrzeuge sind mit GPS-Ortung ausgestattet, wer unberechtigt mit dem Mietfahrzeug ins Ausland fährt, muss damit rechnen, dass das Fahrzeug bei Diebstahlverdacht stillgelegt wird und die Kosten für den entstandenen Aufwand tragen. Auswertung und Analyse von Fahrverhalten und Fahrweise ist Nachvollziehbar!",fontSize:9},
+                        " ",
+                        " ",
+                        " ",
+                        {text:"Bremen, den "+moment(book.checkin).format("DD.MM.YYYY"),fontSize:11},
+                        " ",                        
+                        {
+                            columns:[                                                                
+                                {
+                                    width: 200,height:6,marginLeft:50,
+                                    svg: '<svg><line  x1="0"  y1="0"  x2="200"  y2="0"  stroke="#4A4D52" stroke-width="2" /></svg>'
+                                }                                
+                            ]
+                        },
+                        {text:"Unterschrift Mieter",marginLeft:100,fontSize:11}
+                    ]
+                ]
+            }
+        ]
+        response.header('X-Frame-Options', 'SAMEORIGIN')
+        response.response.setHeader('Content-type', 'application/pdf')
+        response.implicitEnd = false
+        try{
+            PDF.create(content, response.response)
+        }catch(e){
+            console.log(e)
+        }
+    }    
 }
 
 module.exports = OrderController
