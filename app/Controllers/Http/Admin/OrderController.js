@@ -906,85 +906,162 @@ class OrderController {
             { 
                 style:"default",
                 columns: [
-                    [                        
-                        {text:'Haftungsvereinbarung',bold:true,fontSize:12},
+                    [        
                         " ",
-                        {text:'zwischen',fontSize:11},
+                        " ",                
+                        {text:'QUITTUNG ÜBER DEN ERHALT DER MIETKAUTION',bold:true,fontSize:14},
                         " ",
-                        {text:'Name: '+book.customer_firstname+' '+book.customer_lastname,bold:true,fontSize:11,marginLeft:40},
                         " ",
-                        {text:'Anschrift: '+book.customer_address,bold:true,fontSize:11,marginLeft:40},
                         " ",
-                        {text:'PLZ / Stadt: '+book.customer_postcode+'/'+book.customer_city,bold:true,fontSize:11,marginLeft:40},                                                                 
-                        {text:"- im Folgenden \"Vermieter\" genannt -",marginLeft:40,fontSize:11},
-                        " ",
-                        {text:"und",marginLeft:40,fontSize:11},
-                        " ",
-                        {text:"Premium Sport-Cars GmbH",bold:true,marginLeft:40,fontSize:11},
-                        {text:"Ludwig-Erhard-Str. 8",marginLeft:40,fontSize:11},
-                        {text:"28197 Bremen",marginLeft:40,fontSize:11},                        
-                        {text:"- im Folgenden \"Vermieter\" genannt -",marginLeft:40,fontSize:11},                        
-                        " ",
-                        {text:"wird folgende Haftungsvereinbarung geschlossen:",fontSize:11},
-                        " ",
-                        {text:"Der o.g. Mieter haftet unbeschränkt für alle Schäden am durch den Vermieter überlassenem Fahrzeug, die aufgrund von Bedienungsfehlern oder Überbeanspruchung während der Zeit der Überlassung zurückzuführen sind.",fontSize:11},
-                        " ",
-                        {text:"Pflichten des Mieters gegen Schäden durch Bedienungsfehler und Überbeanspruchung:",fontSize:11},
                         " ",
                         {
-                            columns: [
-                                {text:"•",width:20,fontSize:15,bold:true,marginLeft:20},
-                                {text:"Der Mieter ist verpflichtet den Motor des überlassenen Fahrzeuges vor der Nutzung warmlaufen zu lassen, um Motorschäden zu vermeiden.",marginLeft:20,fontSize:11}
-                            ]
+                            table: {
+                                
+                                headerRows: 1,
+                                widths: [ '*','*'],
+                                body: [
+                                    [ 
+                                        { 
+                                            text:'Mieter:',
+                                            alignment:'left',                                            
+                                            bold: true, fontSize:11,border:[false,false,false,false] 
+                                        },
+                                        { 
+                                            text:'Vermieter:',
+                                            alignment:'left',                                                                                        
+                                            bold: true, fontSize:11,border:[false,false,false,false] 
+                                        }
+                                    ],
+                                    [ 
+                                        {text: book.customer_firstname+' '+book.customer_lastname,alignment:'left',fontSize:11,border:[false,false,false,false] },
+                                        {text: 'Premium Sport-Cars GmbH',alignment:'left',fontSize:11,border:[false,false,false,false]}                                        
+                                    ],
+                                    [ 
+                                        {text: book.customer_address,alignment:'left',fontSize:11,border:[false,false,false,false] },
+                                        {text: 'Ludwig-Erhard-Str. 8',alignment:'left',fontSize:11,border:[false,false,false,false]}                                        
+                                    ],
+                                    [ 
+                                        {text: book.customer_postcode+' '+book.customer_city,alignment:'left',fontSize:11,border:[false,false,false,false] },
+                                        {text: '28197 Bremen',alignment:'left',fontSize:11,border:[false,false,false,false]}                                        
+                                    ],
+                                ]
+                            }
                         },                        
                         " ",
-                        {text:"Zu Achten: Betriebstemperatur, Getriebetemperatur und Öltemperatur.",marginLeft:40,fontSize:11},
                         " ",
-                        {
-                            columns: [
-                                {text:"•",width:20,fontSize:15,bold:true,marginLeft:20},
-                                {text:"Kein Kick-Down! Belastung langsam steigern.",marginLeft:20,fontSize:11}
-                            ]
-                        }, 
                         " ",
-                        {
-                            columns: [
-                                {text:"•",width:20,fontSize:15,bold:true,marginLeft:20},
-                                {text:"Der Mieter ist dazu verpflichtet, vor dem Losfahren die Handbremse zu lösen.",marginLeft:20,fontSize:11}
-                            ]
-                        }, 
                         " ",
-                        {
-                            columns: [
-                                {text:"•",width:20,fontSize:15,bold:true,marginLeft:20},
-                                {text:"Der Mieter ist verpflichtet den gesetzlich vorgeschriebenen Mindestabstand eizuhalten, um Steinschläge durch das vorausfahrende Fahrzeug zu vermeiden.",marginLeft:20,fontSize:11}
-                            ]
-                        }, 
+                        {text:book.car.title.replace(/<[^>]*>?/gm, '')+' - '+book.car.plate+'(Car-Model-Plate)',bold:true,fontSize:11},                      
                         " ",
-                        {
-                            columns: [
-                                {text:"•",width:20,fontSize:15,bold:true,marginLeft:20},
-                                {text:"Der Mieter ist verpflichtet reifenschädigendes bremsen zu umgehen, um ein starkes abnutzen der Reifen zu vermeiden.",marginLeft:20,fontSize:11}
-                            ]
-                        }, 
                         " ",
-                        {
-                            columns: [
-                                {text:"•",width:20,fontSize:15,bold:true,marginLeft:20},
-                                {text:"Der Mieter ist dazu verpflichtet sich an Ruhezeiten in z.B. Wohngebieten zu halten und Lärmbelästigungen zu unterlassen.",marginLeft:20,fontSize:11}
-                            ]
-                        }, 
                         " ",
-                        {text:"Im Haftungsfall hat der Mieter folgende Schäden als Gesamtschuldner zu ersetzen:",fontSize:11},
-                        {text:"Die Schadenersatzpflicht des Mieters erstreckt sich unabhängig von der vertraglich vereinbarten Selbstbeteiligung auf die gesamten Reparaturkosten zzgl. einer eventuellen Wertminderung oder bei einem Totalschaden des Fahrzeuges auf den Wiederbeschaffungswert des überlassenen Fahrzeuges abzgl. des Restwertes. Weiter haftet der Mieter – soweit angefallen – für Abschleppkosten, Bergung und Rückführung, Sachverständigengebühren und etwaige weitere dem Vermieter entstehende Kosten und Kosten für den Ausfall in Höhe von 80 % der Tagessätze der jeweils gültigen Preisliste",fontSize:11},
+                        {                         
+                            table: {
+                                headerRows: 1,
+                                widths: [ '30%','*' ],
+                                body: [
+                                    [ 
+                                        { 
+                                            text:' \n \n \n ',
+                                            alignment:'right',
+                                            fontSize:10,
+                                            border:[true,true,true,true],
+                                            borderColor:["#4A4D52","#4A4D52","#4A4D52","#4A4D52"] 
+                                        },
+                                        { 
+                                            text:' \n \n \n ',
+                                            alignment:'center',
+                                            fontSize:10,
+                                            border:[true,true,true,true],
+                                            borderColor:["#4A4D52","#4A4D52","#4A4D52","#4A4D52"]
+                                        }                                        
+                                    ],
+                                    [
+                                        {
+                                            text:' ',
+                                            fontSize:10,
+                                            border:[true,true,true,true],
+                                            borderColor:["#4A4D52","#4A4D52","#4A4D52","#4A4D52"] 
+                                        },
+                                        {
+                                            text:' ',
+                                            fontSize:10,
+                                            border:[true,true,true,true],
+                                            borderColor:["#4A4D52","#4A4D52","#4A4D52","#4A4D52"]
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            text:' ',
+                                            fontSize:10,
+                                            border:[true,true,true,true],
+                                            borderColor:["#4A4D52","#4A4D52","#4A4D52","#4A4D52"] 
+                                        },
+                                        {
+                                            text:' ',
+                                            fontSize:10,
+                                            border:[true,true,true,true],
+                                            borderColor:["#4A4D52","#4A4D52","#4A4D52","#4A4D52"] 
+                                        }
+                                    ],
+                                    [ 
+                                        {text: ' \nGesamt EUR, Cent:',fontSize:11,alignment:'right',bold:true,border:[true,true,true,true],borderColor:["#4A4D52","#4A4D52","#4A4D52","#4A4D52"]},
+                                        {text:book.price_total,fontSize:24,bold:true,alignment:"center",borderColor:["#4A4D52","#4A4D52","#4A4D52","#4A4D52"]}                                                                                
+                                    ],
+                                    [
+                                        {
+                                            text:' ',
+                                            fontSize:10,
+                                            border:[true,true,true,true],
+                                            borderColor:["#4A4D52","#4A4D52","#4A4D52","#4A4D52"] 
+                                        },
+                                        {
+                                            text:' ',
+                                            fontSize:10,
+                                            border:[true,true,true,true],
+                                            borderColor:["#4A4D52","#4A4D52","#4A4D52","#4A4D52"] 
+                                        }
+                                    ],
+                                    [ 
+                                        {text: 'EUR in Worten, \nCent wie oben:',alignment:'right',bold:true,fontSize:11,border:[true,true,true,true],borderColor:["#4A4D52","#4A4D52","#4A4D52","#4A4D52"]},
+                                        {text: ' ',alignment:'center',fontSize:24,bold:true,border:[true,true,true,true] ,borderColor:["#4A4D52","#4A4D52","#4A4D52","#4A4D52"]}                                        
+                                    ],
+                                    [
+                                        {
+                                            text:' \n \n \n \n \n \n ',
+                                            border:[true,true,true,true],
+                                            borderColor:["#4A4D52","#4A4D52","#4A4D52","#4A4D52"] 
+                                        },
+                                        {
+                                            text:' \n \n \n \n \n \ ',
+                                            border:[true,true,true,true],
+                                            borderColor:["#4A4D52","#4A4D52","#4A4D52","#4A4D52"] 
+                                        }
+                                    ],                                    
+                                ]
+                            }
+                        },
                         " ",
-                        {text:"Hinweis:",fontSize:9,bold:true},
-                        {text:"Unsere Fahrzeuge sind mit GPS-Ortung ausgestattet, wer unberechtigt mit dem Mietfahrzeug ins Ausland fährt, muss damit rechnen, dass das Fahrzeug bei Diebstahlverdacht stillgelegt wird und die Kosten für den entstandenen Aufwand tragen. Auswertung und Analyse von Fahrverhalten und Fahrweise ist Nachvollziehbar!",fontSize:9},
+                        {text:"Der Vermieter bestätigt hiermit, dass er die im Mietvertrag vereinbarte Kaution in Höhe",fontSize:10},
+                        " ",
+                        " ",
+                        {text:"von "+book.price_total+" Euro am "+moment(book.checkin).format("DD.MM.YYYY")+" von dem Mieter per Kreditkarte (here we got 3 options; per Kreditkarte; per Bar; per EC-karte) erhalten hat.",fontSize:10},
+                        " ",
                         " ",
                         " ",
                         " ",
                         {text:"Bremen, den "+moment(book.checkin).format("DD.MM.YYYY"),fontSize:11},
+                        " ",
                         " ",                        
+                        {
+                            columns:[                                                                
+                                {
+                                    width: 200,height:6,
+                                    svg: '<svg><line  x1="0"  y1="0"  x2="200"  y2="0"  stroke="#4A4D52" stroke-width="2" /></svg>'
+                                }                                
+                            ]
+                        },
+                        " ",
                         {
                             columns:[                                                                
                                 {
@@ -993,7 +1070,28 @@ class OrderController {
                                 }                                
                             ]
                         },
-                        {text:"Unterschrift Mieter",marginLeft:100,fontSize:11}
+                        {
+                            table:{
+                                headerRows: 1,
+                                widths: [ '60%','*' ],
+                                body: [
+                                    [ 
+                                        { 
+                                            text:'Ort, Datum\nVermieter',
+                                            alignment:'left',
+                                            fontSize:11,
+                                            border:[false,false,false,false]                                        
+                                        },
+                                        { 
+                                            text:'Stempel / Unterschrift /',
+                                            alignment:'left',
+                                            fontSize:11,
+                                            border:[false,false,false,false]                                        
+                                        }                                        
+                                    ],
+                                ]
+                            }   
+                        }                     
                     ]
                 ]
             }
@@ -1007,6 +1105,321 @@ class OrderController {
             console.log(e)
         }
     }    
+    async getHandOver({response,params,auth}){
+        let book = await Booking.findOrFail(params.id)
+        await book.loadMany(["car","car.mainimg","car.damages","car.kilometers","car.features","car.damages.entries"])
+        book = book.toJSON()        
+        let featId = JSON.parse(book.features)
+        let features = await Feature.query().whereIn("id",featId).fetch()
+        features = features.toJSON()         
+        const content = [
+            { 
+                style:"default",
+                columns: [
+                    [        
+                        " ",
+                        " ",                
+                        {text:'Übergabeprotokoll',bold:true,fontSize:16},
+                        " ",
+                        " ",                        
+                        {
+                            table: {                                
+                                headerRows: 1,
+                                widths: [ '70%','*'],
+                                body: [
+                                    [ 
+                                        { 
+                                            text:'Fahrzeugdaten',
+                                            alignment:'left',                                            
+                                            bold: true, fontSize:10,border:[false,false,false,false] 
+                                        },
+                                        { 
+                                            text:'Übergabeinformationen',
+                                            alignment:'left',                                                                                        
+                                            bold: true, fontSize:10,border:[false,false,false,false] 
+                                        }
+                                    ],
+                                    [ 
+                                        {text: 'Kennzeichen:'+' '+book.car.plate,alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10 },
+                                        {text: 'Datum Übergabe: 18.05.2021',alignment:'left',fontSize:10,border:[false,false,false,false]}                                        
+                                    ],
+                                    [ 
+                                        {text: 'Hersteller, Modell, Typ: '+book.car.title.replace(/<[^>]*>?/gm, ''),alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10 },
+                                        {text: 'Uhrzeit Übergabe:',alignment:'left',fontSize:10,border:[false,false,false,false]}                                        
+                                    ],
+                                    [ 
+                                        {text: 'Farbe:',alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10 },
+                                        {text: 'Ort der Übergabe:',alignment:'left',fontSize:10,border:[false,false,false,false]}                                        
+                                    ],
+                                    [ 
+                                        {text: 'Kilometerstand:',alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10 },
+                                        {text: 'Kraftstoffart:',alignment:'left',fontSize:10,border:[false,false,false,false]}                                        
+                                    ],
+                                ]
+                            }
+                        },                        
+                        " ",
+                        " ",
+                        {
+                            table: {                                
+                                headerRows: 1,
+                                widths: [ '60%','*'],
+                                body: [
+                                    [ 
+                                        { 
+                                            text:'Daten des Übergebenden',
+                                            alignment:'left',                                            
+                                            bold: true, fontSize:10,border:[false,false,false,false],
+                                            marginLeft:10 
+                                        },
+                                        { 
+                                            text:'Daten des Übernehmenden',
+                                            alignment:'left',                                                                                        
+                                            bold: true, fontSize:10,border:[false,false,false,false] 
+                                        }
+                                    ],
+                                    [ 
+                                        {text: 'Name:'+' '+book.car.plate,alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10 },
+                                        {text: 'Premium Sport-Cars GmbH',alignment:'left',fontSize:10,border:[false,false,false,false]}                                        
+                                    ],
+                                    [ 
+                                        {text: 'Firma:'+book.car.title.replace(/<[^>]*>?/gm, ''),alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10 },
+                                        {text: 'Ludwig-Erhard-Str. 8',alignment:'left',fontSize:10,border:[false,false,false,false]}                                        
+                                    ],
+                                    [ 
+                                        {text: 'Straße:',alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10 },
+                                        {text: '28197 Bremen',alignment:'left',fontSize:10,border:[false,false,false,false]}                                        
+                                    ],
+                                    [ 
+                                        {text: 'PLZ, Ort:',alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10 },
+                                        {text: 'info@premium-sport-cars.de',alignment:'left',fontSize:10,border:[false,false,false,false]}                                        
+                                    ],
+                                    [ 
+                                        {text: 'E-Mail:',alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10 },
+                                        {text: 'www.premium-sport-cars.de',alignment:'left',fontSize:10,border:[false,false,false,false]}                                        
+                                    ],
+                                    [ 
+                                        {text: 'Telefon:',alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10 },
+                                        {text: '0421 59 66 10 40',alignment:'left',fontSize:10,border:[false,false,false,false]}                                        
+                                    ],
+                                ]
+                            }
+                        },   
+                        " ",                       
+                        " ",
+                        {text:"Bremen, den "+moment(book.checkin).format("DD.MM.YYYY"),fontSize:11},
+                        " ",
+                        " ",                        
+                        {
+                            columns:[                                                                
+                                {
+                                    width: 200,height:6,
+                                    svg: '<svg><line  x1="0"  y1="0"  x2="200"  y2="0"  stroke="#4A4D52" stroke-width="2" /></svg>'
+                                }                                
+                            ]
+                        },
+                        " ",
+                        {
+                            columns:[                                                                
+                                {
+                                    width: 200,height:6,marginLeft:50,
+                                    svg: '<svg><line  x1="0"  y1="0"  x2="200"  y2="0"  stroke="#4A4D52" stroke-width="2" /></svg>'
+                                }                                
+                            ]
+                        },
+                        {
+                            table:{
+                                headerRows: 1,
+                                widths: [ '60%','*' ],
+                                body: [
+                                    [ 
+                                        { 
+                                            text:'Ort, Datum\nVermieter',
+                                            alignment:'left',
+                                            fontSize:11,
+                                            border:[false,false,false,false]                                        
+                                        },
+                                        { 
+                                            text:'Stempel / Unterschrift /',
+                                            alignment:'left',
+                                            fontSize:11,
+                                            border:[false,false,false,false]                                        
+                                        }                                        
+                                    ],
+                                ]
+                            }   
+                        }                     
+                    ]
+                ]
+            }
+        ]
+        response.header('X-Frame-Options', 'SAMEORIGIN')
+        response.response.setHeader('Content-type', 'application/pdf')
+        response.implicitEnd = false
+        try{
+            PDF.create(content, response.response)
+        }catch(e){
+            console.log(e)
+        }
+    } 
+
+    async getTakeOver({response,params,auth}){
+        let book = await Booking.findOrFail(params.id)
+        await book.loadMany(["car","car.mainimg","car.damages","car.kilometers","car.features","car.damages.entries"])
+        book = book.toJSON()        
+        let featId = JSON.parse(book.features)
+        let features = await Feature.query().whereIn("id",featId).fetch()
+        features = features.toJSON()         
+        const content = [
+            { 
+                style:"default",
+                columns: [
+                    [        
+                        " ",
+                        " ",                
+                        {text:'Übernahmeprotokoll ( unter Vorbehalt )',bold:true,fontSize:16},
+                        " ",
+                        " ",                        
+                        {
+                            table: {                                
+                                headerRows: 1,
+                                widths: [ '70%','*'],
+                                body: [
+                                    [ 
+                                        { 
+                                            text:'Fahrzeugdaten',
+                                            alignment:'left',                                            
+                                            bold: true, fontSize:10,border:[false,false,false,false] 
+                                        },
+                                        { 
+                                            text:'Übergabeinformationen',
+                                            alignment:'left',                                                                                        
+                                            bold: true, fontSize:10,border:[false,false,false,false] 
+                                        }
+                                    ],
+                                    [ 
+                                        {text: 'Kennzeichen:'+' '+book.car.plate,alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10 },
+                                        {text: 'Datum Übergabe: 18.05.2021',alignment:'left',fontSize:10,border:[false,false,false,false]}                                        
+                                    ],
+                                    [ 
+                                        {text: 'Hersteller, Modell, Typ: '+book.car.title.replace(/<[^>]*>?/gm, ''),alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10 },
+                                        {text: 'Uhrzeit Übergabe:',alignment:'left',fontSize:10,border:[false,false,false,false]}                                        
+                                    ],
+                                    [ 
+                                        {text: 'Farbe:',alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10 },
+                                        {text: 'Ort der Übergabe:',alignment:'left',fontSize:10,border:[false,false,false,false]}                                        
+                                    ],
+                                    [ 
+                                        {text: 'Kilometerstand: no auto fill because I need to enter.',alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10 },
+                                        {text: 'Kraftstoffart:',alignment:'left',fontSize:10,border:[false,false,false,false]}                                        
+                                    ],
+                                ]
+                            }
+                        },                        
+                        " ",
+                        " ",
+                        {
+                            table: {                                
+                                headerRows: 1,
+                                widths: [ '60%','*'],
+                                body: [
+                                    [ 
+                                        { 
+                                            text:'Daten des Übergebenden',
+                                            alignment:'left',                                            
+                                            bold: true, fontSize:10,border:[false,false,false,false],
+                                            marginLeft:10 
+                                        },
+                                        { 
+                                            text:'Daten des Übernehmenden',
+                                            alignment:'left',                                                                                        
+                                            bold: true, fontSize:10,border:[false,false,false,false] 
+                                        }
+                                    ],
+                                    [ 
+                                        {text: 'Name:'+' '+book.car.plate,alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10 },
+                                        {text: 'Premium Sport-Cars GmbH',alignment:'left',fontSize:10,border:[false,false,false,false]}                                        
+                                    ],
+                                    [ 
+                                        {text: 'Firma:'+book.car.title.replace(/<[^>]*>?/gm, ''),alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10 },
+                                        {text: 'Ludwig-Erhard-Str. 8',alignment:'left',fontSize:10,border:[false,false,false,false]}                                        
+                                    ],
+                                    [ 
+                                        {text: 'Straße:',alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10 },
+                                        {text: '28197 Bremen',alignment:'left',fontSize:10,border:[false,false,false,false]}                                        
+                                    ],
+                                    [ 
+                                        {text: 'PLZ, Ort:',alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10 },
+                                        {text: 'info@premium-sport-cars.de',alignment:'left',fontSize:10,border:[false,false,false,false]}                                        
+                                    ],
+                                    [ 
+                                        {text: 'E-Mail:',alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10 },
+                                        {text: 'www.premium-sport-cars.de',alignment:'left',fontSize:10,border:[false,false,false,false]}                                        
+                                    ],
+                                    [ 
+                                        {text: 'Telefon:',alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10 },
+                                        {text: '0421 59 66 10 40',alignment:'left',fontSize:10,border:[false,false,false,false]}                                        
+                                    ],
+                                ]
+                            }
+                        },   
+                        " ",                       
+                        " ",
+                        {text:"Bremen, den "+moment(book.checkin).format("DD.MM.YYYY"),fontSize:11},
+                        " ",
+                        " ",                        
+                        {
+                            columns:[                                                                
+                                {
+                                    width: 200,height:6,
+                                    svg: '<svg><line  x1="0"  y1="0"  x2="200"  y2="0"  stroke="#4A4D52" stroke-width="2" /></svg>'
+                                }                                
+                            ]
+                        },
+                        " ",
+                        {
+                            columns:[                                                                
+                                {
+                                    width: 200,height:6,marginLeft:50,
+                                    svg: '<svg><line  x1="0"  y1="0"  x2="200"  y2="0"  stroke="#4A4D52" stroke-width="2" /></svg>'
+                                }                                
+                            ]
+                        },
+                        {
+                            table:{
+                                headerRows: 1,
+                                widths: [ '60%','*' ],
+                                body: [
+                                    [ 
+                                        { 
+                                            text:'Ort, Datum\nVermieter',
+                                            alignment:'left',
+                                            fontSize:11,
+                                            border:[false,false,false,false]                                        
+                                        },
+                                        { 
+                                            text:'Stempel / Unterschrift /',
+                                            alignment:'left',
+                                            fontSize:11,
+                                            border:[false,false,false,false]                                        
+                                        }                                        
+                                    ],
+                                ]
+                            }   
+                        }                     
+                    ]
+                ]
+            }
+        ]
+        response.header('X-Frame-Options', 'SAMEORIGIN')
+        response.response.setHeader('Content-type', 'application/pdf')
+        response.implicitEnd = false
+        try{
+            PDF.create(content, response.response)
+        }catch(e){
+            console.log(e)
+        }
+    }      
 }
 
 module.exports = OrderController

@@ -187,6 +187,10 @@
                         <hr>
                         <a href="{{book.id}}/receiptdeposit" target="_blank" type="submit" class="btn btn-primary btn-block">Erhalt Kaution</a>
                         <hr>
+                        <a href="{{book.id}}/handover" target="_blank" type="submit" class="btn btn-primary btn-block">Übergabeprotokoll</a>
+                        <hr>                        
+                        <a href="{{book.id}}/takeover" target="_blank" type="submit" class="btn btn-primary btn-block">Übernahmeprotokoll</a>
+                        <hr>                        
                         @if(!book.isReturned )
                         <a href="{{book.id}}/cancel" type="submit" class="btn btn-danger btn-block">Stornieren</a>
                         @endif
