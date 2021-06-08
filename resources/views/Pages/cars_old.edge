@@ -49,15 +49,13 @@
                   @endif
 
                 <div class="container">
-                  <div class="row no-gutters">
+              <!--<div class="row no-gutters">
                     <div class="col-md-8">
                       <div class="card-body">
-
                         <h2 class="card-title text-dark mb-0" style="text-transform: none;">{{{car.title}}}</h2>
                         <p class="card-text mb-2"><small class="text-muted">{{formatCurr(car.price)}} € / Tag inklusive
                             MwSt.</small></p>
                         <p class="card-text">
-
                           <table  class="table table-sm mt-4 border-0">
                             <tbody >
                               <tr >
@@ -80,8 +78,7 @@
                                 </td>
                                 <td class="border-0 text-dark	d-none d-md-table-cell"><b>Kraftstoff:</b> {{car.petrol}}</td>
                               </tr>
-                              <tr >
-                                
+                              <tr>                                
                                 <td class="border-0" style="width: 20px;text-align:center">
                                   <img height="15px" src="/assets/img/Auto/Motorleistung.png" />
                                 </td>
@@ -91,8 +88,7 @@
                                 </td>
                                 <td class="border-0 text-dark	d-none d-md-table-cell"><b>Max Passagiere:</b> {{car.passengers}}</td>
                               </tr>
-                              <tr >
-                                
+                              <tr>                                
                                 <td class="border-0" style="width: 20px;text-align:center">
                                   <img height="15px" src="/assets/img/Auto/AnzahlTUR.png" />
                                 </td>
@@ -111,84 +107,87 @@
                     <div class="col-md-4 pt-4">
                       <img src="/uploads/{{car.mainimg.id}}.{{car.mainimg.location}}" class="card-img mt-3">
                     </div>
-                  </div>
-
-                  <div style="overflow-x:auto; max-width:100%">
-                    <table class="table text-dark table-striped table-sm bg-light " >
-                      <tbody>
-                          <tr>
-                            <td class="text-primary"><b>Modell</b></td>
-                            <td class="text-primary"><b>3 Stunden<br>100 km</b></td>
-                            <td class="text-primary"><b>1 Tag<br>200 km</b></td>                            
-                          </tr>
-                          <tr>
-                            <td class="text-primary">Mercedes-Benz 280 SL - 1969</td>
-                            <td>90,-€</td>
-                            <td>249,-€</td>                            
-                          </tr>
-                          <tr>
-                            <td class="text-primary">Jaguar XK 140 - 1955</td>
-                            <td>90,-€</td>
-                            <td>349,-€</td>                            
-                          </tr>
-                          <tr>
-                            <td class="text-primary">Porsche 356 SC - 1969</td>
-                            <td>90,-€</td>
-                            <td>299,-€</td>                            
-                          </tr>
-                          <tr>
-                            <td class="text-primary">BMW 502 V8 - 1957</td>
-                            <td>90,-€</td>
-                            <td>429,-€</td>                            
-                          </tr>
-                      </tbody>
-                    </table>
-                    <table class="table text-dark table-striped table-sm bg-light " >
-                      <tbody>
-                          <tr>
-                            <td class="text-primary"><b>Modell<br>Vermietung nur mit Chauffeur</b></td>
-                            <td class="text-primary"><b>4 Stunden<br>Wochentag</b></td>
-                            <td class="text-primary"><b>4 Stunden<br>Wochenende</b></td>                            
-                          </tr>
-                          <tr>
-                            <td class="text-primary">Mercedes-Benz 220 A - 1955</td>
-                            <td>199,-€</td>
-                            <td>249,-€</td>                            
-                          </tr>
-                          <tr>
-                            <td class="text-primary">Bentley Continental - 1956</td>
-                            <td>299,-€</td>
-                            <td>349,-€</td>                            
-                          </tr>
-                          <tr>
-                            <td class="text-primary">Mercedes-Benz 280 SE 3.5 - 1969</td>
-                            <td>249,-€</td>
-                            <td>299,-€</td>                            
-                          </tr>
-                          <tr>
-                            <td class="text-primary">Rolls Royce Silver Cloud - 1960</td>
-                            <td>379,-€</td>
-                            <td>429,-€</td>                            
-                          </tr>
-                      </tbody>
-                    </table>
-                  </div>
-
-                  @if($loop.index % 2)
-                    <div class="card-footer text-right bg-light border-bottom-0 border-left-0 border-right-0 ">
+                  </div> -->
+                  
+                  <div class="row no-gutters">
+                    
+                      <div class="col-md-8" style="overflow-x:auto; max-width:100%; margin-top:20px;">
+                        <table class="table text-dark table-striped table-sm bg-light " >
+                          <tbody>
+                              <tr>
+                                <td class="text-primary"><b>Modell</b></td>
+                                <td class="text-primary"><b>3 Stunden<br>100 km</b></td>
+                                <td class="text-primary"><b>1 Tag<br>200 km</b></td>                            
+                              </tr>
+                              <tr>
+                                <td class="text-primary">Mercedes-Benz 280 SL - 1969</td>
+                                <td>90,-€</td>
+                                <td>249,-€</td>                            
+                              </tr>
+                              <tr>
+                                <td class="text-primary">Jaguar XK 140 - 1955</td>
+                                <td>90,-€</td>
+                                <td>349,-€</td>                            
+                              </tr>
+                              <tr>
+                                <td class="text-primary">Porsche 356 SC - 1969</td>
+                                <td>90,-€</td>
+                                <td>299,-€</td>                            
+                              </tr>
+                              <tr>
+                                <td class="text-primary">BMW 502 V8 - 1957</td>
+                                <td>90,-€</td>
+                                <td>429,-€</td>                            
+                              </tr>
+                          </tbody>
+                        </table>
+                        <table class="table text-dark table-striped table-sm bg-light " >
+                          <tbody>
+                              <tr>
+                                <td class="text-primary"><b>Modell<br>Vermietung nur mit Chauffeur</b></td>
+                                <td class="text-primary"><b>4 Stunden<br>Wochentag</b></td>
+                                <td class="text-primary"><b>4 Stunden<br>Wochenende</b></td>                            
+                              </tr>
+                              <tr>
+                                <td class="text-primary">Mercedes-Benz 220 A - 1955</td>
+                                <td>199,-€</td>
+                                <td>249,-€</td>                            
+                              </tr>
+                              <tr>
+                                <td class="text-primary">Bentley Continental - 1956</td>
+                                <td>299,-€</td>
+                                <td>349,-€</td>                            
+                              </tr>
+                              <tr>
+                                <td class="text-primary">Mercedes-Benz 280 SE 3.5 - 1969</td>
+                                <td>249,-€</td>
+                                <td>299,-€</td>                            
+                              </tr>
+                              <tr>
+                                <td class="text-primary">Rolls Royce Silver Cloud - 1960</td>
+                                <td>379,-€</td>
+                                <td>429,-€</td>                            
+                              </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="col-md-4">
+                        @if($loop.index % 2)
+                          <div class="card-footer text-right bg-light border-bottom-0 border-left-0 border-right-0 ">
                         @else
-                    <div class="card-footer text-center" style="background:#f7f7f9;">
+                          <div class="text-center" style="background:#f7f7f9; line-height:40;">
                         @endif
-                    <a href="https://wa.me/4942159661040" style="font-size: 15px;" class="btn btn-danger">Jetzt Anrufen<i style="margin-left: 10px;" class="fa fa-arrow-right"></i></a>
+                          <a href="https://wa.me/4942159661040" style="font-size: 15px;" class="btn btn-danger">Jetzt Anrufen<i style="margin-left: 10px;" class="fa fa-arrow-right"></i></a>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-              
-              </div>
-              @endeach
-
-            </div>
-        </div>
+             
+          </div>
+          @endeach
+         </div>
+      </div>
         
     </div>
 
