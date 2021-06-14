@@ -820,44 +820,44 @@ class OrderController {
                         " ",
                         {
                             columns: [
-                                {text:"•",width:20,fontSize:15,bold:true,marginLeft:20},
+                                {text:"-",width:20,fontSize:15,bold:true,marginLeft:20},
                                 {text:"Der Mieter ist verpflichtet den Motor des überlassenen Fahrzeuges vor der Nutzung warmlaufen zu lassen, um Motorschäden zu vermeiden.",marginLeft:20,fontSize:11}
                             ]
                         },                        
                         " ",
-                        {text:"Zu Achten: Betriebstemperatur, Getriebetemperatur und Öltemperatur.",marginLeft:40,fontSize:11},
+                        {text:"Zu Achten: Betriebstemperatur, Getriebetemperatur und Öltemperatur.",marginLeft:40,fontSize:11},                        
                         " ",
                         {
                             columns: [
-                                {text:"•",width:20,fontSize:15,bold:true,marginLeft:20},
+                                {text:"-",width:20,fontSize:15,bold:true,marginLeft:20},
                                 {text:"Kein Kick-Down! Belastung langsam steigern.",marginLeft:20,fontSize:11}
                             ]
                         }, 
                         " ",
                         {
                             columns: [
-                                {text:"•",width:20,fontSize:15,bold:true,marginLeft:20},
+                                {text:"-",width:20,fontSize:15,bold:true,marginLeft:20},
                                 {text:"Der Mieter ist dazu verpflichtet, vor dem Losfahren die Handbremse zu lösen.",marginLeft:20,fontSize:11}
                             ]
                         }, 
                         " ",
                         {
                             columns: [
-                                {text:"•",width:20,fontSize:15,bold:true,marginLeft:20},
+                                {text:"-",width:20,fontSize:15,bold:true,marginLeft:20},
                                 {text:"Der Mieter ist verpflichtet den gesetzlich vorgeschriebenen Mindestabstand eizuhalten, um Steinschläge durch das vorausfahrende Fahrzeug zu vermeiden.",marginLeft:20,fontSize:11}
                             ]
                         }, 
                         " ",
                         {
                             columns: [
-                                {text:"•",width:20,fontSize:15,bold:true,marginLeft:20},
+                                {text:"-",width:20,fontSize:15,bold:true,marginLeft:20},
                                 {text:"Der Mieter ist verpflichtet reifenschädigendes bremsen zu umgehen, um ein starkes abnutzen der Reifen zu vermeiden.",marginLeft:20,fontSize:11}
                             ]
                         }, 
                         " ",
                         {
                             columns: [
-                                {text:"•",width:20,fontSize:15,bold:true,marginLeft:20},
+                                {text:"-",width:20,fontSize:15,bold:true,marginLeft:20},
                                 {text:"Der Mieter ist dazu verpflichtet sich an Ruhezeiten in z.B. Wohngebieten zu halten und Lärmbelästigungen zu unterlassen.",marginLeft:20,fontSize:11}
                             ]
                         }, 
@@ -868,19 +868,17 @@ class OrderController {
                         {text:"Hinweis:",fontSize:9,bold:true},
                         {text:"Unsere Fahrzeuge sind mit GPS-Ortung ausgestattet, wer unberechtigt mit dem Mietfahrzeug ins Ausland fährt, muss damit rechnen, dass das Fahrzeug bei Diebstahlverdacht stillgelegt wird und die Kosten für den entstandenen Aufwand tragen. Auswertung und Analyse von Fahrverhalten und Fahrweise ist Nachvollziehbar!",fontSize:9},
                         " ",
-                        " ",
-                        " ",
-                        {text:"Bremen, den "+moment(book.checkin).format("DD.MM.YYYY"),fontSize:11},
-                        " ",                        
+                        " ",                                                
                         {
-                            columns:[                                                                
+                            columns:[                                                               
+                                {text:"Bremen, den "+moment(book.checkin).format("DD.MM.YYYY"),fontSize:11}, 
                                 {
-                                    width: 200,height:6,marginLeft:50,
+                                    width: 200,height:3,marginLeft:-45,marginTop:7,
                                     svg: '<svg><line  x1="0"  y1="0"  x2="200"  y2="0"  stroke="#4A4D52" stroke-width="2" /></svg>'
                                 }                                
                             ]
                         },
-                        {text:"Unterschrift Mieter",marginLeft:100,fontSize:11}
+                        {text:"Unterschrift Mieter",marginLeft:335,fontSize:11}
                     ]
                 ]
             }
@@ -906,8 +904,7 @@ class OrderController {
             { 
                 style:"default",
                 columns: [
-                    [        
-                        " ",
+                    [                           
                         " ",                
                         {text:'QUITTUNG ÜBER DEN ERHALT DER MIETKAUTION',bold:true,fontSize:14},
                         " ",
@@ -955,92 +952,47 @@ class OrderController {
                         " ",
                         " ",
                         " ",
+                        " ",
+                        " ",
+                        " ",
+                        " ",
+                        " ",
+                        " ",
+                        " ",
                         {                         
                             table: {
                                 headerRows: 1,
                                 widths: [ '30%','*' ],
-                                body: [
+                                body: [                                    
                                     [ 
-                                        { 
-                                            text:' \n \n \n ',
-                                            alignment:'right',
-                                            fontSize:10,
-                                            border:[true,true,true,true],
-                                            borderColor:["#4A4D52","#4A4D52","#4A4D52","#4A4D52"] 
-                                        },
-                                        { 
-                                            text:' \n \n \n ',
-                                            alignment:'center',
-                                            fontSize:10,
-                                            border:[true,true,true,true],
-                                            borderColor:["#4A4D52","#4A4D52","#4A4D52","#4A4D52"]
-                                        }                                        
+                                        {text: ' \nGesamt EUR, Cent:',fontSize:11,alignment:'right',bold:true,border:[false,false,false,false]},
+                                        {text:book.price_total,fontSize:24,bold:true,border:[false,false,false,false],alignment:"center",fillColor:"#BFBFBF"}                                                                                
                                     ],
                                     [
                                         {
                                             text:' ',
                                             fontSize:10,
-                                            border:[true,true,true,true],
-                                            borderColor:["#4A4D52","#4A4D52","#4A4D52","#4A4D52"] 
+                                            border:[false,false,false,false]
                                         },
                                         {
                                             text:' ',
                                             fontSize:10,
-                                            border:[true,true,true,true],
-                                            borderColor:["#4A4D52","#4A4D52","#4A4D52","#4A4D52"]
-                                        }
-                                    ],
-                                    [
-                                        {
-                                            text:' ',
-                                            fontSize:10,
-                                            border:[true,true,true,true],
-                                            borderColor:["#4A4D52","#4A4D52","#4A4D52","#4A4D52"] 
-                                        },
-                                        {
-                                            text:' ',
-                                            fontSize:10,
-                                            border:[true,true,true,true],
-                                            borderColor:["#4A4D52","#4A4D52","#4A4D52","#4A4D52"] 
+                                            border:[false,false,false,false]
                                         }
                                     ],
                                     [ 
-                                        {text: ' \nGesamt EUR, Cent:',fontSize:11,alignment:'right',bold:true,border:[true,true,true,true],borderColor:["#4A4D52","#4A4D52","#4A4D52","#4A4D52"]},
-                                        {text:book.price_total,fontSize:24,bold:true,alignment:"center",borderColor:["#4A4D52","#4A4D52","#4A4D52","#4A4D52"]}                                                                                
-                                    ],
-                                    [
-                                        {
-                                            text:' ',
-                                            fontSize:10,
-                                            border:[true,true,true,true],
-                                            borderColor:["#4A4D52","#4A4D52","#4A4D52","#4A4D52"] 
-                                        },
-                                        {
-                                            text:' ',
-                                            fontSize:10,
-                                            border:[true,true,true,true],
-                                            borderColor:["#4A4D52","#4A4D52","#4A4D52","#4A4D52"] 
-                                        }
-                                    ],
-                                    [ 
-                                        {text: 'EUR in Worten, \nCent wie oben:',alignment:'right',bold:true,fontSize:11,border:[true,true,true,true],borderColor:["#4A4D52","#4A4D52","#4A4D52","#4A4D52"]},
-                                        {text: ' ',alignment:'center',fontSize:24,bold:true,border:[true,true,true,true] ,borderColor:["#4A4D52","#4A4D52","#4A4D52","#4A4D52"]}                                        
-                                    ],
-                                    [
-                                        {
-                                            text:' \n \n \n \n \n \n ',
-                                            border:[true,true,true,true],
-                                            borderColor:["#4A4D52","#4A4D52","#4A4D52","#4A4D52"] 
-                                        },
-                                        {
-                                            text:' \n \n \n \n \n \ ',
-                                            border:[true,true,true,true],
-                                            borderColor:["#4A4D52","#4A4D52","#4A4D52","#4A4D52"] 
-                                        }
-                                    ],                                    
+                                        {text: 'EUR in Worten, \nCent wie oben:',alignment:'right',bold:true,fontSize:11,border:[false,false,false,false]},
+                                        {text: ' ',alignment:'center',fontSize:24,bold:true, fillColor:"#F2F2F2",border:[false,false,false,false]}                                        
+                                    ]                                                                      
                                 ]
                             }
                         },
+                        " ",
+                        " ",
+                        " ",
+                        " ",
+                        " ",
+                        " ",
                         " ",
                         {text:"Der Vermieter bestätigt hiermit, dass er die im Mietvertrag vereinbarte Kaution in Höhe",fontSize:10},
                         " ",
@@ -1054,44 +1006,25 @@ class OrderController {
                         " ",
                         " ",                        
                         {
-                            columns:[                                                                
-                                {
-                                    width: 200,height:6,
-                                    svg: '<svg><line  x1="0"  y1="0"  x2="200"  y2="0"  stroke="#4A4D52" stroke-width="2" /></svg>'
-                                }                                
-                            ]
-                        },
-                        " ",
-                        {
-                            columns:[                                                                
-                                {
-                                    width: 200,height:6,marginLeft:50,
-                                    svg: '<svg><line  x1="0"  y1="0"  x2="200"  y2="0"  stroke="#4A4D52" stroke-width="2" /></svg>'
-                                }                                
-                            ]
-                        },
-                        {
-                            table:{
-                                headerRows: 1,
-                                widths: [ '60%','*' ],
-                                body: [
-                                    [ 
-                                        { 
-                                            text:'Ort, Datum\nVermieter',
-                                            alignment:'left',
-                                            fontSize:11,
-                                            border:[false,false,false,false]                                        
-                                        },
-                                        { 
-                                            text:'Stempel / Unterschrift /',
-                                            alignment:'left',
-                                            fontSize:11,
-                                            border:[false,false,false,false]                                        
-                                        }                                        
-                                    ],
+                            columns:[                                                                                               
+                                [
+                                    {
+                                        width: 200,height:3,
+                                        svg: '<svg><line  x1="0"  y1="0"  x2="200"  y2="0"  stroke="#4A4D52" stroke-width="2" /></svg>'
+                                    },
+                                    " ",
+                                    {text:"Ort, Datum",fontSize:11,alignment:'left'},
+                                ],
+                                [
+                                    {
+                                        width: 200,height:3,marginRight:10,
+                                        svg: '<svg><line  x1="0"  y1="0"  x2="200"  y2="0"  stroke="#4A4D52" stroke-width="2" /></svg>'
+                                    },
+                                    " ",
+                                    {text:"Stempel / Unterschrift / Vermieter",fontSize:11,alignment:'left'},
                                 ]
-                            }   
-                        }                     
+                            ]
+                        }                                            
                     ]
                 ]
             }
@@ -1119,9 +1052,7 @@ class OrderController {
                     [        
                         " ",
                         " ",                
-                        {text:'Übergabeprotokoll',bold:true,fontSize:16},
-                        " ",
-                        " ",                        
+                        {text:'Übergabeprotokoll',bold:true,fontSize:16},                        
                         {
                             table: {                                
                                 headerRows: 1,
@@ -1157,13 +1088,12 @@ class OrderController {
                                     ],
                                 ]
                             }
-                        },                        
-                        " ",
+                        },                                                
                         " ",
                         {
                             table: {                                
                                 headerRows: 1,
-                                widths: [ '60%','*'],
+                                widths: [ '50%','*'],
                                 body: [
                                     [ 
                                         { 
@@ -1179,76 +1109,247 @@ class OrderController {
                                         }
                                     ],
                                     [ 
-                                        {text: 'Name:'+' '+book.car.plate,alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10 },
-                                        {text: 'Premium Sport-Cars GmbH',alignment:'left',fontSize:10,border:[false,false,false,false]}                                        
+                                        {text: 'Premium Sport-Cars GmbH',alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10 },
+                                        {text: 'Name:  '+' '+book.customer_firstname+','+book.customer_lastname,alignment:'left',fontSize:10,border:[false,false,false,false]}
+                                        
                                     ],
                                     [ 
-                                        {text: 'Firma:'+book.car.title.replace(/<[^>]*>?/gm, ''),alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10 },
-                                        {text: 'Ludwig-Erhard-Str. 8',alignment:'left',fontSize:10,border:[false,false,false,false]}                                        
+                                        {text: 'Ludwig-Erhard-Str. 8',alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10 },
+                                        {text: 'Firma:  '+book.car.title.replace(/<[^>]*>?/gm, ''),alignment:'left',fontSize:10,border:[false,false,false,false]}                                                             
                                     ],
                                     [ 
-                                        {text: 'Straße:',alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10 },
-                                        {text: '28197 Bremen',alignment:'left',fontSize:10,border:[false,false,false,false]}                                        
+                                        {text: '28197 Bremen',alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10 },                                        
+                                        {text: 'Straße:  '+book.customer_address,alignment:'left',fontSize:10,border:[false,false,false,false]}                                        
                                     ],
                                     [ 
-                                        {text: 'PLZ, Ort:',alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10 },
-                                        {text: 'info@premium-sport-cars.de',alignment:'left',fontSize:10,border:[false,false,false,false]}                                        
+                                        {text: 'info@premium-sport-cars.de',alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10 },
+                                        {text: 'PLZ, Ort:  '+book.customer_postcode+' '+book.customer_city,alignment:'left',fontSize:10,border:[false,false,false,false]}                                        
                                     ],
                                     [ 
-                                        {text: 'E-Mail:',alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10 },
-                                        {text: 'www.premium-sport-cars.de',alignment:'left',fontSize:10,border:[false,false,false,false]}                                        
+                                        {text: 'www.premium-sport-cars.de',alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10 },
+                                        {text: 'E-Mail:  '+book.customer_email,alignment:'left',fontSize:10,border:[false,false,false,false]}                                        
                                     ],
                                     [ 
-                                        {text: 'Telefon:',alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10 },
-                                        {text: '0421 59 66 10 40',alignment:'left',fontSize:10,border:[false,false,false,false]}                                        
+                                        {text: '0421 59 66 10 40',alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10 },
+                                        {text: 'Telefon:',alignment:'left',fontSize:10,border:[false,false,false,false]}                                                                          
                                     ],
                                 ]
                             }
                         },   
-                        " ",                       
+                        " ",                                               
+                        {
+                            columns: [
+                                {text:"Fahrzeugzustand  außen:",fontSize:10},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-5},
+                                {text:"gewaschen   ", fontSize:10,marginLeft:-5},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-60},
+                                {text:"leicht  verschmutzt ", fontSize:10,marginLeft:-60},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-80},
+                                {text:"stark  verschmutzt ", fontSize:10,marginLeft:-80},
+                            ]
+                        },
+                        {
+                            columns: [
+                                {text:"Innenraum:",fontSize:10},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-5},
+                                {text:"sauber", fontSize:10,marginLeft:-5},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-60},
+                                {text:"leicht  verschmutzt ", fontSize:10,marginLeft:-60},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-80},
+                                {text:"stark  verschmutzt ", fontSize:10,marginLeft:-80},
+                            ]
+                        },
+                        {
+                            columns: [
+                                {text:"Tankfüllung:",fontSize:10},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:39},
+                                {text:"leer", fontSize:10,marginLeft:39},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-10},
+                                {text:"¼", fontSize:10,marginLeft:-10},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-60},
+                                {text:"½", fontSize:10,marginLeft:-60},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-110},
+                                {text:"¾", fontSize:10,marginLeft:-110},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-160},
+                                {text:"voll", fontSize:10,marginLeft:-160},
+                            ]
+                        },
                         " ",
-                        {text:"Bremen, den "+moment(book.checkin).format("DD.MM.YYYY"),fontSize:11},
+                        {text:"Folgendes wurde übergeben:",fontSize:10,bold:true},
+                        {
+                            columns: [
+                                {text:"Fahrzeugschlüssel",fontSize:10},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:35},
+                                {text:"ja", fontSize:10,marginLeft:35},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-30},
+                                {text:"nein", fontSize:10,marginLeft:-30},
+                                {text:"Zulassungsbescheinigung Teil 1", fontSize:10,marginLeft:-70},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:5},
+                                {text:"ja", fontSize:10,marginLeft:5},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-60},
+                                {text:"nein", fontSize:10,marginLeft:-60},
+                            ]
+                        },
+                        {
+                            columns: [
+                                {text:"Warndreieck",fontSize:10},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:39},
+                                {text:"ja", fontSize:10,marginLeft:39},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-22},
+                                {text:"nein", fontSize:10,marginLeft:-22},
+                                {text:"Verhalten im Notfall", fontSize:10,marginLeft:-60},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:20},
+                                {text:"ja", fontSize:10,marginLeft:20},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-41},
+                                {text:"nein", fontSize:10,marginLeft:-41},
+                            ]
+                        },
+                        {
+                            columns: [
+                                {text:"Warnweste",fontSize:10},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:39},
+                                {text:"ja", fontSize:10,marginLeft:39},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-22},
+                                {text:"nein", fontSize:10,marginLeft:-22},
+                                {text:"Auto-Ladegerät", fontSize:10,marginLeft:-60},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:20},
+                                {text:"ja", fontSize:10,marginLeft:20},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-41},
+                                {text:"nein", fontSize:10,marginLeft:-41},
+                            ]
+                        },
+                        {
+                            columns: [
+                                {text:"Verbandkasten",fontSize:10},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:39},
+                                {text:"ja", fontSize:10,marginLeft:39},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-22},
+                                {text:"nein", fontSize:10,marginLeft:-22},
+                                {text:"USB/Lightning Ladekabel", fontSize:10,marginLeft:-60},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:20},
+                                {text:"ja", fontSize:10,marginLeft:20},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-41},
+                                {text:"nein", fontSize:10,marginLeft:-41},
+                            ]
+                        },
+                        {
+                            columns: [
+                                {text:"Wagenmappe",fontSize:10},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:39},
+                                {text:"ja", fontSize:10,marginLeft:39},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-22},
+                                {text:"nein", fontSize:10,marginLeft:-22},
+                                {text:"Shell V-Power Karte", fontSize:10,marginLeft:-60},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:20},
+                                {text:"ja", fontSize:10,marginLeft:20},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-41},
+                                {text:"nein", fontSize:10,marginLeft:-41},
+                            ]
+                        },                        
+                        {text:"sonstiges:________________________________________________________________________________________________",fontSize:10},
                         " ",
+                        {text:"Reifen / Felgen",fontSize:10,bold:true},
+                        {
+                            columns: [
+                                {text:"Montierte Reifen:",fontSize:10},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:1,marginLeft:20},
+                                {text:"Sommerreifen", fontSize:10,marginLeft:20},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:1,marginLeft:0},
+                                {text:"Winterreifen", fontSize:10,marginLeft:0},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:1,marginLeft:-20},
+                                {text:"Ganzjahresreifen", fontSize:10,marginLeft:-20},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:1,marginLeft:-20},
+                                {text:"Reserverad", fontSize:10,marginLeft:-20}                                
+                            ]
+                        },
+                        {
+                            columns: [                                
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:1,marginLeft:115},
+                                {text:"Alufelgen", fontSize:10,marginLeft:115},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:1,marginLeft:-57},
+                                {text:"Stahlfelgen", fontSize:10,marginLeft:-57}                                
+                            ]
+                        },
+                        {
+                            columns: [
+                                {text:"Zustand:",fontSize:10},                                
+                                {text:"vorne links___mm", fontSize:10,marginLeft:10},                                
+                                {text:"vorne rechts___mm", fontSize:10,marginLeft:-5},                                
+                                {text:"hinten links___mm", fontSize:10,marginLeft:-10},                                
+                                {text:"hinten rechts___mm", fontSize:10,marginLeft:-20}                                
+                            ]
+                        },
                         " ",                        
+                        {text:"Beschädigungen",fontSize:10,bold:true},
+                        {text:"(Symbole: R = Riss, D = Delle, F = Fehlteil, K = Kratzer, G = Gebrochen, S = Steinschlag B = Bordsteinbeschädigung)",fontSize:10},
+                        " ",
                         {
-                            columns:[                                                                
-                                {
-                                    width: 200,height:6,
-                                    svg: '<svg><line  x1="0"  y1="0"  x2="200"  y2="0"  stroke="#4A4D52" stroke-width="2" /></svg>'
-                                }                                
-                            ]
+                            width:360,alignment:'center',
+                            image:"public/img/car_dmg/car.png"
                         },
                         " ",
                         {
-                            columns:[                                                                
-                                {
-                                    width: 200,height:6,marginLeft:50,
-                                    svg: '<svg><line  x1="0"  y1="0"  x2="200"  y2="0"  stroke="#4A4D52" stroke-width="2" /></svg>'
-                                }                                
-                            ]
-                        },
-                        {
-                            table:{
+                            table: {
                                 headerRows: 1,
-                                widths: [ '60%','*' ],
+                                widths: [ '*','*' ],
                                 body: [
                                     [ 
                                         { 
-                                            text:'Ort, Datum\nVermieter',
-                                            alignment:'left',
-                                            fontSize:11,
-                                            border:[false,false,false,false]                                        
+                                            text:'Innenraum:',
+                                            alignment:'center',                                                                                        
+                                            fontSize:10,
+                                            border:[true,true,true,true] 
                                         },
                                         { 
-                                            text:'Stempel / Unterschrift /',
-                                            alignment:'left',
-                                            fontSize:11,
-                                            border:[false,false,false,false]                                        
+                                            text:'Art der Beschädigung:',
+                                            alignment:'center',                                                                                                                                     
+                                            fontSize:10,
+                                            border:[true,true,true,true] 
                                         }                                        
                                     ],
+                                    [                                        
+                                        {text:" ",fontSize:10, border:[true,true,true,true], borderColor:["#000000","#000000","#000000","#000000"]},
+                                        {text:" ",fontSize:10, border:[true,true,true,true], borderColor:["#000000","#000000","#000000","#000000"]}
+                                    ],
+                                    [                                        
+                                        {text:" ",fontSize:10, border:[true,true,true,true], borderColor:["#000000","#000000","#000000","#000000"]},
+                                        {text:" ",fontSize:10, border:[true,true,true,true], borderColor:["#000000","#000000","#000000","#000000"]}
+                                    ]
                                 ]
-                            }   
-                        }                     
+                            }
+                        },
+                        " ",
+                        " ",
+                        {text:"Bremen, den "+moment(book.checkin).format("DD.MM.YYYY"),fontSize:11.5},
+                        " ",
+                        {
+                            columns:[                                                                                               
+                                [
+                                    {
+                                        width: 150,height:3,
+                                        svg: '<svg><line  x1="0"  y1="0"  x2="200"  y2="0"  stroke="#4A4D52" stroke-width="2" /></svg>'
+                                    },
+                                    " ",
+                                    {text:"Ort, Datum",fontSize:10,alignment:'left'},
+                                ],
+                                [
+                                    {
+                                        width: 150,height:3,
+                                        svg: '<svg><line  x1="0"  y1="0"  x2="200"  y2="0"  stroke="#4A4D52" stroke-width="2" /></svg>'
+                                    },
+                                    " ",
+                                    {text:"Unterschrift des Mieters",fontSize:10,alignment:'left'},
+                                ],
+                                [
+                                    {
+                                        width: 150,height:3,marginRight:10,
+                                        svg: '<svg><line  x1="0"  y1="0"  x2="200"  y2="0"  stroke="#4A4D52" stroke-width="2" /></svg>'
+                                    },
+                                    " ",
+                                    {text:"Unterschrift des Vermieters",fontSize:10,alignment:'left'},
+                                ]
+                            ]
+                        }                                          
                     ]
                 ]
             }
@@ -1277,9 +1378,7 @@ class OrderController {
                     [        
                         " ",
                         " ",                
-                        {text:'Übernahmeprotokoll ( unter Vorbehalt )',bold:true,fontSize:16},
-                        " ",
-                        " ",                        
+                        {text:'Übernahmeprotokoll ( unter Vorbehalt )',bold:true,fontSize:16},                                                     
                         {
                             table: {                                
                                 headerRows: 1,
@@ -1298,25 +1397,24 @@ class OrderController {
                                         }
                                     ],
                                     [ 
-                                        {text: 'Kennzeichen:'+' '+book.car.plate,alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10 },
+                                        {text: 'Kennzeichen:'+' '+book.car.plate,alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10},
                                         {text: 'Datum Übergabe: 18.05.2021',alignment:'left',fontSize:10,border:[false,false,false,false]}                                        
                                     ],
                                     [ 
-                                        {text: 'Hersteller, Modell, Typ: '+book.car.title.replace(/<[^>]*>?/gm, ''),alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10 },
+                                        {text: 'Hersteller, Modell, Typ: '+book.car.title.replace(/<[^>]*>?/gm, ''),alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10},
                                         {text: 'Uhrzeit Übergabe:',alignment:'left',fontSize:10,border:[false,false,false,false]}                                        
                                     ],
                                     [ 
-                                        {text: 'Farbe:',alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10 },
+                                        {text: 'Farbe:',alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10},
                                         {text: 'Ort der Übergabe:',alignment:'left',fontSize:10,border:[false,false,false,false]}                                        
                                     ],
                                     [ 
-                                        {text: 'Kilometerstand: no auto fill because I need to enter.',alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10 },
+                                        {text: 'Kilometerstand: no auto fill because I need to enter.',alignment:'left',fontSize:10,border:[false,false,false,false],marginLeft:10},
                                         {text: 'Kraftstoffart:',alignment:'left',fontSize:10,border:[false,false,false,false]}                                        
                                     ],
                                 ]
                             }
-                        },                        
-                        " ",
+                        },                                                
                         " ",
                         {
                             table: {                                
@@ -1363,50 +1461,220 @@ class OrderController {
                                 ]
                             }
                         },   
-                        " ",                       
+                        " ",                                               
+                        {
+                            columns: [
+                                {text:"Fahrzeugzustand  außen:",fontSize:10},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-5},
+                                {text:"gewaschen   ", fontSize:10,marginLeft:-5},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-60},
+                                {text:"leicht  verschmutzt ", fontSize:10,marginLeft:-60},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-80},
+                                {text:"stark  verschmutzt ", fontSize:10,marginLeft:-80},
+                            ]
+                        },
+                        {
+                            columns: [
+                                {text:"Innenraum:",fontSize:10},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-5},
+                                {text:"sauber", fontSize:10,marginLeft:-5},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-60},
+                                {text:"leicht  verschmutzt ", fontSize:10,marginLeft:-60},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-80},
+                                {text:"stark  verschmutzt ", fontSize:10,marginLeft:-80},
+                            ]
+                        },
+                        {
+                            columns: [
+                                {text:"Tankfüllung:",fontSize:10},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:39},
+                                {text:"leer", fontSize:10,marginLeft:39},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-10},
+                                {text:"¼", fontSize:10,marginLeft:-10},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-60},
+                                {text:"½", fontSize:10,marginLeft:-60},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-110},
+                                {text:"¾", fontSize:10,marginLeft:-110},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-160},
+                                {text:"voll Start: 85%", fontSize:10,marginLeft:-160},
+                            ]
+                        },
                         " ",
-                        {text:"Bremen, den "+moment(book.checkin).format("DD.MM.YYYY"),fontSize:11},
+                        {text:"Folgendes wurde übergeben:",fontSize:10,bold:true},
+                        {
+                            columns: [
+                                {text:"Fahrzeugschlüssel",fontSize:10},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:35},
+                                {text:"ja", fontSize:10,marginLeft:35},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-30},
+                                {text:"nein", fontSize:10,marginLeft:-30},
+                                {text:"Zulassungsbescheinigung Teil 1", fontSize:10,marginLeft:-70},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:5},
+                                {text:"ja", fontSize:10,marginLeft:5},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-60},
+                                {text:"nein", fontSize:10,marginLeft:-60},
+                            ]
+                        },
+                        {
+                            columns: [
+                                {text:"Warndreieck",fontSize:10},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:39},
+                                {text:"ja", fontSize:10,marginLeft:39},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-22},
+                                {text:"nein", fontSize:10,marginLeft:-22},
+                                {text:"Verhalten im Notfall", fontSize:10,marginLeft:-60},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:20},
+                                {text:"ja", fontSize:10,marginLeft:20},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-41},
+                                {text:"nein", fontSize:10,marginLeft:-41},
+                            ]
+                        },
+                        {
+                            columns: [
+                                {text:"Warnweste",fontSize:10},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:39},
+                                {text:"ja", fontSize:10,marginLeft:39},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-22},
+                                {text:"nein", fontSize:10,marginLeft:-22},
+                                {text:"Auto-Ladegerät", fontSize:10,marginLeft:-60},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:20},
+                                {text:"ja", fontSize:10,marginLeft:20},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-41},
+                                {text:"nein", fontSize:10,marginLeft:-41},
+                            ]
+                        },
+                        {
+                            columns: [
+                                {text:"Verbandkasten",fontSize:10},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:39},
+                                {text:"ja", fontSize:10,marginLeft:39},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-22},
+                                {text:"nein", fontSize:10,marginLeft:-22},
+                                {text:"USB/Lightning Ladekabel", fontSize:10,marginLeft:-60},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:20},
+                                {text:"ja", fontSize:10,marginLeft:20},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-41},
+                                {text:"nein", fontSize:10,marginLeft:-41},
+                            ]
+                        },
+                        {
+                            columns: [
+                                {text:"Wagenmappe",fontSize:10},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:39},
+                                {text:"ja", fontSize:10,marginLeft:39},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-22},
+                                {text:"nein", fontSize:10,marginLeft:-22},
+                                {text:"Shell V-Power Karte", fontSize:10,marginLeft:-60},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:20},
+                                {text:"ja", fontSize:10,marginLeft:20},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-41},
+                                {text:"nein", fontSize:10,marginLeft:-41},
+                            ]
+                        },                        
+                        {text:"sonstiges:________________________________________________________________________________________________",fontSize:10},
                         " ",
+                        {text:"Reifen / Felgen",fontSize:10,bold:true},
+                        {
+                            columns: [
+                                {text:"Montierte Reifen:",fontSize:10},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:1,marginLeft:20},
+                                {text:"Sommerreifen", fontSize:10,marginLeft:20},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:1,marginLeft:0},
+                                {text:"Winterreifen", fontSize:10,marginLeft:0},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:1,marginLeft:-20},
+                                {text:"Ganzjahresreifen", fontSize:10,marginLeft:-20},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:1,marginLeft:-20},
+                                {text:"Reserverad", fontSize:10,marginLeft:-20}                                
+                            ]
+                        },
+                        {
+                            columns: [                                
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:1,marginLeft:115},
+                                {text:"Alufelgen", fontSize:10,marginLeft:115},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:1,marginLeft:-57},
+                                {text:"Stahlfelgen", fontSize:10,marginLeft:-57}                                
+                            ]
+                        },
+                        {
+                            columns: [
+                                {text:"Zustand:",fontSize:10},                                
+                                {text:"vorne links___mm", fontSize:10,marginLeft:10},                                
+                                {text:"vorne rechts___mm", fontSize:10,marginLeft:-5},                                
+                                {text:"hinten links___mm", fontSize:10,marginLeft:-10},                                
+                                {text:"hinten rechts___mm", fontSize:10,marginLeft:-20}                                
+                            ]
+                        },
                         " ",                        
+                        {text:"Beschädigungen",fontSize:10,bold:true},
+                        {text:"(Symbole: R = Riss, D = Delle, F = Fehlteil, K = Kratzer, G = Gebrochen, S = Steinschlag B = Bordsteinbeschädigung)",fontSize:10},
+                        " ",
                         {
-                            columns:[                                                                
-                                {
-                                    width: 200,height:6,
-                                    svg: '<svg><line  x1="0"  y1="0"  x2="200"  y2="0"  stroke="#4A4D52" stroke-width="2" /></svg>'
-                                }                                
-                            ]
+                            width:360,alignment:'center',
+                            image:"public/img/car_dmg/car.png"
                         },
                         " ",
                         {
-                            columns:[                                                                
-                                {
-                                    width: 200,height:6,marginLeft:50,
-                                    svg: '<svg><line  x1="0"  y1="0"  x2="200"  y2="0"  stroke="#4A4D52" stroke-width="2" /></svg>'
-                                }                                
-                            ]
-                        },
-                        {
-                            table:{
+                            table: {
                                 headerRows: 1,
-                                widths: [ '60%','*' ],
+                                widths: [ '*','*' ],
                                 body: [
                                     [ 
                                         { 
-                                            text:'Ort, Datum\nVermieter',
-                                            alignment:'left',
-                                            fontSize:11,
-                                            border:[false,false,false,false]                                        
+                                            text:'Innenraum:',
+                                            alignment:'center',                                                                                        
+                                            fontSize:10,
+                                            border:[true,true,true,true] 
                                         },
                                         { 
-                                            text:'Stempel / Unterschrift /',
-                                            alignment:'left',
-                                            fontSize:11,
-                                            border:[false,false,false,false]                                        
+                                            text:'Art der Beschädigung:',
+                                            alignment:'center',                                                                                                                                     
+                                            fontSize:10,
+                                            border:[true,true,true,true] 
                                         }                                        
                                     ],
+                                    [                                        
+                                        {text:" ",fontSize:10, border:[true,true,true,true], borderColor:["#000000","#000000","#000000","#000000"]},
+                                        {text:" ",fontSize:10, border:[true,true,true,true], borderColor:["#000000","#000000","#000000","#000000"]}
+                                    ],
+                                    [                                        
+                                        {text:" ",fontSize:10, border:[true,true,true,true], borderColor:["#000000","#000000","#000000","#000000"]},
+                                        {text:" ",fontSize:10, border:[true,true,true,true], borderColor:["#000000","#000000","#000000","#000000"]}
+                                    ]
                                 ]
-                            }   
-                        }                     
+                            }
+                        },
+                        " ",
+                        " ",
+                        " ",
+                        " ",
+                        {
+                            columns:[                                                                                               
+                                [
+                                    {
+                                        width: 150,height:3,
+                                        svg: '<svg><line  x1="0"  y1="0"  x2="200"  y2="0"  stroke="#4A4D52" stroke-width="2" /></svg>'
+                                    },
+                                    " ",
+                                    {text:"Ort, Datum",fontSize:10,alignment:'left'},
+                                ],
+                                [
+                                    {
+                                        width: 150,height:3,
+                                        svg: '<svg><line  x1="0"  y1="0"  x2="200"  y2="0"  stroke="#4A4D52" stroke-width="2" /></svg>'
+                                    },
+                                    " ",
+                                    {text:"Unterschrift des Mieters",fontSize:10,alignment:'left'},
+                                ],
+                                [
+                                    {
+                                        width: 150,height:3,marginRight:10,
+                                        svg: '<svg><line  x1="0"  y1="0"  x2="200"  y2="0"  stroke="#4A4D52" stroke-width="2" /></svg>'
+                                    },
+                                    " ",
+                                    {text:"Unterschrift des Vermieters",fontSize:10,alignment:'left'},
+                                ]
+                            ]
+                        } 
                     ]
                 ]
             }
