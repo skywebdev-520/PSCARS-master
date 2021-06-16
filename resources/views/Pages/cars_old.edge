@@ -108,79 +108,38 @@
                       <img src="/uploads/{{car.mainimg.id}}.{{car.mainimg.location}}" class="card-img mt-3">
                     </div>
                   </div> 
-                  
-                  <div class="row no-gutters">
-                    
-                      <div class="col-md-12" >
-                        <table class="table text-dark table-striped table-sm bg-light " >
-                          <tbody>
-                              <tr>
-                                <td class="text-primary"><b>Modell</b></td>
-                                <td class="text-primary"><b>3 Stunden<br>100 km</b></td>
-                                <td class="text-primary"><b>1 Tag<br>200 km</b></td>                            
-                              </tr>
-                              <tr>
-                                <td class="text-primary">Mercedes-Benz 280 SL - 1969</td>
-                                <td>90,-€</td>
-                                <td>249,-€</td>                            
-                              </tr>
-                              <tr>
-                                <td class="text-primary">Jaguar XK 140 - 1955</td>
-                                <td>90,-€</td>
-                                <td>349,-€</td>                            
-                              </tr>
-                              <tr>
-                                <td class="text-primary">Porsche 356 SC - 1969</td>
-                                <td>90,-€</td>
-                                <td>299,-€</td>                            
-                              </tr>
-                              <tr>
-                                <td class="text-primary">BMW 502 V8 - 1957</td>
-                                <td>90,-€</td>
-                                <td>429,-€</td>                            
-                              </tr>
-                          </tbody>
-                        </table>
-                        <table class="table text-dark table-striped table-sm bg-light " >
-                          <tbody>
-                              <tr>
-                                <td class="text-primary"><b>Modell<br>Vermietung nur mit Chauffeur</b></td>
-                                <td class="text-primary"><b>4 Stunden<br>Wochentag</b></td>
-                                <td class="text-primary"><b>4 Stunden<br>Wochenende</b></td>                            
-                              </tr>
-                              <tr>
-                                <td class="text-primary">Mercedes-Benz 220 A - 1955</td>
-                                <td>199,-€</td>
-                                <td>249,-€</td>                            
-                              </tr>
-                              <tr>
-                                <td class="text-primary">Bentley Continental - 1956</td>
-                                <td>299,-€</td>
-                                <td>349,-€</td>                            
-                              </tr>
-                              <tr>
-                                <td class="text-primary">Mercedes-Benz 280 SE 3.5 - 1969</td>
-                                <td>249,-€</td>
-                                <td>299,-€</td>                            
-                              </tr>
-                              <tr>
-                                <td class="text-primary">Rolls Royce Silver Cloud - 1960</td>
-                                <td>379,-€</td>
-                                <td>429,-€</td>                            
-                              </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="col-md-12">
-                        @if($loop.index % 2)
-                          <div class="card-footer text-right bg-light border-bottom-0 border-left-0 border-right-0 ">
-                        @else
-                          <div class="text-center" style="background:#f7f7f9; margin-bottom:20px">
-                        @endif
-                          <a href="https://wa.me/4942159661040" style="font-size: 15px;" class="btn btn-danger btn-block">Jetzt Anrufen<i style="margin-left: 10px;" class="fa fa-arrow-right"></i></a>
-                      </div>
+
+                  <div style="overflow-x:auto; max-width:100%">
+                    <table class="table text-dark table-striped table-sm bg-light " >
+                      <tbody>
+                          <tr>
+                            <td class="text-primary"><b>Mietdauer</b></td>
+                            <td class="text-primary"><b>8 Stunden</b></td>
+                            <td class="text-primary"><b>24 Stunden</b></td>
+                            <td class="text-primary"><b>1 Wochenende (Fr. - Mo.)</b></td>
+                          </tr>
+                          <tr>
+                            <td class="text-primary"><b>Inklusive Kilometer</b></td>
+                            <td>{{car.inclKilometers *1}} km</td>
+                            <td>{{car.inclKilometers_day * 1}} km</td>
+                            <td>{{(car.inclKilometers_weekend * 3 )| 0}} km</td>
+                          </tr>
+                          <tr>
+                            <td class="text-primary"><b>Preis</b></td>
+                            <td>{{formatCurr(car.priceOneDay)}} €</td>
+                            <td>{{formatCurr(car.price) }} €</td>
+                            <td>{{formatCurr(car.priceWeekend * 3)}} €</td>
+                          </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="row" style="margin-bottom: 20px;">
+                    <div class="col-md-9"></div>
+                    <div class="col-md-3" style="right: 0">
+                      <a href="https://wa.me/4942159661040" style="font-size: 15px;" class="btn btn-danger btn-block">Jetzt Anrufen<i style="margin-left: 10px;" class="fa fa-arrow-right"></i></a>
                     </div>
                   </div>
+                  
                 </div>
               </div>
              
