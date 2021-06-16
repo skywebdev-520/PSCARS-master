@@ -108,35 +108,11 @@
                       <img src="/uploads/{{car.mainimg.id}}.{{car.mainimg.location}}" class="card-img mt-3">
                     </div>
                   </div> 
-
-                  <div style="overflow-x:auto; max-width:100%">
-                    <table class="table text-dark table-striped table-sm bg-light " >
-                      <tbody>
-                          <tr>
-                            <td class="text-primary"><b>Mietdauer</b></td>
-                            <td class="text-primary"><b>8 Stunden</b></td>
-                            <td class="text-primary"><b>24 Stunden</b></td>
-                            <td class="text-primary"><b>1 Wochenende (Fr. - Mo.)</b></td>
-                          </tr>
-                          <tr>
-                            <td class="text-primary"><b>Inklusive Kilometer</b></td>
-                            <td>{{car.inclKilometers *1}} km</td>
-                            <td>{{car.inclKilometers_day * 1}} km</td>
-                            <td>{{(car.inclKilometers_weekend * 3 )| 0}} km</td>
-                          </tr>
-                          <tr>
-                            <td class="text-primary"><b>Preis</b></td>
-                            <td>{{formatCurr(car.priceOneDay)}} €</td>
-                            <td>{{formatCurr(car.price) }} €</td>
-                            <td>{{formatCurr(car.priceWeekend * 3)}} €</td>
-                          </tr>
-                      </tbody>
-                    </table>
-                  </div>
+                  
                   <div class="row" style="margin-bottom: 20px;">
-                    <div class="col-md-9"></div>
-                    <div class="col-md-3" style="right: 0">
-                      <a href="https://wa.me/4942159661040" style="font-size: 15px;" class="btn btn-danger btn-block">Jetzt Anrufen<i style="margin-left: 10px;" class="fa fa-arrow-right"></i></a>
+                    <div class="col-md-10"></div>
+                    <div class="col-md-2" style="right: 0">
+                      <a href="/oldtimer/{{car.id}}/{{slugify(car.title.replace(/<[^>]*>?/gm, ''))}}" style="font-size: 15px;" class="btn btn-danger btn-block">Buchen</a>
                     </div>
                   </div>
                   
