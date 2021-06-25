@@ -9,7 +9,7 @@
 <div class="container ">
   <div class="row"  >
     <div class="col-12">
-      <a href="/fahrzeuge" class="btn btn-primary">Zurück</a>
+      <a href="/oldtimer" class="btn btn-primary">Zurück</a>
       <div class="card mb-3 border-0 bg-light" >
         <div class="row no-gutters">
           <div class="col-md-4">
@@ -64,20 +64,17 @@
                         <img height="15px" src="/assets/img/Auto/Klassen.png" />
                       </td>
                       <td class="border-0 text-dark "><b>Klasse:</b> {{car.category}}</td>
-                      <td class="border-0 text-dark d-none d-md-table-cell" style="width: 20px; text-align:center">
-                        <img height="15px" src="/assets/img/Auto/Getriebe.png" />
-                      </td>
-                      <td class="border-0 text-dark d-none d-md-table-cell"><b>Getriebe:</b> {{car.engine}}</td>
+                     
                     </tr>
-                    <tr >
-                      <td class="border-0 text-dark " style="width: 20px; text-align:center">
-                        <img height="15px" src="/assets/img/Auto/vMax.png" />
-                      </td>
-                      <td class="border-0 text-dark "><b>Lenkard:</b> {{car.vmax}} km/h</td>
+                    <tr >                                         
                       <td class="border-0 text-dark d-none d-md-table-cell" style="width: 20px; text-align:center">
                         <img height="15px" src="/assets/img/Auto/Kraftstoff.png" />
                       </td>
                       <td class="border-0 text-dark d-none d-md-table-cell"><b>Kraftstoff:</b> {{car.petrol}}</td>
+                      <td class="border-0 text-dark d-none d-md-table-cell" style="width: 20px; text-align:center">
+                        <img height="15px" src="/assets/img/Auto/Getriebe.png" />
+                      </td>
+                      <td class="border-0 text-dark d-none d-md-table-cell"><b>Getriebe:</b> {{car.engine}}</td>
                     </tr>
                     <tr >
                       
@@ -169,20 +166,24 @@
         <table class="table text-dark table-striped table-sm bg-light " >
           <tbody>
               <tr>
-                <td class="text-primary"><b>Modell</b></td>
-                <td class="text-primary"><b>3 Stunden<br>100 km</b></td>
-                <td class="text-primary"><b>1 Tag<br>200 km</b></td>                
-              </tr>              
+                <td class="text-primary"><b>Mietdauer</b></td>
+                <td class="text-primary"><b>3 Stunden</b></td>
+                <td class="text-primary"><b>1 Tag</b></td>                
+              </tr>     
               <tr>
-                <td class="text-primary"><b>{{{ car.title }}}</b></td>
+                <td class="text-primary"><b>Inklusive Kilometer</b></td>
+                <td><b>100 km</b></td>
+                <td><b>200 km</b></td>                
+              </tr>         
+              <tr>
+                <td class="text-primary"><b>Preis</b></td>
                 <td>{{formatCurr(car.priceOneDay)}} €</td>
                 <td>{{formatCurr(car.price) }} €</td>                
               </tr>
           </tbody>
         </table>
-      </div>
-      <a href="/buchen/{{ car.id }}" class="btn btn-danger btn-block">Zeitraum prüfen & Buchen</a>
-      {{--  <a href="https://premium-sport-cars.de/kontakt/" class="btn btn-danger btn-block">Jetzt Anfragen</a>  --}}
+      </div>      
+      <a href="tel:042159661040" class="btn btn-danger btn-block">Jetzt Anrufen<i class="fa fa-arrow-right" style="width: 30px;"></i></a>
     </div>
   </div>
 </div>
