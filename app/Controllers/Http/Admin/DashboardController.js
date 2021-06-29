@@ -18,7 +18,8 @@ class DashboardController {
         var total = []
         var count = []
         for(let i=1; i<=counts; i++){
-            const turnover = await Booking.query().where('car_id',i).where("checkout", ">", moment().format("YYYY-MM")).getSum('price_total')
+            //const turnover = await Booking.query().where('car_id',i).where("checkout", ">", moment().format("YYYY-MM")).getSum('price_total')
+            const turnover = await Booking.query().where('car_id',i).getSum('price_total')
             let res = await Database.select('id').from("bookings").where('car_id', i)            
             count.push(res.length)
             if(turnover){
@@ -26,15 +27,15 @@ class DashboardController {
             }else{
                 total.push(0)
             }            
-        }            
+        }        
         let carData = cars.toJSON();                
         let topBookingNumber = Math.max(...count)
         let topBookingCarId = count.indexOf(Math.max(...count)) + 1
         let topBookingCarName = carData[topBookingCarId].title
         let topSaleNumber = Math.max(...total)
         let topSaleCarId = total.indexOf(Math.max(...total)) + 1
-        let topSaleCarName = carData[topSaleCarId].title      
-        
+        let topSaleCarName = carData[topSaleCarId].title              
+        if(topSaleNumber==0) topSaleNumber = "0";
         return view.render("Pages/Admin/Dashboard/index",{
             cars:cars.toJSON(),
             books:books.toJSON(),

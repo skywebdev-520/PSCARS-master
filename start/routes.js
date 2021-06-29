@@ -93,6 +93,7 @@ Route.group(() => {
     Route.get('/orders/:id/contract', "Admin/OrderController.getContract").middleware(["auth"])
     Route.get('/orders/:id/agreement', "Admin/OrderController.getAgreement").middleware(["auth"])
     Route.get('/orders/:id/receiptdeposit', "Admin/OrderController.getReceiptDeposit").middleware(["auth"])
+    Route.get('/orders/:id/receiptdeposit1', "Admin/OrderController.getReceiptDeposit1").middleware(["auth"])
     Route.get('/orders/:id/handover', "Admin/OrderController.getHandOver").middleware(["auth"])
     Route.get('/orders/:id/takeover', "Admin/OrderController.getTakeOver").middleware(["auth"])
 

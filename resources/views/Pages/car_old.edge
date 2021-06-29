@@ -64,24 +64,16 @@
                         <img height="15px" src="/assets/img/Auto/Klassen.png" />
                       </td>
                       <td class="border-0 text-dark "><b>Klasse:</b> {{car.category}}</td>
-                     
+                      <td class="border-0 text-dark d-none d-md-table-cell" style="width: 20px; text-align:center">
+                        <img height="15px" src="/assets/img/Auto/Getriebe.png" />
+                      </td>
+                      <td class="border-0 text-dark d-none d-md-table-cell"><b>Getriebe:</b> {{car.engine}}</td>
                     </tr>
                     <tr >                                         
                       <td class="border-0 text-dark d-none d-md-table-cell" style="width: 20px; text-align:center">
                         <img height="15px" src="/assets/img/Auto/Kraftstoff.png" />
                       </td>
                       <td class="border-0 text-dark d-none d-md-table-cell"><b>Kraftstoff:</b> {{car.petrol}}</td>
-                      <td class="border-0 text-dark d-none d-md-table-cell" style="width: 20px; text-align:center">
-                        <img height="15px" src="/assets/img/Auto/Getriebe.png" />
-                      </td>
-                      <td class="border-0 text-dark d-none d-md-table-cell"><b>Getriebe:</b> {{car.engine}}</td>
-                    </tr>
-                    <tr >
-                      
-                      <td class="border-0 text-dark " style="width: 20px; text-align:center">
-                        <img height="15px" src="/assets/img/Auto/Motorleistung.png" />
-                      </td>
-                    <td class="border-0 text-dark "><b>Motorleistung:</b> {{car.power}}</td>
                       <td class="border-0 text-dark d-none d-md-table-cell" style="width: 20px; text-align:center">
                         <img height="15px" src="/assets/img/Auto/MaxPassagiere.png" />
                       </td>
@@ -90,13 +82,24 @@
                     <tr >
                       
                       <td class="border-0 text-dark " style="width: 20px; text-align:center">
+                        <img height="15px" src="/assets/img/Auto/Motorleistung.png" />
+                      </td>
+                    <td class="border-0 text-dark "><b>Motorleistung:</b> {{car.power}}</td>
+                    <td class="border-0 text-dark d-none d-md-table-cell" style="width: 20px; text-align:center">
+                      <img height="15px" src="/assets/img/Auto/Mindestalter.png" />
+                    </td>
+                    <td class="border-0 text-dark d-none d-md-table-cell"><b>Mindestalter des Fahrers:</b> {{car.age}}</td>
+                    </tr>
+                    <tr >
+                      
+                      <td class="border-0 text-dark " style="width: 20px; text-align:center">
                         <img height="15px" src="/assets/img/Auto/AnzahlTUR.png" />
                       </td>
                       <td class="border-0 text-dark "><b>Türen:</b> {{car.doors}}</td>
                       <td class="border-0 text-dark d-none d-md-table-cell" style="width: 20px; text-align:center">
-                        <img height="15px" src="/assets/img/Auto/Mindestalter.png" />
+                        <img height="15px" src="/assets/img/Auto/selbstbeteiligung.svg" />
                       </td>
-                      <td class="border-0 text-dark d-none d-md-table-cell"><b>Mindestalter des Fahrers:</b> {{car.age}}</td>
+                    <td class="border-0 text-dark d-none d-md-table-cell"><b>Selbstbeteiligung:</b> {{car.deductible}}</td>
                     </tr>
                     <tr >
                       
@@ -104,17 +107,12 @@
                         <img height="15px" src="/assets/img/Auto/Kaution.png" />
                       </td>
                     <td class="border-0 text-dark "><b>Kaution:</b> {{car.prepayment}}</td>
-                      <td class="border-0 text-dark d-none d-md-table-cell" style="width: 20px; text-align:center">
-                        <img height="15px" src="/assets/img/Auto/selbstbeteiligung.svg" />
-                      </td>
-                    <td class="border-0 text-dark d-none d-md-table-cell"><b>Selbstbeteiligung:</b> {{car.deductible}}</td>
+                    <td class="border-0 text-dark " style="width: 20px; text-align:center">
+                      <img height="15px" src="/assets/img/Auto/fuhrerschein.png" />
+                    </td>
+                  <td class="border-0 text-dark " colspan="2"><b>Führerscheinbesitz:</b> {{car.license}}</td>
                     </tr>
-                    <tr >
-                      <td class="border-0 text-dark " style="width: 20px; text-align:center">
-                        <img height="15px" src="/assets/img/Auto/fuhrerschein.png" />
-                      </td>
-                    <td class="border-0 text-dark " colspan="2"><b>Führerscheinbesitz:</b> {{car.license}}</td>
-                    </tr>
+                   
                   </tbody>
                 </table>
 

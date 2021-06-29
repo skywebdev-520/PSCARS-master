@@ -814,64 +814,47 @@ class OrderController {
                         " ",
                         {text:"wird folgende Haftungsvereinbarung geschlossen:",fontSize:11},
                         " ",
-                        {text:"Der o.g. Mieter haftet unbeschränkt für alle Schäden am durch den Vermieter überlassenem Fahrzeug, die aufgrund von Bedienungsfehlern oder Überbeanspruchung während der Zeit der Überlassung zurückzuführen sind.",fontSize:11},
+                        {text:"Der o.g. Mieter haftet unbeschränkt für alle Schäden am durch den Vermieter überlassenem",fontSize:11},
+                        {text:"Fahrzeug, die aufgrund von Bedienungsfehlern oder Überbeanspruchung während der Zeit der",fontSize:11},
+                        {text:"Überlassung zurückzuführen sind.",fontSize:11},
                         " ",
                         {text:"Pflichten des Mieters gegen Schäden durch Bedienungsfehler und Überbeanspruchung:",fontSize:11},
-                        " ",
-                        {
-                            columns: [
-                                {text:"-",width:20,fontSize:15,bold:true,marginLeft:20},
-                                {text:"Der Mieter ist verpflichtet den Motor des überlassenen Fahrzeuges vor der Nutzung warmlaufen zu lassen, um Motorschäden zu vermeiden.",marginLeft:20,fontSize:11}
-                            ]
-                        },                        
+                        " ",                                                    
+                        {text:"-      Der Mieter ist verpflichtet den Motor des überlassenen Fahrzeuges vor der Nutzung",fontSize:11,marginLeft:20},
+                        {text:"warmlaufen zu lassen, um Motorschäden zu vermeiden.",fontSize:11,marginLeft:40},                        
                         " ",
                         {text:"Zu Achten: Betriebstemperatur, Getriebetemperatur und Öltemperatur.",marginLeft:40,fontSize:11},                        
-                        " ",
-                        {
-                            columns: [
-                                {text:"-",width:20,fontSize:15,bold:true,marginLeft:20},
-                                {text:"Kein Kick-Down! Belastung langsam steigern.",marginLeft:20,fontSize:11}
-                            ]
-                        }, 
-                        " ",
-                        {
-                            columns: [
-                                {text:"-",width:20,fontSize:15,bold:true,marginLeft:20},
-                                {text:"Der Mieter ist dazu verpflichtet, vor dem Losfahren die Handbremse zu lösen.",marginLeft:20,fontSize:11}
-                            ]
-                        }, 
-                        " ",
-                        {
-                            columns: [
-                                {text:"-",width:20,fontSize:15,bold:true,marginLeft:20},
-                                {text:"Der Mieter ist verpflichtet den gesetzlich vorgeschriebenen Mindestabstand eizuhalten, um Steinschläge durch das vorausfahrende Fahrzeug zu vermeiden.",marginLeft:20,fontSize:11}
-                            ]
-                        }, 
-                        " ",
-                        {
-                            columns: [
-                                {text:"-",width:20,fontSize:15,bold:true,marginLeft:20},
-                                {text:"Der Mieter ist verpflichtet reifenschädigendes bremsen zu umgehen, um ein starkes abnutzen der Reifen zu vermeiden.",marginLeft:20,fontSize:11}
-                            ]
-                        }, 
-                        " ",
-                        {
-                            columns: [
-                                {text:"-",width:20,fontSize:15,bold:true,marginLeft:20},
-                                {text:"Der Mieter ist dazu verpflichtet sich an Ruhezeiten in z.B. Wohngebieten zu halten und Lärmbelästigungen zu unterlassen.",marginLeft:20,fontSize:11}
-                            ]
-                        }, 
+                        " ",                                                
+                        {text:"-      Kein Kick-Down! Belastung langsam steigern.",marginLeft:20,fontSize:11},                        
+                        " ",                                                
+                        {text:"-      Der Mieter ist dazu verpflichtet, vor dem Losfahren die Handbremse zu lösen.",marginLeft:20,fontSize:11},                            
+                        " ",                                                
+                        {text:"-      Der Mieter ist verpflichtet den gesetzlich vorgeschriebenen Mindestabstand eizuhalten, um",marginLeft:20,fontSize:11},
+                        {text:"Steinschläge durch das vorausfahrende Fahrzeug zu vermeiden.",marginLeft:40,fontSize:11},                        
+                        " ",                        
+                        {text:"-      Der Mieter ist verpflichtet reifenschädigendes bremsen zu umgehen, um ein starkes",marginLeft:20,fontSize:11},
+                        {text:"abnutzen der Reifen zu vermeiden.",marginLeft:40,fontSize:11},                            
+                        " ",                            
+                        {text:"-      Der Mieter ist dazu verpflichtet sich an Ruhezeiten in z.B. Wohngebieten zu halten und",marginLeft:20,fontSize:11},
+                        {text:"Lärmbelästigungen zu unterlassen.",marginLeft:40,fontSize:11},                            
                         " ",
                         {text:"Im Haftungsfall hat der Mieter folgende Schäden als Gesamtschuldner zu ersetzen:",fontSize:11},
-                        {text:"Die Schadenersatzpflicht des Mieters erstreckt sich unabhängig von der vertraglich vereinbarten Selbstbeteiligung auf die gesamten Reparaturkosten zzgl. einer eventuellen Wertminderung oder bei einem Totalschaden des Fahrzeuges auf den Wiederbeschaffungswert des überlassenen Fahrzeuges abzgl. des Restwertes. Weiter haftet der Mieter – soweit angefallen – für Abschleppkosten, Bergung und Rückführung, Sachverständigengebühren und etwaige weitere dem Vermieter entstehende Kosten und Kosten für den Ausfall in Höhe von 80 % der Tagessätze der jeweils gültigen Preisliste",fontSize:11},
+                        {text:"Die Schadenersatzpflicht des Mieters erstreckt sich unabhängig von der vertraglich vereinbarten",fontSize:11},
+                        {text:"Selbstbeteiligung auf die gesamten Reparaturkosten zzgl. einer eventuellen Wertminderung oder bei",fontSize:11},
+                        {text:"einem Totalschaden des Fahrzeuges auf den Wiederbeschaffungswert des überlassenen Fahrzeuges",fontSize:11},
+                        {text:"abzgl. des Restwertes. Weiter haftet der Mieter – soweit angefallen – für Abschleppkosten, Bergung",fontSize:11},
+                        {text:"und Rückführung, Sachverständigengebühren und etwaige weitere dem Vermieter entstehende",fontSize:11},
+                        {text:"Kosten und Kosten für den Ausfall in Höhe von 80 % der Tagessätze der jeweils gültigen Preisliste",fontSize:11},
                         " ",
                         {text:"Hinweis:",fontSize:9,bold:true},
-                        {text:"Unsere Fahrzeuge sind mit GPS-Ortung ausgestattet, wer unberechtigt mit dem Mietfahrzeug ins Ausland fährt, muss damit rechnen, dass das Fahrzeug bei Diebstahlverdacht stillgelegt wird und die Kosten für den entstandenen Aufwand tragen. Auswertung und Analyse von Fahrverhalten und Fahrweise ist Nachvollziehbar!",fontSize:9},
+                        {text:"Unsere Fahrzeuge sind mit GPS-Ortung ausgestattet, wer unberechtigt mit dem Mietfahrzeug ins Ausland fährt, muss damit",fontSize:9},
+                        {text:"rechnen, dass das Fahrzeug bei Diebstahlverdacht stillgelegt wird und die Kosten für den entstandenen Aufwand tragen.",fontSize:9},
+                        {text:"Auswertung und Analyse von Fahrverhalten und Fahrweise ist Nachvollziehbar!",fontSize:9},
                         " ",
                         " ",                                                
                         {
                             columns:[                                                               
-                                {text:"Bremen, den "+moment(book.checkin).format("DD.MM.YYYY"),fontSize:11}, 
+                                {text:"Bremen, den ",fontSize:11}, 
                                 {
                                     width: 200,height:3,marginLeft:-45,marginTop:7,
                                     svg: '<svg><line  x1="0"  y1="0"  x2="200"  y2="0"  stroke="#4A4D52" stroke-width="2" /></svg>'
@@ -928,7 +911,7 @@ class OrderController {
                                             alignment:'left',                                                                                        
                                             bold: true, fontSize:11,border:[false,false,false,false] 
                                         }
-                                    ],
+                                    ],                                    
                                     [ 
                                         {text: book.customer_firstname+' '+book.customer_lastname,alignment:'left',fontSize:11,border:[false,false,false,false] },
                                         {text: 'Premium Sport-Cars GmbH',alignment:'left',fontSize:11,border:[false,false,false,false]}                                        
@@ -948,7 +931,7 @@ class OrderController {
                         " ",
                         " ",
                         " ",
-                        {text:book.car.title.replace(/<[^>]*>?/gm, '')+' - '+book.car.plate+'(Car-Model-Plate)',bold:true,fontSize:11},                      
+                        {text:book.car.title.replace(/<[^>]*>?/gm, '')+' - '+book.car.plate,bold:true,fontSize:11},                      
                         " ",
                         " ",
                         " ",
@@ -966,7 +949,7 @@ class OrderController {
                                 body: [                                    
                                     [ 
                                         {text: ' \nGesamt EUR, Cent:',fontSize:11,alignment:'right',bold:true,border:[false,false,false,false]},
-                                        {text:book.price_total,fontSize:24,bold:true,border:[false,false,false,false],alignment:"center",fillColor:"#BFBFBF"}                                                                                
+                                        {text:'4000',fontSize:24,bold:true,border:[false,false,false,false],alignment:"center",fillColor:"#BFBFBF"}                                                                                
                                     ],
                                     [
                                         {
@@ -982,7 +965,7 @@ class OrderController {
                                     ],
                                     [ 
                                         {text: 'EUR in Worten, \nCent wie oben:',alignment:'right',bold:true,fontSize:11,border:[false,false,false,false]},
-                                        {text: ' ',alignment:'center',fontSize:24,bold:true, fillColor:"#F2F2F2",border:[false,false,false,false]}                                        
+                                        {text: 'viertausend',alignment:'center',fontSize:24,bold:true, fillColor:"#F2F2F2",border:[false,false,false,false]}                                        
                                     ]                                                                      
                                 ]
                             }
@@ -997,12 +980,11 @@ class OrderController {
                         {text:"Der Vermieter bestätigt hiermit, dass er die im Mietvertrag vereinbarte Kaution in Höhe",fontSize:10},
                         " ",
                         " ",
-                        {text:"von "+book.price_total+" Euro am "+moment(book.checkin).format("DD.MM.YYYY")+" von dem Mieter per Kreditkarte (here we got 3 options; per Kreditkarte; per Bar; per EC-karte) erhalten hat.",fontSize:10},
+                        {text:"von 4000 Euro am "+moment(book.checkin).format("DD.MM.YYYY")+" von dem Mieter per Kreditkarte (here we got 3 options: 1. Bar  2. EC-karte  3. Kreditkarte) erhalten hat.",fontSize:10},
                         " ",
                         " ",
                         " ",
-                        " ",
-                        {text:"Bremen, den "+moment(book.checkin).format("DD.MM.YYYY"),fontSize:11},
+                        " ",                        
                         " ",
                         " ",                        
                         {
@@ -1037,7 +1019,158 @@ class OrderController {
         }catch(e){
             console.log(e)
         }
-    }    
+    }  
+    
+    async getReceiptDeposit1({response,params,auth}){
+        let book = await Booking.findOrFail(params.id)
+        await book.loadMany(["car","car.mainimg","car.damages","car.kilometers","car.features","car.damages.entries"])
+        book = book.toJSON()        
+        let featId = JSON.parse(book.features)
+        let features = await Feature.query().whereIn("id",featId).fetch()
+        features = features.toJSON()         
+        const content = [
+            { 
+                style:"default",
+                columns: [
+                    [                           
+                        " ",                
+                        {text:'QUITTUNG ÜBER DIE RÜCKERHALT DER KAUTION',bold:true,fontSize:14},
+                        " ",
+                        " ",
+                        " ",
+                        " ",
+                        {
+                            table: {
+                                
+                                headerRows: 1,
+                                widths: [ '*','*'],
+                                body: [
+                                    [ 
+                                        { 
+                                            text:'Mieter:',
+                                            alignment:'left',                                            
+                                            bold: true, fontSize:11,border:[false,false,false,false] 
+                                        },
+                                        { 
+                                            text:'Vermieter:',
+                                            alignment:'left',                                                                                        
+                                            bold: true, fontSize:11,border:[false,false,false,false] 
+                                        }
+                                    ],                                    
+                                    [ 
+                                        {text: book.customer_firstname+' '+book.customer_lastname,alignment:'left',fontSize:11,border:[false,false,false,false] },
+                                        {text: 'Premium Sport-Cars GmbH',alignment:'left',fontSize:11,border:[false,false,false,false]}                                        
+                                    ],
+                                    [ 
+                                        {text: book.customer_address,alignment:'left',fontSize:11,border:[false,false,false,false] },
+                                        {text: 'Ludwig-Erhard-Str. 8',alignment:'left',fontSize:11,border:[false,false,false,false]}                                        
+                                    ],
+                                    [ 
+                                        {text: book.customer_postcode+' '+book.customer_city,alignment:'left',fontSize:11,border:[false,false,false,false] },
+                                        {text: '28197 Bremen',alignment:'left',fontSize:11,border:[false,false,false,false]}                                        
+                                    ],
+                                ]
+                            }
+                        },                        
+                        " ",
+                        " ",
+                        " ",
+                        " ",
+                        {text:book.car.title.replace(/<[^>]*>?/gm, '')+' - '+book.car.plate,bold:true,fontSize:11},                      
+                        " ",
+                        " ",
+                        " ",
+                        " ",
+                        " ",
+                        " ",
+                        " ",
+                        " ",
+                        " ",
+                        " ",
+                        {                         
+                            table: {
+                                headerRows: 1,
+                                widths: [ '30%','*' ],
+                                body: [                                    
+                                    [ 
+                                        {text: ' \nGesamt EUR, Cent:',fontSize:11,alignment:'right',bold:true,border:[false,false,false,false]},
+                                        {text:'2000,00 €',fontSize:24,bold:true,border:[false,false,false,false],alignment:"center",fillColor:"#BFBFBF"}                                                                                
+                                    ],
+                                    [
+                                        {
+                                            text:' ',
+                                            fontSize:10,
+                                            border:[false,false,false,false]
+                                        },
+                                        {
+                                            text:' ',
+                                            fontSize:10,
+                                            border:[false,false,false,false]
+                                        }
+                                    ],
+                                    [ 
+                                        {text: 'EUR in Worten, \nCent wie oben:',alignment:'right',bold:true,fontSize:11,border:[false,false,false,false]},
+                                        {text: 'zweitausend',alignment:'center',fontSize:24,bold:true, fillColor:"#F2F2F2",border:[false,false,false,false]}                                        
+                                    ]                                                                      
+                                ]
+                            }
+                        },
+                        " ",
+                        " ",
+                        " ",
+                        " ",
+                        " ",
+                        " ",
+                        " ",
+                        " ",
+                        " ",
+                        " ",
+                        " ",
+                        " ",
+                        {text:"Der Mieter bestätigt hiermit, dass er die im Mietvertrag vereinbarte Kaution in Höhe",fontSize:10},
+                        " ",
+                        " ",
+                        {text:"von 2000 Euro am "+moment(book.checkin).format("DD.MM.YYYY")+" von dem Vermieter per bar zurückerhalten hat.",fontSize:10},
+                        " ",
+                        " ",
+                        " ",
+                        " ",                        
+                        " ",
+                        " ",                        
+                        {
+                            columns:[                                                                                               
+                                [
+                                    {
+                                        width: 200,height:3,
+                                        svg: '<svg><line  x1="0"  y1="0"  x2="200"  y2="0"  stroke="#4A4D52" stroke-width="2" /></svg>'
+                                    },
+                                    " ",
+                                    {text:"Ort, Datum",fontSize:11,alignment:'left'},
+                                ],
+                                [
+                                    {
+                                        width: 200,height:3,marginRight:10,
+                                        svg: '<svg><line  x1="0"  y1="0"  x2="200"  y2="0"  stroke="#4A4D52" stroke-width="2" /></svg>'
+                                    },
+                                    " ",
+                                    {text:"Unterschrift / Mieter",fontSize:11,alignment:'left'},
+                                ]
+                            ]
+                        }                                            
+                    ]
+                ]
+            }
+        ]
+        response.header('X-Frame-Options', 'SAMEORIGIN')
+        response.response.setHeader('Content-type', 'application/pdf')
+        response.implicitEnd = false
+        try{
+            PDF.create(content, response.response)
+        }catch(e){
+            console.log(e)
+        }
+    }  
+
     async getHandOver({response,params,auth}){
         let book = await Booking.findOrFail(params.id)
         await book.loadMany(["car","car.mainimg","car.damages","car.kilometers","car.features","car.damages.entries"])
