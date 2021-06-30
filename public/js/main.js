@@ -6668,7 +6668,8 @@ function reduce (state, action, calendar) {
     for (var _i = 0, _a = calendar.pluginSystem.hooks.reducers; _i < _a.length; _i++) {
         var reducerFunc = _a[_i];
         nextState = reducerFunc(nextState, action, calendar);
-    }    
+    }
+    // console.log(action.type, nextState)
     return nextState;
 }
 function reduceViewType(currentViewType, action) {
@@ -13746,7 +13747,8 @@ function formatCurr(numb) {
     moment: moment__WEBPACK_IMPORTED_MODULE_0___default.a
   },
   data: function data() {
-    var fromTo = null;    
+    var fromTo = null;
+    console.log(window.data.checkout);
 
     if (window.data.checkout != "undefined") {
       fromTo = {
@@ -14646,6 +14648,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 var stripe = Stripe('pk_live_jJB0u3WP6FyPmZ9PVHykGxiJ00SkcUmL3l');
@@ -14743,14 +14747,17 @@ var checkout = {
         }
       }
     },
-    // checkBlocked() {
-    //   return this.disabledDates.reduce((res, cur) => {
-    //     if (!res) {
-    //       return moment(cur).isBetween(this.checkin, this.checkout);
-    //     }
-    //     return res;
-    //   }, false);
-    // },
+    checkBlocked: function checkBlocked() {
+      var _this3 = this;
+
+      return this.disabledDates.reduce(function (res, cur) {
+        if (!res) {
+          return moment__WEBPACK_IMPORTED_MODULE_1___default()(cur).isBetween(_this3.checkin, _this3.checkout);
+        }
+
+        return res;
+      }, false);
+    },
     getDays: function getDays() {
       if (this.rangeType == "single") {
         return 1;
@@ -14759,7 +14766,7 @@ var checkout = {
       return moment__WEBPACK_IMPORTED_MODULE_1___default()(this.checkout + " " + this.timeCheckout).diff(moment__WEBPACK_IMPORTED_MODULE_1___default()(this.checkin + " " + this.timeCheckin), "days");
     },
     getFullprice: function getFullprice(withoutGift) {
-      var _this3 = this;
+      var _this4 = this;
 
       var days = 1;
 
@@ -14791,7 +14798,7 @@ var checkout = {
       }
 
       var features = this.car.features.reduce(function (total, curr) {
-        if (_this3.features.includes(curr.id)) {
+        if (_this4.features.includes(curr.id)) {
           if (curr.perday) {
             return total + curr.price * days;
           }
@@ -14804,7 +14811,7 @@ var checkout = {
 
       if (this.kilometer != 0) {
         features = features + this.car.kilometers.find(function (el) {
-          return el.id == _this3.kilometer;
+          return el.id == _this4.kilometer;
         }).price;
       }
 
@@ -14839,12 +14846,11 @@ var checkout = {
 
       if (moment__WEBPACK_IMPORTED_MODULE_1___default()(this.checkout).isBefore(this.checkin)) {
         errors.push("Abgabe Datum darf nicht vor der Abholung liegen!");
-      } // if (this.checkBlocked()) {
-      //   errors.push(
-      //     "Der Buchungszeitraum ist leider nicht verfügbar! <br />Es sind bereits Buchungungen getätigt wurden in dem bestimmten Zeitraum. <br />Achten Sie darauf das im gewählten Zeitraum keine Tage blockiert sind! <br />Wochenendbuchungen sind zugelassen solange Abholung und Abgabe innerhalb der Woche liegen. "
-      //   );
-      // }
+      }
 
+      if (this.checkBlocked()) {
+        errors.push("Der Buchungszeitraum ist leider nicht verfügbar! <br />Es sind bereits Buchungungen getätigt wurden in dem bestimmten Zeitraum. <br />Achten Sie darauf das im gewählten Zeitraum keine Tage blockiert sind! <br />Wochenendbuchungen sind zugelassen solange Abholung und Abgabe innerhalb der Woche liegen. ");
+      }
 
       if (this.paymentType == "sepa" && !this.ibcompleted) {
         errors.push("Bitte geben Sie Ihre IBAN an.");
@@ -14863,7 +14869,7 @@ var checkout = {
       return errors;
     },
     checkCoupon: function checkCoupon() {
-      var _this4 = this;
+      var _this5 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var _yield$axios$post, data;
@@ -14872,10 +14878,10 @@ var checkout = {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _this4.coupon_err = false;
+                _this5.coupon_err = false;
                 _context.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/coupon", {
-                  code: _this4.coupon_code
+                  code: _this5.coupon_code
                 });
 
               case 3:
@@ -14883,13 +14889,13 @@ var checkout = {
                 data = _yield$axios$post.data;
 
                 if (data.status) {
-                  _this4.coupon_description = data.coupon.description;
-                  _this4.coupon_type = data.coupon.type;
-                  _this4.coupon_id = data.coupon.id;
-                  _this4.coupon_value = data.coupon.value;
-                  _this4.coupon_disabled = true;
+                  _this5.coupon_description = data.coupon.description;
+                  _this5.coupon_type = data.coupon.type;
+                  _this5.coupon_id = data.coupon.id;
+                  _this5.coupon_value = data.coupon.value;
+                  _this5.coupon_disabled = true;
                 } else {
-                  _this4.coupon_err = true;
+                  _this5.coupon_err = true;
                 }
 
               case 6:
@@ -14901,7 +14907,7 @@ var checkout = {
       }))();
     },
     buy: function buy() {
-      var _this5 = this;
+      var _this6 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         var annotation, timeCheckin, timeCheckout, features, checkout, checkin, fromTo, from, rangeType, agbs, paymentType, car, customerType, customerCompany, customerVAT, customerFirstname, customerLastname, customerAddress, customerPostcode, customerCity, customerEmail, customerPhone, cdcompleted, coupon_id, coupon_err, coupon_code, coupon_disabled, coupon_description, coupon_type, coupon_value, kilometer, _yield$axios$post2, data;
@@ -14910,7 +14916,7 @@ var checkout = {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                annotation = _this5.annotation, timeCheckin = _this5.timeCheckin, timeCheckout = _this5.timeCheckout, features = _this5.features, checkout = _this5.checkout, checkin = _this5.checkin, fromTo = _this5.fromTo, from = _this5.from, rangeType = _this5.rangeType, agbs = _this5.agbs, paymentType = _this5.paymentType, car = _this5.car, customerType = _this5.customerType, customerCompany = _this5.customerCompany, customerVAT = _this5.customerVAT, customerFirstname = _this5.customerFirstname, customerLastname = _this5.customerLastname, customerAddress = _this5.customerAddress, customerPostcode = _this5.customerPostcode, customerCity = _this5.customerCity, customerEmail = _this5.customerEmail, customerPhone = _this5.customerPhone, cdcompleted = _this5.cdcompleted, coupon_id = _this5.coupon_id, coupon_err = _this5.coupon_err, coupon_code = _this5.coupon_code, coupon_disabled = _this5.coupon_disabled, coupon_description = _this5.coupon_description, coupon_type = _this5.coupon_type, coupon_value = _this5.coupon_value, kilometer = _this5.kilometer;
+                annotation = _this6.annotation, timeCheckin = _this6.timeCheckin, timeCheckout = _this6.timeCheckout, features = _this6.features, checkout = _this6.checkout, checkin = _this6.checkin, fromTo = _this6.fromTo, from = _this6.from, rangeType = _this6.rangeType, agbs = _this6.agbs, paymentType = _this6.paymentType, car = _this6.car, customerType = _this6.customerType, customerCompany = _this6.customerCompany, customerVAT = _this6.customerVAT, customerFirstname = _this6.customerFirstname, customerLastname = _this6.customerLastname, customerAddress = _this6.customerAddress, customerPostcode = _this6.customerPostcode, customerCity = _this6.customerCity, customerEmail = _this6.customerEmail, customerPhone = _this6.customerPhone, cdcompleted = _this6.cdcompleted, coupon_id = _this6.coupon_id, coupon_err = _this6.coupon_err, coupon_code = _this6.coupon_code, coupon_disabled = _this6.coupon_disabled, coupon_description = _this6.coupon_description, coupon_type = _this6.coupon_type, coupon_value = _this6.coupon_value, kilometer = _this6.kilometer;
                 _context2.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/buchen", {
                   annotation: annotation,
@@ -14948,7 +14954,7 @@ var checkout = {
                 _yield$axios$post2 = _context2.sent;
                 data = _yield$axios$post2.data;
 
-                if (_this5.paymentType == "creditcard") {
+                if (_this6.paymentType == "creditcard") {
                   stripe.redirectToCheckout({
                     // Make the id field from the Checkout Session creation API response
                     // available to this file, so you can provide it as parameter here
@@ -14985,7 +14991,7 @@ var checkout = {
       kilometerSel: null,
       weekend: window.data.weekend,
       rangeType: "single",
-      //disabledDates: window.data.blocked,
+      disabledDates: window.data.blocked,
       fromTo: {
         start: "",
         end: ""
@@ -66492,6 +66498,17 @@ var render = function() {
                         ]
                       ),
                       _vm._v(" "),
+                      _vm.checkBlocked()
+                        ? _c(
+                            "div",
+                            {
+                              staticClass: "alert alert-danger",
+                              attrs: { role: "alert" }
+                            },
+                            [_vm._m(0)]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
                       _vm.rangeType == "single"
                         ? _c(
                             "div",
@@ -66513,6 +66530,7 @@ var render = function() {
                                   range: false,
                                   onlyDate: true,
                                   "no-buttonNow": true,
+                                  "disabled-dates": _vm.disabledDates,
                                   start: ""
                                 },
                                 model: {
@@ -66546,7 +66564,7 @@ var render = function() {
                                     ]
                                   ),
                                   _vm._v(" "),
-                                  _vm._m(0)
+                                  _vm._m(1)
                                 ]
                               )
                             ],
@@ -66574,6 +66592,7 @@ var render = function() {
                                   "no-shortcuts": true,
                                   range: true,
                                   "no-buttonNow": true,
+                                  "disabled-dates": _vm.disabledDates,
                                   start: ""
                                 },
                                 model: {
@@ -67646,7 +67665,7 @@ var render = function() {
                         },
                         [
                           _c("div", { staticClass: "form-group" }, [
-                            _vm._m(1),
+                            _vm._m(2),
                             _vm._v(" "),
                             _c(
                               "select",
@@ -67693,7 +67712,7 @@ var render = function() {
                             ? _c("div", { staticClass: "row" }, [
                                 _c("div", { staticClass: "col pr-0" }, [
                                   _c("div", { staticClass: "form-group" }, [
-                                    _vm._m(2),
+                                    _vm._m(3),
                                     _vm._v(" "),
                                     _c("input", {
                                       directives: [
@@ -67753,7 +67772,7 @@ var render = function() {
                           _c("div", { staticClass: "row" }, [
                             _c("div", { staticClass: "col-12 col-md-6 pr-0" }, [
                               _c("div", { staticClass: "form-group" }, [
-                                _vm._m(3),
+                                _vm._m(4),
                                 _vm._v(" "),
                                 _c("input", {
                                   directives: [
@@ -67782,7 +67801,7 @@ var render = function() {
                             _vm._v(" "),
                             _c("div", { staticClass: "col" }, [
                               _c("div", { staticClass: "form-group" }, [
-                                _vm._m(4),
+                                _vm._m(5),
                                 _vm._v(" "),
                                 _c("input", {
                                   directives: [
@@ -67810,7 +67829,7 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "form-group" }, [
-                            _vm._m(5),
+                            _vm._m(6),
                             _vm._v(" "),
                             _c("input", {
                               directives: [
@@ -67838,7 +67857,7 @@ var render = function() {
                           _c("div", { staticClass: "row" }, [
                             _c("div", { staticClass: "col-12 col-md-3 pr-0" }, [
                               _c("div", { staticClass: "form-group" }, [
-                                _vm._m(6),
+                                _vm._m(7),
                                 _vm._v(" "),
                                 _c("input", {
                                   directives: [
@@ -67866,7 +67885,7 @@ var render = function() {
                             _vm._v(" "),
                             _c("div", { staticClass: "col" }, [
                               _c("div", { staticClass: "form-group" }, [
-                                _vm._m(7),
+                                _vm._m(8),
                                 _vm._v(" "),
                                 _c("input", {
                                   directives: [
@@ -67896,7 +67915,7 @@ var render = function() {
                           _c("div", { staticClass: "row" }, [
                             _c("div", { staticClass: "col-12 col-md-6 pr-0" }, [
                               _c("div", { staticClass: "form-group" }, [
-                                _vm._m(8),
+                                _vm._m(9),
                                 _vm._v(" "),
                                 _c("input", {
                                   directives: [
@@ -67988,7 +68007,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _vm._m(9)
+                          _vm._m(10)
                         ]
                       )
                     ])
@@ -68175,7 +68194,7 @@ var render = function() {
                                       ])
                                     ]),
                                     _vm._v(" "),
-                                    _vm._m(10)
+                                    _vm._m(11)
                                   ]
                                 )
                               ])
@@ -68287,7 +68306,7 @@ var render = function() {
                                       ])
                                     ]),
                                     _vm._v(" "),
-                                    _vm._m(11)
+                                    _vm._m(12)
                                   ]
                                 )
                               ])
@@ -68700,7 +68719,7 @@ var render = function() {
                       }),
                       _vm._v(" "),
                       _c("tr", [
-                        _vm._m(12),
+                        _vm._m(13),
                         _vm._v(" "),
                         _c("td", { staticClass: "py-2" }, [
                           _vm.rangeType == "multi"
@@ -68739,7 +68758,7 @@ var render = function() {
                       _vm._v(" "),
                       _vm.getKilometer()
                         ? _c("tr", [
-                            _vm._m(13),
+                            _vm._m(14),
                             _vm._v(" "),
                             _c("td", { staticClass: "py-2" }, [
                               _c("h5", { staticClass: "mb-0" }, [
@@ -68762,7 +68781,7 @@ var render = function() {
                         : _vm._e(),
                       _vm._v(" "),
                       _c("tr", [
-                        _vm._m(14),
+                        _vm._m(15),
                         _vm._v(" "),
                         _c("td", { staticClass: "py-2" }, [
                           _c("h5", { staticClass: "mb-0" }, [
@@ -68776,7 +68795,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("tr", [
-                        _vm._m(15),
+                        _vm._m(16),
                         _vm._v(" "),
                         _c("td", { staticClass: "py-2" }, [
                           _c("h4", { staticClass: "mb-0" }, [
@@ -68951,7 +68970,7 @@ var render = function() {
                       }
                     }),
                     _vm._v(" "),
-                    _vm._m(16)
+                    _vm._m(17)
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-check" }, [
@@ -68994,7 +69013,7 @@ var render = function() {
                       }
                     }),
                     _vm._v(" "),
-                    _vm._m(17)
+                    _vm._m(18)
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-check" }, [
@@ -69037,7 +69056,7 @@ var render = function() {
                       }
                     }),
                     _vm._v(" "),
-                    _vm._m(18)
+                    _vm._m(19)
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-check" }, [
@@ -69084,7 +69103,7 @@ var render = function() {
                       }
                     }),
                     _vm._v(" "),
-                    _vm._m(19)
+                    _vm._m(20)
                   ])
                 ])
               ]
@@ -69178,6 +69197,28 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("small", [
+      _vm._v(
+        "\n               Der Buchungszeitraum ist leider nicht verfügbar! "
+      ),
+      _c("br"),
+      _vm._v(
+        " Es sind bereits Buchungungen getätigt wurden in dem bestimmten Zeitraum. "
+      ),
+      _c("br"),
+      _vm._v(
+        "Achten Sie darauf das im gewählten Zeitraum keine Tage blockiert sind! "
+      ),
+      _c("br"),
+      _vm._v(
+        "Wochenendbuchungen sind zugelassen solange Abholung und Abgabe innerhalb der Woche liegen."
+      )
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -82195,7 +82236,7 @@ if ($("#calender").length) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\2_myWorks\PSCARS-master\resources\assets\js\main.js */"./resources/assets/js/main.js");
+module.exports = __webpack_require__(/*! D:\2_myWorks\PSCARS-master(German)\resources\assets\js\main.js */"./resources/assets/js/main.js");
 
 
 /***/ })

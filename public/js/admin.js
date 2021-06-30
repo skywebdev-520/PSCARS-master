@@ -101601,7 +101601,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\2_myWorks\PSCARS-master\resources\assets\js\admin.js */"./resources/assets/js/admin.js");
+module.exports = __webpack_require__(/*! D:\2_myWorks\PSCARS-master(German)\resources\assets\js\admin.js */"./resources/assets/js/admin.js");
 
 
 /***/ })

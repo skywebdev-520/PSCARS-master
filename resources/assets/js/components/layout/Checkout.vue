@@ -53,9 +53,9 @@
                 <a class="nav-item nav-link  text-white mr-0" v-on:click="rangeType='multi'" v-bind:class="{'bg-danger disabled':rangeType=='multi'}" href="#">24 Stunden</a>
               </nav>
               
-              <!-- <div v-if="checkBlocked()" role="alert" class="alert alert-danger"><small>
+              <div v-if="checkBlocked()" role="alert" class="alert alert-danger"><small>
                  Der Buchungszeitraum ist leider nicht verfügbar! <br> Es sind bereits Buchungungen getätigt wurden in dem bestimmten Zeitraum. <br>Achten Sie darauf das im gewählten Zeitraum keine Tage blockiert sind! <br>Wochenendbuchungen sind zugelassen solange Abholung und Abgabe innerhalb der Woche liegen.</small>
-              </div> -->
+              </div>
               <div class="card-body" v-if="rangeType=='single'">
                 <VueCtkDateTimePicker
                   :auto-close="true"
@@ -68,7 +68,8 @@
                   :no-shortcuts="true"
                   :range="false"
                   :onlyDate="true"
-                  :no-buttonNow="true"                  
+                  :no-buttonNow="true"
+                  :disabled-dates="disabledDates"
                   start
                   v-model="from"
                 />
@@ -95,7 +96,8 @@
                   :no-weekends-days="false"
                   :no-shortcuts="true"
                   :range="true"
-                  :no-buttonNow="true"                  
+                  :no-buttonNow="true"
+                  :disabled-dates="disabledDates"
                   start
                   v-model="fromTo"
                 />
@@ -814,14 +816,14 @@ let checkout = {
         }
       }
     },
-    // checkBlocked() {
-    //   return this.disabledDates.reduce((res, cur) => {
-    //     if (!res) {
-    //       return moment(cur).isBetween(this.checkin, this.checkout);
-    //     }
-    //     return res;
-    //   }, false);
-    // },
+    checkBlocked() {
+      return this.disabledDates.reduce((res, cur) => {
+        if (!res) {
+          return moment(cur).isBetween(this.checkin, this.checkout);
+        }
+        return res;
+      }, false);
+    },
     getDays(){
       if(this.rangeType=="single"){
         return 1
@@ -905,11 +907,11 @@ let checkout = {
       if (moment(this.checkout).isBefore(this.checkin)) {
         errors.push("Abgabe Datum darf nicht vor der Abholung liegen!");
       }
-      // if (this.checkBlocked()) {
-      //   errors.push(
-      //     "Der Buchungszeitraum ist leider nicht verfügbar! <br />Es sind bereits Buchungungen getätigt wurden in dem bestimmten Zeitraum. <br />Achten Sie darauf das im gewählten Zeitraum keine Tage blockiert sind! <br />Wochenendbuchungen sind zugelassen solange Abholung und Abgabe innerhalb der Woche liegen. "
-      //   );
-      // }
+      if (this.checkBlocked()) {
+        errors.push(
+          "Der Buchungszeitraum ist leider nicht verfügbar! <br />Es sind bereits Buchungungen getätigt wurden in dem bestimmten Zeitraum. <br />Achten Sie darauf das im gewählten Zeitraum keine Tage blockiert sind! <br />Wochenendbuchungen sind zugelassen solange Abholung und Abgabe innerhalb der Woche liegen. "
+        );
+      }
 
       if (this.paymentType == "sepa" && !this.ibcompleted) {
         errors.push("Bitte geben Sie Ihre IBAN an.");
@@ -979,7 +981,7 @@ let checkout = {
       weekend : window.data.weekend,
       rangeType:"single",
 
-      //disabledDates: window.data.blocked,
+      disabledDates: window.data.blocked,
       fromTo: {
         start:"",
         end: ""
