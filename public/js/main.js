@@ -66524,7 +66524,8 @@ var render = function() {
                                   minDate: _vm
                                     .moment()
                                     .subtract(1, "days")
-                                    .toDate(),
+                                    .toDate()
+                                    .toString(),
                                   "no-weekends-days": false,
                                   "no-shortcuts": true,
                                   range: false,
@@ -66587,7 +66588,8 @@ var render = function() {
                                   minDate: _vm
                                     .moment()
                                     .subtract(1, "days")
-                                    .toDate(),
+                                    .toDate()
+                                    .toString(),
                                   "no-weekends-days": false,
                                   "no-shortcuts": true,
                                   range: true,

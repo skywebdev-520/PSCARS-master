@@ -52,12 +52,14 @@
                                 <div
                                 style="background: url(/img/car_dmg/{{item.type}}.png) 0% 0% / cover;height:94px;width:200px" 
                                 >
-                                <img src="{{item.mark}}" style="width:200px" />
+                                <img src="{{item.mark}}" style="width:172px" />
                                 </div>
                             </td>
                             <td>
                                 @each(img in item.image.split(","))
-                                <img src="/uploads/{{img}}" style="height:94px" />
+                                <a target="_blank" id="single_image" href="/uploads/{{img}}">
+                                    <img src="/uploads/{{img}}" style="height:82px" />
+                                </a>
                                 @endeach
                             </td>
                             <td>

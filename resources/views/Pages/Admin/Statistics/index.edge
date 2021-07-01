@@ -15,22 +15,22 @@
                     <div class="table-responsive">
                         <table class="table " id="dataTable" width="100%" cellspacing="0">
                             <thead>
-                                <tr>
-                                                               
+                                <tr>                                                               
                                     <th>Fahrzeug</th>
                                     <th>Kennzeichen</th>
                                     <th>Fahrgestellnummer</th>
+                                    <th>Blöcke</th>
                                     <th>mal</th>
                                     <th>Umsatz</th>                                                                       
                                 </tr>
                             </thead>
                             <tbody>
                                 @each(car in cars)
-                                <tr>
-                                    
+                                <tr>                                    
                                     <td>{{{car.title}}}</td>
                                     <td>{{car.plate}}</td>
                                     <td>{{car.vin}}</td>
+                                    <td>{{bks[car.id-1]}}</td>
                                     <td>{{counts[car.id-1]}}</td>
                                     <td>{{totals[car.id-1]}}</td>                                                                       
                                 </tr>

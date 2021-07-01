@@ -63,7 +63,7 @@
                   :formatted="'DD.MM.YYYY'"
                   :format="'YYYY-MM-DD'"
                   :color="'#343a40'"
-                  :minDate="moment().subtract(1,'days').toDate()"
+                  :minDate="moment().subtract(1,'days').toDate().toString()"
                   :no-weekends-days="false"
                   :no-shortcuts="true"
                   :range="false"
@@ -92,7 +92,7 @@
                   :formatted="'DD.MM.YYYY'"
                   :format="'YYYY-MM-DD'"
                   :color="'#343a40'"
-                  :minDate="moment().subtract(1,'days').toDate()"
+                  :minDate="moment().subtract(1,'days').toDate().toString()"
                   :no-weekends-days="false"
                   :no-shortcuts="true"
                   :range="true"
@@ -816,11 +816,11 @@ let checkout = {
         }
       }
     },
-    checkBlocked() {
+    checkBlocked() {                 
       return this.disabledDates.reduce((res, cur) => {
-        if (!res) {
+        if (!res) {          
           return moment(cur).isBetween(this.checkin, this.checkout);
-        }
+        }        
         return res;
       }, false);
     },

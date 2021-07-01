@@ -34,13 +34,24 @@ class CheckoutController {
         await car.load('kilometers')
         let carJSN = car.toJSON()
         let bookings = await Booking.query().where("car_id",params.carid).select("id","checkout","checkin").where("status","NOT LIKE","ABGESCHLOSSEN").where("status","NOT LIKE","STORNIERT").where("checkout", ">", moment().format("YYYY-MM-DD")).fetch()
-        let blocked = await Blocked.query().where("car_id",params.carid).select("id","checkout","checkin").where("checkout", ">", moment().format("YYYY-MM-DD")).fetch()
+        let blocked = await Blocked.query().where("car_id",params.carid).select("id","checkout","checkin").where("checkout", ">=", moment().format("YYYY-MM-DD")).fetch()        
+        var todate=  blocked.toJSON()[0]['checkin']
+        let edDate = new Date(todate)
+        todate =  blocked.toJSON()[0]['checkout']
+        let stdate = new Date(todate)
+        let disabled = []
+        let itDate = stdate
+        while(itDate <= edDate) {         
+            let temp = moment(itDate,"YYYY-MM-DD").add(1, 'days')
+            disabled.push(moment(temp).format("YYYY-MM-DD"))
+            itDate.setDate(itDate.getDate() + 1)
+        }        
         let bkings = bookings.toJSON().concat(blocked.toJSON())
-        let disabled=[]
-        for (let id in bkings) {
-            disabled.push(bkings[id].checkout)
-            disabled.push(bkings[id].checkin)
-        }
+        // let disabled=[]
+        // for (let id in bkings) {
+        //     disabled.push(bkings[id].checkout)
+        //     disabled.push(bkings[id].checkin)
+        // }
         var dt = new Date();     
         var weekend;
         if(dt.getDay() == 6 || dt.getDay() == 0){
