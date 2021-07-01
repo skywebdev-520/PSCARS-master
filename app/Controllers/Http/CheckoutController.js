@@ -43,7 +43,7 @@ class CheckoutController {
             let stdate = new Date(todate)            
             let itDate = stdate
             while(itDate <= edDate) {         
-                let temp = moment(itDate,"YYYY-MM-DD").add(1, 'days')
+                let temp = moment(itDate,"YYYY-MM-DD")
                 disabled.push(moment(temp).format("YYYY-MM-DD"))
                 itDate.setDate(itDate.getDate() + 1)
             }        
