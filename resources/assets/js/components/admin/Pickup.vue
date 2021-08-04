@@ -336,9 +336,9 @@
             <md-step id="third" :md-editable="false" md-label="Schaden Erfassung"  style="background-color:#fafafa">
                 <md-card v-for="(item, index) in dmgs" :key="'ind_'+index" style="margin-bottom:10px">
                     <div class="md-layout">
-                        <div class="md-layout-item" style="border-right:2px solid #ddd;max-width:400px;">
+                        <div class="md-layout-item" style="border-right:2px solid #ddd;max-width:450px;">
                             <div
-                            v-bind:style="{ background: 'url(/img/car_dmg/'+item.cartype+'.png) 0% 0% / cover',height:188+'px'}" 
+                            v-bind:style="{ background: 'url(/img/car_dmg/'+item.cartype+'.png) 0% 0% / cover',height:215+'px'}" 
                             
                             >
                                 <Konva-stage :config="configKonva" :ref="'stage_'+index" >
@@ -611,8 +611,8 @@ export default {
         fuenf: false,
         book: window.data.book,
         configKonva: {
-            width: 400,
-            height: 188
+            width: 450,
+            height: 215
         },
         dmgs:[
             {

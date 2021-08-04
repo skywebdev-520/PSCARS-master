@@ -111,8 +111,8 @@ export default {
         file: '',
         id:window.data,
         configKonva: {
-            width: 400,
-            height: 188
+            width: 450,
+            height: 215
         },
     };
   }

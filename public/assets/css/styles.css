@@ -49,6 +49,9 @@ h6 {
   color: #000 !important;
 }
 @media (min-width: 767px) {
+  .upload-img{
+    width: 194px;
+  }
   .megamenu {
     position: static;
   }
@@ -415,6 +418,9 @@ z-index: 1;
 }
 /* Responsive */
 @media (max-width: 640px) {
+  .upload-img{
+    width: 172px;
+  }
   .ssb-disable-on-mobile {
       display: none;
   }

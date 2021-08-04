@@ -21,7 +21,7 @@
             <a href="/uploads/{{ car.mainimg.id }}.{{ car.mainimg.location }}" 
             style="display:inline-block" 
             data-fancybox="gallery">
-              <canvas height="400"></canvas>
+              <canvas height="450"></canvas>
             </a>
             </div>
 
@@ -183,7 +183,7 @@
               <tr>
                 <td class="text-primary"><b>Preis</b></td>
                 <td>{{formatCurr(car.priceOneDay)}} €</td>
-                <td>{{formatCurr(car.price) }} €</td>
+                <td>{{formatCurr(car.priceWeekend) }} €</td>
                 <td>{{formatCurr(car.priceWeekend * 3)}} €</td>
               </tr>
           </tbody>

@@ -14507,8 +14507,8 @@ function getRelativePointerPosition(node) {
       file: '',
       id: window.data,
       configKonva: {
-        width: 400,
-        height: 188
+        width: 450,
+        height: 215
       },
       successfull: false
     };
@@ -14943,8 +14943,8 @@ function getRelativePointerPosition(node) {
       fuenf: false,
       book: window.data.book,
       configKonva: {
-        width: 400,
-        height: 188
+        width: 450,
+        height: 215
       },
       dmgs: [{
         saved: false,
@@ -15628,8 +15628,8 @@ function getRelativePointerPosition(node) {
       fuenf: false,
       book: window.data.book,
       configKonva: {
-        width: 400,
-        height: 188
+        width: 450,
+        height: 215
       },
       dmgs: [{
         saved: false,
@@ -55672,7 +55672,7 @@ var render = function() {
                                   staticClass: "md-layout-item",
                                   staticStyle: {
                                     "border-right": "2px solid #ddd",
-                                    "max-width": "400px"
+                                    "max-width": "450px"
                                   }
                                 },
                                 [
@@ -55684,7 +55684,7 @@ var render = function() {
                                           "url(/img/car_dmg/" +
                                           item.cartype +
                                           ".png) 0% 0% / cover",
-                                        height: 188 + "px"
+                                        height: 215 + "px"
                                       }
                                     },
                                     [
@@ -101601,7 +101601,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\2_myWorks\PSCARS-master(German)\resources\assets\js\admin.js */"./resources/assets/js/admin.js");
+module.exports = __webpack_require__(/*! D:\2_myWorks\PScars(Germany)\PSCARS-master(German)\resources\assets\js\admin.js */"./resources/assets/js/admin.js");
 
 
 /***/ })

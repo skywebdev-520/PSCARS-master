@@ -887,13 +887,10 @@ class OrderController {
             { 
                 style:"default",
                 columns: [
-                    [                           
-                        " ",                
-                        {text:'QUITTUNG ÜBER DEN ERHALT DER MIETKAUTION',bold:true,fontSize:14},
-                        " ",
-                        " ",
-                        " ",
-                        " ",
+                    [                                      
+                        {text:'QUITTUNG ÜBER DIE MIETKAUTION',bold:true,fontSize:14},
+                        {text:'ERHALT',bold:true,fontSize:14},
+                        " ",                        
                         {
                             table: {
                                 
@@ -913,8 +910,8 @@ class OrderController {
                                         }
                                     ],                                    
                                     [ 
-                                        {text: book.customer_firstname+' '+book.customer_lastname,alignment:'left',fontSize:11,border:[false,false,false,false] },
-                                        {text: 'Premium Sport-Cars GmbH',alignment:'left',fontSize:11,border:[false,false,false,false]}                                        
+                                        {text: book.customer_firstname+' '+book.customer_lastname,alignment:'left',bold: true,fontSize:11,border:[false,false,false,false] },
+                                        {text: 'Premium Sport-Cars GmbH',alignment:'left',bold: true,fontSize:11,border:[false,false,false,false]}                                        
                                     ],
                                     [ 
                                         {text: book.customer_address,alignment:'left',fontSize:11,border:[false,false,false,false] },
@@ -928,20 +925,11 @@ class OrderController {
                             }
                         },                        
                         " ",
-                        " ",
-                        " ",
-                        " ",
+                        " ",                        
                         {text:book.car.title.replace(/<[^>]*>?/gm, '')+' - '+book.car.plate,bold:true,fontSize:11},                      
                         " ",
                         " ",
-                        " ",
-                        " ",
-                        " ",
-                        " ",
-                        " ",
-                        " ",
-                        " ",
-                        " ",
+                        " ",                       
                         {                         
                             table: {
                                 headerRows: 1,
@@ -949,23 +937,23 @@ class OrderController {
                                 body: [                                    
                                     [ 
                                         {text: ' \nGesamt EUR, Cent:',fontSize:11,alignment:'right',bold:true,border:[false,false,false,false]},
-                                        {text:'4000',fontSize:24,bold:true,border:[false,false,false,false],alignment:"center",fillColor:"#BFBFBF"}                                                                                
+                                        {text:book.car.prepayment,fontSize:24,border:[false,false,false,false],alignment:"center",fillColor:"#BFBFBF"}                                                                                
                                     ],
                                     [
                                         {
                                             text:' ',
-                                            fontSize:10,
+                                            fontSize:11,
                                             border:[false,false,false,false]
                                         },
                                         {
                                             text:' ',
-                                            fontSize:10,
+                                            fontSize:11,
                                             border:[false,false,false,false]
                                         }
                                     ],
                                     [ 
                                         {text: 'EUR in Worten, \nCent wie oben:',alignment:'right',bold:true,fontSize:11,border:[false,false,false,false]},
-                                        {text: 'viertausend',alignment:'center',fontSize:24,bold:true, fillColor:"#F2F2F2",border:[false,false,false,false]}                                        
+                                        {text: '',alignment:'center',fontSize:24, fillColor:"#F2F2F2",border:[false,false,false,false]}                                        
                                     ]                                                                      
                                 ]
                             }
@@ -973,28 +961,17 @@ class OrderController {
                         " ",
                         " ",
                         " ",
-                        " ",
-                        " ",
-                        " ",
-                        " ",
+                        " ",                        
                         {text:"Der Vermieter bestätigt hiermit, dass er die im Mietvertrag vereinbarte Kaution in Höhe",fontSize:10},
                         " ",
                         " ",
-                        {text:"von 4000 Euro am "+moment(book.checkin).format("DD.MM.YYYY")+" von dem Mieter per Kreditkarte (here we got 3 options: 1. Bar  2. EC-karte  3. Kreditkarte) erhalten hat.",fontSize:10},
+                        {text:"von "+book.car.prepayment.replace(/<[^>]*>?/gm, '')+" Euro am "+moment(book.checkin).format("DD.MM.YYYY")+" von dem Vermieter per Kreditkarte erhalten hat.",fontSize:10},
                         " ",
-                        " ",
-                        " ",
-                        " ",                        
-                        " ",
-                        " ",                        
+                        " ",                                             
                         {
                             columns:[                                                                                               
                                 [
-                                    {
-                                        width: 200,height:3,
-                                        svg: '<svg><line  x1="0"  y1="0"  x2="200"  y2="0"  stroke="#4A4D52" stroke-width="2" /></svg>'
-                                    },
-                                    " ",
+                                    {text:"Bremen, den "+moment(book.checkin).format("DD.MM.YYYY"),fontSize:11},                                     
                                     {text:"Ort, Datum",fontSize:11,alignment:'left'},
                                 ],
                                 [

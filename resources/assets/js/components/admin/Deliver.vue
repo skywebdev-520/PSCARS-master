@@ -373,8 +373,8 @@ export default {
         fuenf: false,
         book: window.data.book,
         configKonva: {
-            width: 400,
-            height: 188
+            width: 450,
+            height: 215
         },
         dmgs:[
             {

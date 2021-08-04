@@ -14508,8 +14508,8 @@ function getRelativePointerPosition(node) {
       file: '',
       id: window.data,
       configKonva: {
-        width: 400,
-        height: 188
+        width: 450,
+        height: 215
       }
     };
   }
@@ -42049,7 +42049,7 @@ if ($("#DamageAdd").length) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\2_myWorks\PSCARS-master(German)\resources\assets\js\dmgs.js */"./resources/assets/js/dmgs.js");
+module.exports = __webpack_require__(/*! D:\2_myWorks\PScars(Germany)\PSCARS-master(German)\resources\assets\js\dmgs.js */"./resources/assets/js/dmgs.js");
 
 
 /***/ })
