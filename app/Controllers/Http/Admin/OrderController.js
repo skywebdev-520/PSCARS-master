@@ -1162,19 +1162,18 @@ class OrderController {
         const content = [
             { 
                 style:"default",
+                marginLeft: 20,
+                marginBottom: 20,
+                marginRight: 20,
                 columns: [
-                    [      
-                        " ",
-                        " ",
+                    [                         
                         " ",
                         " ",
                         " ",  
                         " ",  
                         " ",                                
                         {text:'QUITTUNG ÜBER DIE MIETKAUTION',bold:true,fontSize:14},
-                        {text:'ERHALT',bold:true,fontSize:14},
-                        " ",
-                        " ",
+                        {text:'ERHALT',bold:true,fontSize:14},                       
                         " ",
                         " ",  
                         " ",  
