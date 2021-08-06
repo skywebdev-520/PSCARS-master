@@ -172,6 +172,7 @@ class CarController {
         newCar.vmax = body.vmax
         newCar.doors = body.doors
         newCar.prepayment = body.prepayment
+        newCar.prepaymentWord = body.prepaymentWord
         newCar.engine = body.engine
         newCar.petrol = body.petrol
         newCar.passengers = body.passengers
@@ -230,6 +231,7 @@ class CarController {
         newCar.doors = body.doors
         newCar.priceOneDay = body.priceOneDay
         newCar.prepayment = body.prepayment
+        newCar.prepaymentWord = body.prepaymentWord
         newCar.engine = body.engine
         newCar.petrol = body.petrol
         newCar.passengers = body.passengers

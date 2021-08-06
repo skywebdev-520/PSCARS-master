@@ -782,6 +782,193 @@ class OrderController {
         }
     }
 
+    async getContract1({response,params,auth}){
+        let book = await Booking.findOrFail(params.id)
+        await book.loadMany(["car","car.mainimg","car.damages","car.kilometers","car.features","car.damages.entries"])
+        book = book.toJSON()
+        let featId = JSON.parse(book.features)
+        let features = await Feature.query().whereIn("id",featId).fetch()
+        features = features.toJSON()
+
+        let signature_div_customer = {text: "\n\n\n\n\n\n"}
+        let signature_div = {text: "\n\n\n\n\n\n"}
+        if(book.isSigned) {
+            if(book.signature_customer){
+                signature_div_customer = {width:100,image:book.signature_customer}
+            }
+            if(book.signature){
+                signature_div = {width:100,image:book.signature}
+            }
+        } 
+        const content = [
+            { 
+                style:"default",
+                columns: [
+                    [
+                        " "," "," "," "
+                        ," "," "," "," ",
+                        {
+                            table: {
+                                headerRows: 1,
+                                widths: [ '40%', '*' ],
+                                body: [
+                                    [ 
+                                        { text:'Mietvertrag über einen Personenkraftwagen', alignment:'left',colSpan: 2,bold: true, fontSize:11,border:[false,false,false,false] }, 
+                                        "" 
+                                    ],
+                                    [ 
+                                        {rowSpan:2,text:'Mieter 1:\n'+book.customer_firstname+" "+book.customer_lastname,borderColor:["#4A4D52","#4A4D52","#4A4D52","#fff"]}, 
+                                        {text:'Antragsteller: '+auth.user.firstname+" "+auth.user.lastname,borderColor:["#4A4D52","#4A4D52","#4A4D52","#fff"]} 
+                                    ],
+                                    [ 
+                                        '', 
+                                        {text:'Führerschein Nr.: ••••••••'+(book.license_nr?book.license_nr.substr(book.license_nr.length - 4):""),borderColor:["#4A4D52","#4A4D52","#4A4D52","#fff"]} 
+                                    ],
+                                    [ 
+                                        {rowSpan:2,text:'Adresse:\n'+book.customer_address+", "+book.customer_postcode+" "+book.customer_city,borderColor:["#4A4D52","#4A4D52","#4A4D52","#fff"]}, 
+                                        {text:'Austellungsdatum: '+(book.license_date?book.license_date:""),borderColor:["#4A4D52","#4A4D52","#4A4D52","#fff"]} 
+                                    ],
+                                    [ 
+                                        '', 
+                                        {text:'Fahrerlaubnisklassen: '+(book.license_class ?book.license_class:""),borderColor:["#4A4D52","#4A4D52","#4A4D52","#fff"]} 
+                                    ],
+                                    [ 
+                                        {rowSpan:2,text:book.mieter2?'Mieter 2:\n'+book.mieter2:"",borderColor:["#4A4D52","#4A4D52","#4A4D52","#4A4D52"]}, 
+                                        {text:'Lichtbild- und Gültigkeitsprüfung durchgeführt: Ja',borderColor:["#4A4D52","#4A4D52","#4A4D52","#fff"]} 
+                                    ],
+                                    [ 
+                                        '', 
+                                        {text:'Vertragsnummer: '+book.id,borderColor:["#4A4D52","#4A4D52","#4A4D52","#4A4D52"]} 
+                                    ],
+                                ]
+                            }
+                        },
+                        " ",
+                        {text:"- nachstehend \"Mieter\" genannt -",marginLeft:10},
+                        " ",
+                        "und",
+                        " ",
+                        "Premium Sport-Cars GmbH",
+                        "Ludwig-Erhard-Str. 8, 28197 Bremen",
+                        " ",
+                        {text:"- nachstehend \"Vermieter\" genannt -",marginLeft:10},
+                        
+                        " ",
+                        "vereinbaren folgendes:",
+                        "Der Vermieter überlässt dem Mieter unter Anerkennung der nachfolgenden allgemeinen Mietbedingungen der Premium Sport-Cars GmbH für die Vermietung von Personenkraftfahrzeugen (AMB) zum vertraglich vereinbarten Verwendungszweck gem. Ziffer 2 Nr. 2 AMB das Nichtraucherfahrzeug",
+                        " ",
+                        {
+                            table: {
+                                
+                                headerRows: 1,
+                                widths: [ '*','*','*', '*' ],
+                                body: [
+                                    [ 
+                                        { 
+                                            text:'Fahrzeug',
+                                            alignment:'center',
+                                            fillColor:'#4A4D52', 
+                                            color:"white",
+                                            bold: true, fontSize:11,border:[false,false,false,false] 
+                                        },
+                                        { 
+                                            text:'Fahrzeug-Id-Nr.',
+                                            alignment:'center',
+                                            fillColor:'#4A4D52', 
+                                            color:"white",
+                                            bold: true, fontSize:11,border:[false,false,false,false] 
+                                        },
+                                        { 
+                                            text:'Kennzeichen',
+                                            alignment:'center',
+                                            fillColor:'#4A4D52', 
+                                            color:"white",
+                                            bold: true, fontSize:11,border:[false,false,false,false] 
+                                        },
+                                        { 
+                                            text:'Bereifung',
+                                            alignment:'center',
+                                            fillColor:'#4A4D52', 
+                                            color:"white",
+                                            bold: true, fontSize:11,border:[false,false,false,false] 
+                                        },
+                                    ],
+                                    [ 
+                                        {text: book.car.title.replace(/<[^>]*>?/gm, ''),alignment:'center',borderColor:["#4A4D52","#4A4D52","#4A4D52","#4A4D52"]},
+                                        {text: book.car.vin,alignment:'center', borderColor:["#4A4D52","#4A4D52","#4A4D52","#4A4D52"]},
+                                        {text: book.car.plate,alignment:'center',borderColor:["#4A4D52","#4A4D52","#4A4D52","#4A4D52"]},
+                                        {text: book.car.location,alignment:'center',borderColor:["#4A4D52","#4A4D52","#4A4D52","#4A4D52"]},
+                                    ],
+                                ]
+                            }
+                        },
+                        " ",
+                        "für die Zeit vom "+moment(book.checkin).format("DD.MM.YYYY")+" "+ book.checkin_time +" Uhr bis "+moment(book.checkout).format("DD.MM.YYYY")+" "+ book.checkout_time +" Uhr bei einem KM-Stand "+book.car.kilometer+" zum Gebrauch.",
+                        " ",
+                        "Das Fahrzeug wird mit einem vollständig gefüllten Kraftstofftank bzw. einer vollständig geladenen Fahrzeugbatterie übergeben und der Mieter hat das Fahrzeug am Ende der Mietzeit mit einem vollständig gefüllten Kraftstofftank bzw. einer vollständig geladenen Fahrzeugbatterie zurückzugeben. Wird das Fahrzeug nicht vollständig betankt zurückgegeben, beträgt die Aufwandsentschädigung pro Liter 3,00 EUR inklusive der gesetzlichen Umsatzsteuer.",
+                        " ",
+                        "Der Mieter hat während der Mietdauer pro "+(book.rangeType=="single"?"8 Stdn.":"24 Stdn.")+" "+(book.rangeType=="single"?book.car.inclKilometers:book.car.inclKilometers_day)+" Freikilometer. Darüber hinausgehende Kilometer werden mit "+curr.format(book.car.extra_price_km, { code: 'EUR' })+"/km inklusive der gesetzlichen Umsatzsteuer berechnet.",
+                        " ",
+                        "Die Kaution für das Fahrzeug beträgt "+book.car.prepayment+".",
+                        " ",
+                        "Für am Fahrzeug entstandene Schäden, die nicht vorsätzlich oder grob fahrlässig verursacht wurden, beträgt die Selbstbeteiligung des Mieters pro Schadenfall "+book.car.deductible+".",
+                        " ",
+                        "Kosten für Sonderleistungen (z.B. Zubehör oder Reduzierung der Selbstbeteiligung) werden zusätzlich zum Basismietpreis in Rechnung gestellt.",
+                        " ",
+                        "Der Basismietpreis Beträgt:",
+                        " ",                        
+                        " ",
+                        "Nach Ablauf des o.g. Mietzeitraums werden pro Tag "+curr.format(book.car.price,{code:"EUR"})+" inklusive der gesetzlichen Umsatzsteuer berechnet.",
+                        " ",
+                        {text:"Zusätzliche Leistung zum Mietvertrag:",bold:true},
+                        " ",
+                        {
+                            columns: features.map(el=>({
+                                text: el.title
+                            }))
+                        },
+                        " ", 
+                        {
+                            columns: [
+                                [
+                                    signature_div,
+                                    {
+                                        width: 200,height:6,
+                                        svg: '<svg><line  x1="0"  y1="0"  x2="200"  y2="0"  stroke="#4A4D52" stroke-width="2" /></svg>'
+                                    },
+                                    {
+                                        text:"Unterschrift Vermieter"
+                                    },
+                                    "Bremen, den "+moment(book.checkin).format("DD.MM.YYYY")
+                                ],
+                                [
+                                    signature_div_customer,
+                                    {
+                                        width: 200,height:6,
+                                        svg: '<svg><line  x1="0"  y1="0"  x2="200"  y2="0"  stroke="#4A4D52" stroke-width="2" /></svg>'
+                                    },
+                                    {
+                                        text:"Unterschrift Mieter",
+                                    },
+                                    "Bremen, den "+moment(book.checkin).format("DD.MM.YYYY")
+                                ]
+                            ]
+                            
+                        }                        
+                    ]
+                ]
+            }
+        ]
+        response.header('X-Frame-Options', 'SAMEORIGIN')
+        response.response.setHeader('Content-type', 'application/pdf')
+        response.implicitEnd = false
+        try{
+            PDF.create(content, response.response)
+        }catch(e){
+            console.log(e)
+        }
+    }
+
     async getAgreement({response,params,auth}){
         let book = await Booking.findOrFail(params.id)
         await book.loadMany(["car","car.mainimg","car.damages","car.kilometers","car.features","car.damages.entries"])
@@ -793,50 +980,48 @@ class OrderController {
             { 
                 style:"default",
                 columns: [
-                    [                        
-                        {text:'Haftungsvereinbarung',bold:true,fontSize:12},
-                        " ",
-                        {text:'zwischen',fontSize:11},
-                        " ",
-                        {text:'Name: '+book.customer_firstname+' '+book.customer_lastname,bold:true,fontSize:11,marginLeft:40},
-                        " ",
-                        {text:'Anschrift: '+book.customer_address,bold:true,fontSize:11,marginLeft:40},
-                        " ",
+                    [             
+                        " ",  
+                        " ",  
+                        " ",  
+                        " ",  
+                        " ",                               
+                        {text:'Haftungsvereinbarung',bold:true,fontSize:12},                        
+                        " ",  
+                        {text:'zwischen',fontSize:11},                        
+                        " ",  
+                        {text:'Name: '+book.customer_firstname+' '+book.customer_lastname,bold:true,fontSize:11,marginLeft:40},                        
+                        {text:'Anschrift: '+book.customer_address,bold:true,fontSize:11,marginLeft:40},                        
                         {text:'PLZ / Stadt: '+book.customer_postcode+'/'+book.customer_city,bold:true,fontSize:11,marginLeft:40},                                                                 
-                        {text:"- im Folgenden \"Vermieter\" genannt -",marginLeft:40,fontSize:11},
-                        " ",
-                        {text:"und",marginLeft:40,fontSize:11},
-                        " ",
+                        {text:"- im Folgenden \"Mieter\" genannt -",marginLeft:40,fontSize:11},                        
+                        " ",  
+                        {text:"und",fontSize:11},                        
+                        " ",  
                         {text:"Premium Sport-Cars GmbH",bold:true,marginLeft:40,fontSize:11},
                         {text:"Ludwig-Erhard-Str. 8",marginLeft:40,fontSize:11},
                         {text:"28197 Bremen",marginLeft:40,fontSize:11},                        
-                        {text:"- im Folgenden \"Vermieter\" genannt -",marginLeft:40,fontSize:11},                        
-                        " ",
-                        {text:"wird folgende Haftungsvereinbarung geschlossen:",fontSize:11},
-                        " ",
+                        {text:"- im Folgenden \"Vermieter\" genannt -",marginLeft:40,fontSize:11},                                                
+                        " ",  
+                        {text:"wird folgende Haftungsvereinbarung geschlossen:",fontSize:11},                        
+                        " ",  
                         {text:"Der o.g. Mieter haftet unbeschränkt für alle Schäden am durch den Vermieter überlassenem",fontSize:11},
                         {text:"Fahrzeug, die aufgrund von Bedienungsfehlern oder Überbeanspruchung während der Zeit der",fontSize:11},
-                        {text:"Überlassung zurückzuführen sind.",fontSize:11},
-                        " ",
-                        {text:"Pflichten des Mieters gegen Schäden durch Bedienungsfehler und Überbeanspruchung:",fontSize:11},
-                        " ",                                                    
+                        {text:"Überlassung zurückzuführen sind.",fontSize:11},                        
+                        " ",  
+                        {text:"Pflichten des Mieters gegen Schäden durch Bedienungsfehler und Überbeanspruchung:",fontSize:11},                          
+                        " ",  
                         {text:"-      Der Mieter ist verpflichtet den Motor des überlassenen Fahrzeuges vor der Nutzung",fontSize:11,marginLeft:20},
-                        {text:"warmlaufen zu lassen, um Motorschäden zu vermeiden.",fontSize:11,marginLeft:40},                        
-                        " ",
-                        {text:"Zu Achten: Betriebstemperatur, Getriebetemperatur und Öltemperatur.",marginLeft:40,fontSize:11},                        
-                        " ",                                                
-                        {text:"-      Kein Kick-Down! Belastung langsam steigern.",marginLeft:20,fontSize:11},                        
-                        " ",                                                
-                        {text:"-      Der Mieter ist dazu verpflichtet, vor dem Losfahren die Handbremse zu lösen.",marginLeft:20,fontSize:11},                            
-                        " ",                                                
+                        {text:"warmlaufen zu lassen, um Motorschäden zu vermeiden.",fontSize:11,marginLeft:40},                                                
+                        {text:"Zu Achten: Betriebstemperatur, Getriebetemperatur und Öltemperatur.",marginLeft:40,fontSize:11},                                                
+                        {text:"-      Kein Kick-Down! Belastung langsam steigern.",marginLeft:20,fontSize:11},                                                
                         {text:"-      Der Mieter ist verpflichtet den gesetzlich vorgeschriebenen Mindestabstand eizuhalten, um",marginLeft:20,fontSize:11},
-                        {text:"Steinschläge durch das vorausfahrende Fahrzeug zu vermeiden.",marginLeft:40,fontSize:11},                        
-                        " ",                        
-                        {text:"-      Der Mieter ist verpflichtet reifenschädigendes bremsen zu umgehen, um ein starkes",marginLeft:20,fontSize:11},
-                        {text:"abnutzen der Reifen zu vermeiden.",marginLeft:40,fontSize:11},                            
-                        " ",                            
-                        {text:"-      Der Mieter ist dazu verpflichtet sich an Ruhezeiten in z.B. Wohngebieten zu halten und",marginLeft:20,fontSize:11},
-                        {text:"Lärmbelästigungen zu unterlassen.",marginLeft:40,fontSize:11},                            
+                        {text:"Steinschläge durch das vorausfahrende Fahrzeug zu vermeiden.",marginLeft:40,fontSize:11},                                                
+                        {text:"-      -	Der Mieter ist verpflichtet reifenschädigendes bremsen zu umgehen, um ein starkes",marginLeft:20,fontSize:11},                            
+                        {text:"abnutzen der Reifen zu vermeiden.",marginLeft:40,fontSize:11},                             
+                        {text:"-      -	Der Mieter ist dazu verpflichtet sich an Ruhezeiten in z.B. Wohngebieten zu halten und",marginLeft:20,fontSize:11},
+                        {text:"Lärmbelästigungen zu unterlassen.",marginLeft:40,fontSize:11},                                                                            
+                        {text:"-      -	Die Fahrzeuge sind grundsätzlich Nichtraucher-Fahrzeuge, bei Verstoß werden 350,- € für",marginLeft:20,fontSize:11},
+                        {text:"Sonderreinigung fällig.",marginLeft:40,fontSize:11},                            
                         " ",
                         {text:"Im Haftungsfall hat der Mieter folgende Schäden als Gesamtschuldner zu ersetzen:",fontSize:11},
                         {text:"Die Schadenersatzpflicht des Mieters erstreckt sich unabhängig von der vertraglich vereinbarten",fontSize:11},
@@ -851,10 +1036,101 @@ class OrderController {
                         {text:"rechnen, dass das Fahrzeug bei Diebstahlverdacht stillgelegt wird und die Kosten für den entstandenen Aufwand tragen.",fontSize:9},
                         {text:"Auswertung und Analyse von Fahrverhalten und Fahrweise ist Nachvollziehbar!",fontSize:9},
                         " ",
+                        " ",  
+                        " ",  
+                        " ",  
                         " ",                                                
                         {
                             columns:[                                                               
                                 {text:"Bremen, den ",fontSize:11}, 
+                                {
+                                    width: 200,height:3,marginLeft:-45,marginTop:7,
+                                    svg: '<svg><line  x1="0"  y1="0"  x2="200"  y2="0"  stroke="#4A4D52" stroke-width="2" /></svg>'
+                                }                                
+                            ]
+                        },
+                        {text:"Unterschrift Mieter",marginLeft:335,fontSize:11}
+                    ]
+                ]
+            }
+        ]
+        response.header('X-Frame-Options', 'SAMEORIGIN')
+        response.response.setHeader('Content-type', 'application/pdf')
+        response.implicitEnd = false
+        try{
+            PDF.create(content, response.response)
+        }catch(e){
+            console.log(e)
+        }
+    }
+
+    async getAgreement1({response,params,auth}){
+        let book = await Booking.findOrFail(params.id)
+        await book.loadMany(["car","car.mainimg","car.damages","car.kilometers","car.features","car.damages.entries"])
+        book = book.toJSON()        
+        let featId = JSON.parse(book.features)
+        let features = await Feature.query().whereIn("id",featId).fetch()
+        features = features.toJSON()         
+        const content = [
+            { 
+                style:"default",
+                columns: [
+                    [             
+                        " ",  
+                        " ",  
+                        " ",  
+                        " ",  
+                        " ",                               
+                        {text:'Zusatzvereinbarung',bold:true,fontSize:12},  
+                        {text:'über das Eintragen zusätzlicher Fahrer im Mietvertrag',bold:true,fontSize:12},                        
+                        " ",  
+                        " ",  
+                        " ",  
+                        {text:'zwischen',fontSize:11},                        
+                        " ",  
+                        {text:'Name: '+book.customer_firstname+' '+book.customer_lastname,bold:true,fontSize:11,marginLeft:40},                        
+                        {text:'Anschrift: '+book.customer_address,bold:true,fontSize:11,marginLeft:40},                        
+                        {text:'PLZ / Stadt: '+book.customer_postcode+'/'+book.customer_city,bold:true,fontSize:11,marginLeft:40},                                                                 
+                        {text:"- im Folgenden \"Mieter\" genannt -",marginLeft:40,fontSize:11},                        
+                        " ",  
+                        {text:"und",fontSize:11},                        
+                        " ",  
+                        {text:"Premium Sport-Cars GmbH",bold:true,marginLeft:40,fontSize:11},
+                        {text:"Ludwig-Erhard-Str. 8",marginLeft:40,fontSize:11},
+                        {text:"28197 Bremen",marginLeft:40,fontSize:11},                        
+                        {text:"- im Folgenden \"Vermieter\" genannt -",marginLeft:40,fontSize:11},                                                
+                        " ",  
+                        {text:"wird folgende Haftungsvereinbarung geschlossen:",fontSize:11},                        
+                        " ",  
+                        {text:"Der o.g. Mieter haftet unbeschränkt für alle Schäden am durch den Vermieter überlassenem",fontSize:11},
+                        {text:"Fahrzeug, die aufgrund von Bedienungsfehlern oder Überbeanspruchung während der Zeit der",fontSize:11},
+                        {text:"Überlassung zurückzuführen sind.",fontSize:11},                        
+                        " ",  
+                        {text:"Pflichten des Mieters",bold:true,fontSize:11},                          
+                        " ",  
+                        {text:"Der Mieter bestätigt hiermit, dass er auf die Möglichkeit hingewiesen wurde, einen zweiten /",fontSize:11,marginLeft:20},
+                        {text:"mehrere Fahrer zusätzlich eintragen zu lassen. Der Mieter bestätigt ebenfalls, dass er diese",fontSize:11,marginLeft:40},                                                
+                        {text:"Möglichkeit bewusst abgelehnt hat und über die oben beschriebene Haftungslage aufgeklärt wurde.",marginLeft:40,fontSize:11},                                                
+                        " ",                        
+                        {text:"Im Haftungsfall hat der Mieter folgende Schäden als Gesamtschuldner zu ersetzen:",fontSize:11},
+                        {text:"Die Schadenersatzpflicht des Mieters erstreckt sich unabhängig von der vertraglich vereinbarten",fontSize:11},
+                        {text:"Selbstbeteiligung auf die gesamten Reparaturkosten zzgl. einer eventuellen Wertminderung oder bei",fontSize:11},
+                        {text:"einem Totalschaden des Fahrzeuges auf den Wiederbeschaffungswert des überlassenen Fahrzeuges",fontSize:11},
+                        {text:"abzgl. des Restwertes. Weiter haftet der Mieter – soweit angefallen – für Abschleppkosten, Bergung",fontSize:11},
+                        {text:"und Rückführung, Sachverständigengebühren und etwaige weitere dem Vermieter entstehende",fontSize:11},
+                        {text:"Kosten und Kosten für den Ausfall in Höhe von 80 % der Tagessätze der jeweils gültigen Preisliste",fontSize:11},
+                        " ",                        
+                        {text:"Ist dem Mieter nachzuweisen, dass das überlassene Mietfahrzeug von einem nicht eingetragenen",fontSize:11,bold:true},
+                        {text:"Fahrer geführt wurde, behält sich der Vermieter das Recht vor, eine Pauschalstrafe in Höhe von ",fontSize:11,bold:true},
+                        {text:book.car.prepayment+" auf Grund des Vertragsverstoßes zu berechnen.",fontSize:11,bold:true},
+                        " ",
+                        " ",  
+                        " ",  
+                        " ",  
+                        " ",                                                
+                        {
+                            columns:[                                                               
+                                {text:"Bremen, den "+moment(book.checkin).format("DD.MM.YYYY"),fontSize:11}, 
                                 {
                                     width: 200,height:3,marginLeft:-45,marginTop:7,
                                     svg: '<svg><line  x1="0"  y1="0"  x2="200"  y2="0"  stroke="#4A4D52" stroke-width="2" /></svg>'
@@ -887,9 +1163,22 @@ class OrderController {
             { 
                 style:"default",
                 columns: [
-                    [                                      
+                    [      
+                        " ",
+                        " ",
+                        " ",
+                        " ",
+                        " ",  
+                        " ",  
+                        " ",                                
                         {text:'QUITTUNG ÜBER DIE MIETKAUTION',bold:true,fontSize:14},
                         {text:'ERHALT',bold:true,fontSize:14},
+                        " ",
+                        " ",
+                        " ",
+                        " ",  
+                        " ",  
+                        " ",  
                         " ",                        
                         {
                             table: {
@@ -925,18 +1214,27 @@ class OrderController {
                             }
                         },                        
                         " ",
-                        " ",                        
+                        " ",    
+                        " ",
+                        " ",             
+                        " ",
+                        " ",  
+                        " ",                      
                         {text:book.car.title.replace(/<[^>]*>?/gm, '')+' - '+book.car.plate,bold:true,fontSize:11},                      
                         " ",
                         " ",
-                        " ",                       
+                        " ",
+                        " ",             
+                        " ",             
+                        " ",             
+                        " ",                                               
                         {                         
                             table: {
                                 headerRows: 1,
                                 widths: [ '30%','*' ],
                                 body: [                                    
                                     [ 
-                                        {text: ' \nGesamt EUR, Cent:',fontSize:11,alignment:'right',bold:true,border:[false,false,false,false]},
+                                        {text: ' \nGesamt EUR, Cent:  ',fontSize:11,alignment:'right',bold:true,border:[false,false,false,false]},
                                         {text:book.car.prepayment,fontSize:24,border:[false,false,false,false],alignment:"center",fillColor:"#BFBFBF"}                                                                                
                                     ],
                                     [
@@ -952,8 +1250,8 @@ class OrderController {
                                         }
                                     ],
                                     [ 
-                                        {text: 'EUR in Worten, \nCent wie oben:',alignment:'right',bold:true,fontSize:11,border:[false,false,false,false]},
-                                        {text: '',alignment:'center',fontSize:24, fillColor:"#F2F2F2",border:[false,false,false,false]}                                        
+                                        {text: 'EUR in Worten,  \nCent wie oben:  ',alignment:'right',bold:true,fontSize:11,border:[false,false,false,false]},
+                                        {text: book.car.prepaymentWord,alignment:'center',fontSize:24, fillColor:"#F2F2F2",border:[false,false,false,false]}                                        
                                     ]                                                                      
                                 ]
                             }
@@ -961,21 +1259,35 @@ class OrderController {
                         " ",
                         " ",
                         " ",
-                        " ",                        
+                        " ",       
+                        " ",             
+                        " ",
+                        " ",                                                      
                         {text:"Der Vermieter bestätigt hiermit, dass er die im Mietvertrag vereinbarte Kaution in Höhe",fontSize:10},
                         " ",
                         " ",
-                        {text:"von "+book.car.prepayment.replace(/<[^>]*>?/gm, '')+" Euro am "+moment(book.checkin).format("DD.MM.YYYY")+" von dem Vermieter per Kreditkarte erhalten hat.",fontSize:10},
+                        {text:"von "+book.car.prepayment.replace(/<[^>]*>?/gm, '')+" Euro am "+moment(book.checkin).format("DD.MM.YYYY")+" von dem Vermieter per Kreditkarte / per EC-Karte / in bar erhalten hat.",fontSize:10},
                         " ",
-                        " ",                                             
+                        " ",          
+                        " ",             
+                        " ",             
+                        " ",             
+                        " ",             
+                        " ",
+                        " ",  
+                        " ",  
+                        " ",                                                  
                         {
                             columns:[                                                                                               
                                 [
                                     {text:"Bremen, den "+moment(book.checkin).format("DD.MM.YYYY"),fontSize:11},                                     
+                                    " ",
+                                    " ",
                                     {text:"Ort, Datum",fontSize:11,alignment:'left'},
                                 ],
                                 [
-                                    {
+                                    " ",
+                                    {                                       
                                         width: 200,height:3,marginRight:10,
                                         svg: '<svg><line  x1="0"  y1="0"  x2="200"  y2="0"  stroke="#4A4D52" stroke-width="2" /></svg>'
                                     },
@@ -1010,8 +1322,13 @@ class OrderController {
                 style:"default",
                 columns: [
                     [                           
-                        " ",                
-                        {text:'QUITTUNG ÜBER DIE RÜCKERHALT DER KAUTION',bold:true,fontSize:14},
+                        " ",
+                        " ",  
+                        " ",  
+                        " ",  
+                        " ",                  
+                        {text:'QUITTUNG ÜBER DIE MIETKAUTION',bold:true,fontSize:14},
+                        {text:'RÜCKERHALT',bold:true,fontSize:14},
                         " ",
                         " ",
                         " ",
@@ -1035,8 +1352,8 @@ class OrderController {
                                         }
                                     ],                                    
                                     [ 
-                                        {text: book.customer_firstname+' '+book.customer_lastname,alignment:'left',fontSize:11,border:[false,false,false,false] },
-                                        {text: 'Premium Sport-Cars GmbH',alignment:'left',fontSize:11,border:[false,false,false,false]}                                        
+                                        {text: book.customer_firstname+' '+book.customer_lastname,bold: true,alignment:'left',fontSize:11,border:[false,false,false,false] },
+                                        {text: 'Premium Sport-Cars GmbH',alignment:'left',bold: true,fontSize:11,border:[false,false,false,false]}                                        
                                     ],
                                     [ 
                                         {text: book.customer_address,alignment:'left',fontSize:11,border:[false,false,false,false] },
@@ -1071,7 +1388,7 @@ class OrderController {
                                 body: [                                    
                                     [ 
                                         {text: ' \nGesamt EUR, Cent:',fontSize:11,alignment:'right',bold:true,border:[false,false,false,false]},
-                                        {text:'2000,00 €',fontSize:24,bold:true,border:[false,false,false,false],alignment:"center",fillColor:"#BFBFBF"}                                                                                
+                                        {text:book.car.prepayment,fontSize:24,bold:true,border:[false,false,false,false],alignment:"center",fillColor:"#BFBFBF"}                                                                                
                                     ],
                                     [
                                         {
@@ -1087,7 +1404,7 @@ class OrderController {
                                     ],
                                     [ 
                                         {text: 'EUR in Worten, \nCent wie oben:',alignment:'right',bold:true,fontSize:11,border:[false,false,false,false]},
-                                        {text: 'zweitausend',alignment:'center',fontSize:24,bold:true, fillColor:"#F2F2F2",border:[false,false,false,false]}                                        
+                                        {text: book.car.prepaymentWord,alignment:'center',fontSize:24,bold:true, fillColor:"#F2F2F2",border:[false,false,false,false]}                                        
                                     ]                                                                      
                                 ]
                             }
@@ -1102,38 +1419,37 @@ class OrderController {
                         " ",
                         " ",
                         " ",
-                        " ",
-                        " ",
+                        " ",                        
                         {text:"Der Mieter bestätigt hiermit, dass er die im Mietvertrag vereinbarte Kaution in Höhe",fontSize:10},
                         " ",
                         " ",
-                        {text:"von 2000 Euro am "+moment(book.checkin).format("DD.MM.YYYY")+" von dem Vermieter per bar zurückerhalten hat.",fontSize:10},
+                        {text:"von "+book.car.prepayment+" Euro am "+moment(book.checkin).format("DD.MM.YYYY")+" von dem Mieter per Kreditkarte erhalten hat.",fontSize:10},
                         " ",
                         " ",
                         " ",
                         " ",                        
                         " ",
-                        " ",                        
+                        " ",
+                        " ",
                         {
                             columns:[                                                                                               
                                 [
-                                    {
-                                        width: 200,height:3,
-                                        svg: '<svg><line  x1="0"  y1="0"  x2="200"  y2="0"  stroke="#4A4D52" stroke-width="2" /></svg>'
-                                    },
+                                    {text:"Bremen, den "+moment(book.checkin).format("DD.MM.YYYY"),fontSize:11},                                     
+                                    " ",
                                     " ",
                                     {text:"Ort, Datum",fontSize:11,alignment:'left'},
                                 ],
                                 [
-                                    {
+                                    " ",
+                                    {                                       
                                         width: 200,height:3,marginRight:10,
                                         svg: '<svg><line  x1="0"  y1="0"  x2="200"  y2="0"  stroke="#4A4D52" stroke-width="2" /></svg>'
                                     },
                                     " ",
-                                    {text:"Unterschrift / Mieter",fontSize:11,alignment:'left'},
+                                    {text:"Stempel / Unterschrift / Vermieter",fontSize:11,alignment:'left'},
                                 ]
                             ]
-                        }                                            
+                        }                                               
                     ]
                 ]
             }
@@ -1161,8 +1477,10 @@ class OrderController {
                 columns: [
                     [        
                         " ",
-                        " ",                
-                        {text:'Übergabeprotokoll',bold:true,fontSize:16},                        
+                        " ",
+                        " ",                       
+                        {text:'Übergabeprotokoll',bold:true,fontSize:16},   
+                        " ",                     
                         {
                             table: {                                
                                 headerRows: 1,
@@ -1430,7 +1748,7 @@ class OrderController {
                         },
                         " ",
                         " ",
-                        {text:"Bremen, den "+moment(book.checkin).format("DD.MM.YYYY"),fontSize:11.5},
+                        " ",                        
                         " ",
                         {
                             columns:[                                                                                               
@@ -1487,7 +1805,8 @@ class OrderController {
                 columns: [
                     [        
                         " ",
-                        " ",                
+                        " ",     
+                        " ",                       
                         {text:'Übernahmeprotokoll ( unter Vorbehalt )',bold:true,fontSize:16},                                                     
                         {
                             table: {                                
