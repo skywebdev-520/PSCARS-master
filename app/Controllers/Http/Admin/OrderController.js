@@ -191,6 +191,9 @@ class OrderController {
         const content = [
             { 
                 style:"default",
+                marginLeft: 30,
+                marginRight: 30,
+                marginBottom: 20,
                 columns: [
                     [
                         " "," "," "," "
@@ -803,6 +806,9 @@ class OrderController {
         const content = [
             { 
                 style:"default",
+                marginLeft: 30,
+                marginRight: 30,
+                marginBottom: 20,
                 columns: [
                     [
                         " "," "," "," "
@@ -979,6 +985,9 @@ class OrderController {
         const content = [
             { 
                 style:"default",
+                marginLeft: 30,
+                marginRight: 30,
+                marginBottom: 20,
                 columns: [
                     [             
                         " ",  
@@ -1074,6 +1083,9 @@ class OrderController {
         const content = [
             { 
                 style:"default",
+                marginLeft: 30,
+                marginRight: 30,
+                marginBottom: 20,
                 columns: [
                     [             
                         " ",  
@@ -1162,9 +1174,9 @@ class OrderController {
         const content = [
             { 
                 style:"default",
-                marginLeft: 20,
-                marginBottom: 20,
-                marginRight: 20,
+                marginLeft: 30,
+                marginRight: 30,
+                marginBottom: 20,                
                 columns: [
                     [                         
                         " ",
@@ -1319,6 +1331,9 @@ class OrderController {
         const content = [
             { 
                 style:"default",
+                marginLeft: 30,
+                marginRight: 30,
+                marginBottom: 20,
                 columns: [
                     [                           
                         " ",
@@ -1377,9 +1392,7 @@ class OrderController {
                         " ",
                         " ",
                         " ",
-                        " ",
-                        " ",
-                        " ",
+                        " ",                        
                         {                         
                             table: {
                                 headerRows: 1,
@@ -1416,9 +1429,7 @@ class OrderController {
                         " ",
                         " ",
                         " ",
-                        " ",
-                        " ",
-                        " ",                        
+                        " ",                                              
                         {text:"Der Mieter bestätigt hiermit, dass er die im Mietvertrag vereinbarte Kaution in Höhe",fontSize:10},
                         " ",
                         " ",
@@ -1473,11 +1484,15 @@ class OrderController {
         const content = [
             { 
                 style:"default",
+                marginLeft: 30,
+                marginRight: 30,
+                marginBottom: 20,
                 columns: [
                     [        
                         " ",
                         " ",
-                        " ",                       
+                        " ",     
+                        " ",                  
                         {text:'Übergabeprotokoll',bold:true,fontSize:16},   
                         " ",                     
                         {
@@ -1801,8 +1816,12 @@ class OrderController {
         const content = [
             { 
                 style:"default",
+                marginLeft: 30,
+                marginRight: 30,
+                marginBottom: 20,
                 columns: [
                     [        
+                        " ",
                         " ",
                         " ",     
                         " ",                       
