@@ -194,6 +194,7 @@ class OrderController {
                 marginLeft: 30,
                 marginRight: 30,
                 marginBottom: 20,
+                fontFamily: 'open sans-serif',
                 columns: [
                     [
                         " "," "," "," "
@@ -809,6 +810,7 @@ class OrderController {
                 marginLeft: 30,
                 marginRight: 30,
                 marginBottom: 20,
+                fontFamily: 'open sans-serif',
                 columns: [
                     [
                         " "," "," "," "
@@ -988,6 +990,7 @@ class OrderController {
                 marginLeft: 30,
                 marginRight: 30,
                 marginBottom: 20,
+                fontFamily: 'open sans-serif',
                 columns: [
                     [             
                         " ",  
@@ -1086,6 +1089,7 @@ class OrderController {
                 marginLeft: 30,
                 marginRight: 30,
                 marginBottom: 20,
+                fontFamily: 'open sans-serif',
                 columns: [
                     [             
                         " ",  
@@ -1170,13 +1174,23 @@ class OrderController {
         book = book.toJSON()        
         let featId = JSON.parse(book.features)
         let features = await Feature.query().whereIn("id",featId).fetch()
-        features = features.toJSON()         
+        features = features.toJSON()     
+        let paymentType
+        if(book.paymentType == 'banktransfer'){            
+            paymentType = 'per EC-Karte'
+        }else if(book.paymentType == 'creditcard'){
+            paymentType = 'per Kreditkarte'
+        }else{
+            paymentType = 'in bar'
+        }                   
+
         const content = [
             { 
                 style:"default",
                 marginLeft: 30,
                 marginRight: 30,
-                marginBottom: 20,                
+                marginBottom: 20,    
+                fontFamily: 'open sans-serif',            
                 columns: [
                     [                         
                         " ",
@@ -1277,7 +1291,7 @@ class OrderController {
                         {text:"Der Vermieter bestätigt hiermit, dass er die im Mietvertrag vereinbarte Kaution in Höhe",fontSize:10},
                         " ",
                         " ",
-                        {text:"von "+book.car.prepayment.replace(/<[^>]*>?/gm, '')+" Euro am "+moment(book.checkin).format("DD.MM.YYYY")+" von dem Vermieter per Kreditkarte / per EC-Karte / in bar erhalten hat.",fontSize:10},
+                        {text:"von "+book.car.prepayment.replace(/<[^>]*>?/gm, '')+" Euro am "+moment(book.checkin).format("DD.MM.YYYY")+" von dem Vermieter "+paymentType+" erhalten hat.",fontSize:10},
                         " ",
                         " ",          
                         " ",             
@@ -1327,13 +1341,22 @@ class OrderController {
         book = book.toJSON()        
         let featId = JSON.parse(book.features)
         let features = await Feature.query().whereIn("id",featId).fetch()
-        features = features.toJSON()         
+        features = features.toJSON()      
+        let paymentType
+        if(book.paymentType == 'banktransfer'){            
+            paymentType = 'per EC-Karte'
+        }else if(book.paymentType == 'creditcard'){
+            paymentType = 'per Kreditkarte'
+        }else{
+            paymentType = 'in bar'
+        }   
         const content = [
             { 
                 style:"default",
                 marginLeft: 30,
                 marginRight: 30,
                 marginBottom: 20,
+                fontFamily: 'open sans-serif',
                 columns: [
                     [                           
                         " ",
@@ -1433,7 +1456,7 @@ class OrderController {
                         {text:"Der Mieter bestätigt hiermit, dass er die im Mietvertrag vereinbarte Kaution in Höhe",fontSize:10},
                         " ",
                         " ",
-                        {text:"von "+book.car.prepayment+" Euro am "+moment(book.checkin).format("DD.MM.YYYY")+" von dem Mieter per Kreditkarte erhalten hat.",fontSize:10},
+                        {text:"von "+book.car.prepayment+" Euro am "+moment(book.checkin).format("DD.MM.YYYY")+" von dem Mieter "+paymentType+" erhalten hat.",fontSize:10},
                         " ",
                         " ",
                         " ",
@@ -1487,6 +1510,7 @@ class OrderController {
                 marginLeft: 30,
                 marginRight: 30,
                 marginBottom: 20,
+                fontFamily: 'open sans-serif',
                 columns: [
                     [        
                         " ",
@@ -1819,6 +1843,7 @@ class OrderController {
                 marginLeft: 30,
                 marginRight: 30,
                 marginBottom: 20,
+                fontFamily: 'open sans-serif',
                 columns: [
                     [        
                         " ",
