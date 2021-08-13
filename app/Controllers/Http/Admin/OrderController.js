@@ -986,9 +986,7 @@ class OrderController {
         features = features.toJSON()         
         const content = [
             { 
-                style:"default",
-                marginLeft: 30,
-                marginRight: 30,
+                style:"default",                             
                 marginBottom: 20,
                 fontFamily: 'open sans-serif',
                 columns: [
@@ -1086,8 +1084,7 @@ class OrderController {
         const content = [
             { 
                 style:"default",
-                marginLeft: 30,
-                marginRight: 30,
+                marginLeft: 30,                
                 marginBottom: 20,
                 fontFamily: 'open sans-serif',
                 columns: [
@@ -1095,13 +1092,11 @@ class OrderController {
                         " ",  
                         " ",  
                         " ",  
-                        " ",  
-                        " ",                               
+                        " ",                                                      
                         {text:'Zusatzvereinbarung',bold:true,fontSize:12},  
                         {text:'über das Eintragen zusätzlicher Fahrer im Mietvertrag',bold:true,fontSize:12},                        
                         " ",  
-                        " ",  
-                        " ",  
+                        " ",                          
                         {text:'zwischen',fontSize:11},                        
                         " ",  
                         {text:'Name: '+book.customer_firstname+' '+book.customer_lastname,bold:true,fontSize:11,marginLeft:40},                        
@@ -1124,9 +1119,9 @@ class OrderController {
                         " ",  
                         {text:"Pflichten des Mieters",bold:true,fontSize:11},                          
                         " ",  
-                        {text:"Der Mieter bestätigt hiermit, dass er auf die Möglichkeit hingewiesen wurde, einen zweiten /",fontSize:11,marginLeft:20},
-                        {text:"mehrere Fahrer zusätzlich eintragen zu lassen. Der Mieter bestätigt ebenfalls, dass er diese",fontSize:11,marginLeft:40},                                                
-                        {text:"Möglichkeit bewusst abgelehnt hat und über die oben beschriebene Haftungslage aufgeklärt wurde.",marginLeft:40,fontSize:11},                                                
+                        {text:"Der Mieter bestätigt hiermit, dass er auf die Möglichkeit hingewiesen wurde, einen zweiten /",fontSize:11},
+                        {text:"mehrere Fahrer zusätzlich eintragen zu lassen. Der Mieter bestätigt ebenfalls, dass er diese",fontSize:11},                                                
+                        {text:"Möglichkeit bewusst abgelehnt hat und über die oben beschriebene Haftungslage aufgeklärt wurde.",fontSize:11},                                                
                         " ",                        
                         {text:"Im Haftungsfall hat der Mieter folgende Schäden als Gesamtschuldner zu ersetzen:",fontSize:11},
                         {text:"Die Schadenersatzpflicht des Mieters erstreckt sich unabhängig von der vertraglich vereinbarten",fontSize:11},
@@ -1143,7 +1138,7 @@ class OrderController {
                         " ",  
                         " ",  
                         " ",  
-                        " ",                                                
+                        " ",                                                                   
                         {
                             columns:[                                                               
                                 {text:"Bremen, den "+moment(book.checkin).format("DD.MM.YYYY"),fontSize:11}, 
@@ -1246,7 +1241,7 @@ class OrderController {
                         " ",  
                         " ",                      
                         {text:book.car.title.replace(/<[^>]*>?/gm, '')+' - '+book.car.plate,bold:true,fontSize:11},                      
-                        " ",
+                        {text:"Leistungszeitraum: "+ book.checkin+' - '+book.checkout,fontSize:11}, 
                         " ",
                         " ",
                         " ",             
@@ -1291,7 +1286,7 @@ class OrderController {
                         {text:"Der Vermieter bestätigt hiermit, dass er die im Mietvertrag vereinbarte Kaution in Höhe",fontSize:10},
                         " ",
                         " ",
-                        {text:"von "+book.car.prepayment.replace(/<[^>]*>?/gm, '')+" Euro am "+moment(book.checkin).format("DD.MM.YYYY")+" von dem Vermieter "+paymentType+" erhalten hat.",fontSize:10},
+                        {text:"von "+book.car.prepayment.replace(/<[^>]*>?/gm, '')+" Euro am "+moment(book.checkin).format("DD.MM.YYYY")+" von dem Mieter "+paymentType+" erhalten hat.",fontSize:10},
                         " ",
                         " ",          
                         " ",             
@@ -1408,7 +1403,7 @@ class OrderController {
                         " ",
                         " ",
                         {text:book.car.title.replace(/<[^>]*>?/gm, '')+' - '+book.car.plate,bold:true,fontSize:11},                      
-                        " ",
+                        {text:"Leistungszeitraum: "+ book.checkin+' - '+book.checkout,fontSize:11}, 
                         " ",
                         " ",
                         " ",
@@ -1456,7 +1451,7 @@ class OrderController {
                         {text:"Der Mieter bestätigt hiermit, dass er die im Mietvertrag vereinbarte Kaution in Höhe",fontSize:10},
                         " ",
                         " ",
-                        {text:"von "+book.car.prepayment+" Euro am "+moment(book.checkin).format("DD.MM.YYYY")+" von dem Mieter "+paymentType+" erhalten hat.",fontSize:10},
+                        {text:"von "+book.car.prepayment+" Euro am "+moment(book.checkin).format("DD.MM.YYYY")+" von dem Vermieter "+paymentType+" erhalten hat.",fontSize:10},
                         " ",
                         " ",
                         " ",
@@ -1506,9 +1501,7 @@ class OrderController {
         features = features.toJSON()         
         const content = [
             { 
-                style:"default",
-                marginLeft: 30,
-                marginRight: 30,
+                style:"default",                          
                 marginBottom: 20,
                 fontFamily: 'open sans-serif',
                 columns: [
@@ -1839,9 +1832,7 @@ class OrderController {
         features = features.toJSON()         
         const content = [
             { 
-                style:"default",
-                marginLeft: 30,
-                marginRight: 30,
+                style:"default",                          
                 marginBottom: 20,
                 fontFamily: 'open sans-serif',
                 columns: [
