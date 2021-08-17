@@ -988,6 +988,7 @@ class OrderController {
             { 
                 style:"default",                             
                 marginBottom: 20,
+                marginLeft: 30,
                 fontFamily: 'open sans-serif',
                 columns: [
                     [             
@@ -1026,25 +1027,26 @@ class OrderController {
                         {text:"-      Kein Kick-Down! Belastung langsam steigern.",marginLeft:20,fontSize:11},                                                
                         {text:"-      Der Mieter ist verpflichtet den gesetzlich vorgeschriebenen Mindestabstand eizuhalten, um",marginLeft:20,fontSize:11},
                         {text:"Steinschläge durch das vorausfahrende Fahrzeug zu vermeiden.",marginLeft:40,fontSize:11},                                                
-                        {text:"-      -	Der Mieter ist verpflichtet reifenschädigendes bremsen zu umgehen, um ein starkes",marginLeft:20,fontSize:11},                            
+                        {text:"-      Der Mieter ist verpflichtet reifenschädigendes bremsen zu umgehen, um ein starkes",marginLeft:20,fontSize:11},                            
                         {text:"abnutzen der Reifen zu vermeiden.",marginLeft:40,fontSize:11},                             
-                        {text:"-      -	Der Mieter ist dazu verpflichtet sich an Ruhezeiten in z.B. Wohngebieten zu halten und",marginLeft:20,fontSize:11},
+                        {text:"-      Der Mieter ist dazu verpflichtet sich an Ruhezeiten in z.B. Wohngebieten zu halten und",marginLeft:20,fontSize:11},
                         {text:"Lärmbelästigungen zu unterlassen.",marginLeft:40,fontSize:11},                                                                            
-                        {text:"-      -	Die Fahrzeuge sind grundsätzlich Nichtraucher-Fahrzeuge, bei Verstoß werden 350,- € für",marginLeft:20,fontSize:11},
+                        {text:"-      Die Fahrzeuge sind grundsätzlich Nichtraucher-Fahrzeuge, bei Verstoß werden 350,- € für",marginLeft:20,fontSize:11},
                         {text:"Sonderreinigung fällig.",marginLeft:40,fontSize:11},                            
                         " ",
                         {text:"Im Haftungsfall hat der Mieter folgende Schäden als Gesamtschuldner zu ersetzen:",fontSize:11},
                         {text:"Die Schadenersatzpflicht des Mieters erstreckt sich unabhängig von der vertraglich vereinbarten",fontSize:11},
-                        {text:"Selbstbeteiligung auf die gesamten Reparaturkosten zzgl. einer eventuellen Wertminderung oder bei",fontSize:11},
-                        {text:"einem Totalschaden des Fahrzeuges auf den Wiederbeschaffungswert des überlassenen Fahrzeuges",fontSize:11},
-                        {text:"abzgl. des Restwertes. Weiter haftet der Mieter – soweit angefallen – für Abschleppkosten, Bergung",fontSize:11},
-                        {text:"und Rückführung, Sachverständigengebühren und etwaige weitere dem Vermieter entstehende",fontSize:11},
-                        {text:"Kosten und Kosten für den Ausfall in Höhe von 80 % der Tagessätze der jeweils gültigen Preisliste",fontSize:11},
+                        {text:"Selbstbeteiligung auf die gesamten Reparaturkosten zzgl. einer eventuellen Wertminderung oder",fontSize:11},
+                        {text:"bei einem Totalschaden des Fahrzeuges auf den Wiederbeschaffungswert des überlassenen",fontSize:11},
+                        {text:"Fahrzeuges abzgl. des Restwertes. Weiter haftet der Mieter – soweit angefallen – für",fontSize:11},
+                        {text:"Abschleppkosten, Bergung und Rückführung, Sachverständigengebühren und etwaige weitere dem",fontSize:11},
+                        {text:"Vermieter entstehende Kosten und Kosten für den Ausfall in Höhe von 80 % der Tagessätze der",fontSize:11},
+                        {text:"jeweils gültigen Preisliste",fontSize:11},                        
                         " ",
                         {text:"Hinweis:",fontSize:9,bold:true},
-                        {text:"Unsere Fahrzeuge sind mit GPS-Ortung ausgestattet, wer unberechtigt mit dem Mietfahrzeug ins Ausland fährt, muss damit",fontSize:9},
-                        {text:"rechnen, dass das Fahrzeug bei Diebstahlverdacht stillgelegt wird und die Kosten für den entstandenen Aufwand tragen.",fontSize:9},
-                        {text:"Auswertung und Analyse von Fahrverhalten und Fahrweise ist Nachvollziehbar!",fontSize:9},
+                        {text:"Unsere Fahrzeuge sind mit GPS-Ortung ausgestattet, wer unberechtigt mit dem Mietfahrzeug ins Ausland fährt, muss",fontSize:9},
+                        {text:"damit rechnen, dass das Fahrzeug bei Diebstahlverdacht stillgelegt wird und die Kosten für den entstandenen Aufwand",fontSize:9},
+                        {text:"tragen. Auswertung und Analyse von Fahrverhalten und Fahrweise ist Nachvollziehbar!",fontSize:9},
                         " ",
                         " ",  
                         " ",  
@@ -1059,7 +1061,7 @@ class OrderController {
                                 }                                
                             ]
                         },
-                        {text:"Unterschrift Mieter",marginLeft:335,fontSize:11}
+                        {text:"Unterschrift Mieter",marginLeft:300,fontSize:11}
                     ]
                 ]
             }
@@ -1163,22 +1165,28 @@ class OrderController {
         }
     }
 
-    async getReceiptDeposit({response,params,auth}){
+    async getReceiptDeposit({request, response,params,auth}){
         let book = await Booking.findOrFail(params.id)
         await book.loadMany(["car","car.mainimg","car.damages","car.kilometers","car.features","car.damages.entries"])
         book = book.toJSON()        
         let featId = JSON.parse(book.features)
         let features = await Feature.query().whereIn("id",featId).fetch()
-        features = features.toJSON()     
+        features = features.toJSON()   
+        let data = request.all();          
         let paymentType
-        if(book.paymentType == 'banktransfer'){            
+        if(data['ec'] == 1){            
             paymentType = 'per EC-Karte'
-        }else if(book.paymentType == 'creditcard'){
+        }else if(data['kredit'] == 1){
             paymentType = 'per Kreditkarte'
-        }else{
+        }else if(data['bar'] == 1){
             paymentType = 'in bar'
         }                   
-
+        let checkin = book.checkin        
+        let checkin_data = checkin.split("-")        
+        let checkin_array = checkin_data[2]+"."+checkin_data[1]+"."+checkin_data[0]
+        let checkout = book.checkout
+        let checkout_data = checkout.split("-")
+        let checkout_array = checkout_data[2]+"."+checkout_data[1]+"."+checkout_data[0]
         const content = [
             { 
                 style:"default",
@@ -1241,7 +1249,7 @@ class OrderController {
                         " ",  
                         " ",                      
                         {text:book.car.title.replace(/<[^>]*>?/gm, '')+' - '+book.car.plate,bold:true,fontSize:11},                      
-                        {text:"Leistungszeitraum: "+ book.checkin+' - '+book.checkout,fontSize:11}, 
+                        {text:"Leistungszeitraum: "+ checkin_array +' - '+checkout_array,fontSize:11}, 
                         " ",
                         " ",
                         " ",             
@@ -1330,21 +1338,29 @@ class OrderController {
         }
     }  
     
-    async getReceiptDeposit1({response,params,auth}){
+    async getReceiptDeposit1({request, response,params,auth}){
         let book = await Booking.findOrFail(params.id)
         await book.loadMany(["car","car.mainimg","car.damages","car.kilometers","car.features","car.damages.entries"])
         book = book.toJSON()        
         let featId = JSON.parse(book.features)
         let features = await Feature.query().whereIn("id",featId).fetch()
         features = features.toJSON()      
+        let data = request.all();          
         let paymentType
-        if(book.paymentType == 'banktransfer'){            
+        if(data['ec1'] == 1){            
             paymentType = 'per EC-Karte'
-        }else if(book.paymentType == 'creditcard'){
+        }else if(data['kredit1'] == 1){
             paymentType = 'per Kreditkarte'
-        }else{
+        }else if(data['bar1'] == 1){
             paymentType = 'in bar'
-        }   
+        }     
+        let checkin = book.checkin        
+        let checkin_data = checkin.split("-")        
+        let checkin_array = checkin_data[2]+"."+checkin_data[1]+"."+checkin_data[0]
+        let checkout = book.checkout
+        let checkout_data = checkout.split("-")
+        let checkout_array = checkout_data[2]+"."+checkout_data[1]+"."+checkout_data[0]
+
         const content = [
             { 
                 style:"default",
@@ -1403,7 +1419,7 @@ class OrderController {
                         " ",
                         " ",
                         {text:book.car.title.replace(/<[^>]*>?/gm, '')+' - '+book.car.plate,bold:true,fontSize:11},                      
-                        {text:"Leistungszeitraum: "+ book.checkin+' - '+book.checkout,fontSize:11}, 
+                        {text:"Leistungszeitraum: "+ checkin_array +' - '+ checkout_array,fontSize:11}, 
                         " ",
                         " ",
                         " ",
@@ -1503,6 +1519,7 @@ class OrderController {
             { 
                 style:"default",                          
                 marginBottom: 20,
+                marginLeft: 30,                                        
                 fontFamily: 'open sans-serif',
                 columns: [
                     [        
@@ -1599,8 +1616,8 @@ class OrderController {
                         {
                             columns: [
                                 {text:"Fahrzeugzustand  außen:",fontSize:10},
-                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-5},
-                                {text:"gewaschen   ", fontSize:10,marginLeft:-5},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2},
+                                {text:"gewaschen   ", fontSize:10},
                                 {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-60},
                                 {text:"leicht  verschmutzt ", fontSize:10,marginLeft:-60},
                                 {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-80},
@@ -1610,8 +1627,8 @@ class OrderController {
                         {
                             columns: [
                                 {text:"Innenraum:",fontSize:10},
-                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-5},
-                                {text:"sauber", fontSize:10,marginLeft:-5},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2},
+                                {text:"sauber", fontSize:10},
                                 {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-60},
                                 {text:"leicht  verschmutzt ", fontSize:10,marginLeft:-60},
                                 {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-80},
@@ -1621,8 +1638,8 @@ class OrderController {
                         {
                             columns: [
                                 {text:"Tankfüllung:",fontSize:10},
-                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:39},
-                                {text:"leer", fontSize:10,marginLeft:39},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:41},
+                                {text:"leer", fontSize:10,marginLeft:41},
                                 {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-10},
                                 {text:"¼", fontSize:10,marginLeft:-10},
                                 {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-60},
@@ -1638,15 +1655,15 @@ class OrderController {
                         {
                             columns: [
                                 {text:"Fahrzeugschlüssel",fontSize:10},
-                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:35},
-                                {text:"ja", fontSize:10,marginLeft:35},
-                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-30},
-                                {text:"nein", fontSize:10,marginLeft:-30},
-                                {text:"Zulassungsbescheinigung Teil 1", fontSize:10,marginLeft:-70},
-                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:5},
-                                {text:"ja", fontSize:10,marginLeft:5},
-                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-60},
-                                {text:"nein", fontSize:10,marginLeft:-60},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:31},
+                                {text:"ja", fontSize:10,marginLeft:31},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-39},
+                                {text:"nein", fontSize:10,marginLeft:-39},
+                                {text:"Zulassungsbescheinigung Teil 1", fontSize:10,marginLeft:-85},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2, marginLeft: -15},
+                                {text:"ja", fontSize:10, marginLeft: -15},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-85},
+                                {text:"nein", fontSize:10,marginLeft:-85},
                             ]
                         },
                         {
@@ -1705,7 +1722,7 @@ class OrderController {
                                 {text:"nein", fontSize:10,marginLeft:-41},
                             ]
                         },                        
-                        {text:"sonstiges:________________________________________________________________________________________________",fontSize:10},
+                        {text:"sonstiges:____________________________________________________________________________________________",fontSize:10},
                         " ",
                         {text:"Reifen / Felgen",fontSize:10,bold:true},
                         {
@@ -1723,10 +1740,10 @@ class OrderController {
                         },
                         {
                             columns: [                                
-                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:1,marginLeft:115},
-                                {text:"Alufelgen", fontSize:10,marginLeft:115},
-                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:1,marginLeft:-57},
-                                {text:"Stahlfelgen", fontSize:10,marginLeft:-57}                                
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:1,marginLeft:109},
+                                {text:"Alufelgen", fontSize:10,marginLeft:109},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:1,marginLeft:-54},
+                                {text:"Stahlfelgen", fontSize:10,marginLeft:-54}                                
                             ]
                         },
                         {
@@ -1834,6 +1851,7 @@ class OrderController {
             { 
                 style:"default",                          
                 marginBottom: 20,
+                marginLeft: 30,  
                 fontFamily: 'open sans-serif',
                 columns: [
                     [        
@@ -1928,8 +1946,8 @@ class OrderController {
                         {
                             columns: [
                                 {text:"Fahrzeugzustand  außen:",fontSize:10},
-                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-5},
-                                {text:"gewaschen   ", fontSize:10,marginLeft:-5},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2},
+                                {text:"gewaschen   ", fontSize:10},
                                 {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-60},
                                 {text:"leicht  verschmutzt ", fontSize:10,marginLeft:-60},
                                 {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-80},
@@ -1939,8 +1957,8 @@ class OrderController {
                         {
                             columns: [
                                 {text:"Innenraum:",fontSize:10},
-                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-5},
-                                {text:"sauber", fontSize:10,marginLeft:-5},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2},
+                                {text:"sauber", fontSize:10},
                                 {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-60},
                                 {text:"leicht  verschmutzt ", fontSize:10,marginLeft:-60},
                                 {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-80},
@@ -1950,8 +1968,8 @@ class OrderController {
                         {
                             columns: [
                                 {text:"Tankfüllung:",fontSize:10},
-                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:39},
-                                {text:"leer", fontSize:10,marginLeft:39},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:41},
+                                {text:"leer", fontSize:10,marginLeft:41},
                                 {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-10},
                                 {text:"¼", fontSize:10,marginLeft:-10},
                                 {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-60},
@@ -1967,15 +1985,15 @@ class OrderController {
                         {
                             columns: [
                                 {text:"Fahrzeugschlüssel",fontSize:10},
-                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:35},
-                                {text:"ja", fontSize:10,marginLeft:35},
-                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-30},
-                                {text:"nein", fontSize:10,marginLeft:-30},
-                                {text:"Zulassungsbescheinigung Teil 1", fontSize:10,marginLeft:-70},
-                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:5},
-                                {text:"ja", fontSize:10,marginLeft:5},
-                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-60},
-                                {text:"nein", fontSize:10,marginLeft:-60},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:31},
+                                {text:"ja", fontSize:10,marginLeft:31},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-39},
+                                {text:"nein", fontSize:10,marginLeft:-39},
+                                {text:"Zulassungsbescheinigung Teil 1", fontSize:10,marginLeft:-85},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-15},
+                                {text:"ja", fontSize:10,marginLeft:-15},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:2,marginLeft:-85},
+                                {text:"nein", fontSize:10,marginLeft:-85},
                             ]
                         },
                         {
@@ -2034,7 +2052,7 @@ class OrderController {
                                 {text:"nein", fontSize:10,marginLeft:-41},
                             ]
                         },                        
-                        {text:"sonstiges:________________________________________________________________________________________________",fontSize:10},
+                        {text:"sonstiges:_____________________________________________________________________________________________",fontSize:10},
                         " ",
                         {text:"Reifen / Felgen",fontSize:10,bold:true},
                         {
@@ -2052,10 +2070,10 @@ class OrderController {
                         },
                         {
                             columns: [                                
-                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:1,marginLeft:115},
-                                {text:"Alufelgen", fontSize:10,marginLeft:115},
-                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:1,marginLeft:-57},
-                                {text:"Stahlfelgen", fontSize:10,marginLeft:-57}                                
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:1,marginLeft:109},
+                                {text:"Alufelgen", fontSize:10,marginLeft:109},
+                                {text:"a", font:"Icons",width:10,fontSize:10,borderRadius:0,marginTop:1,marginLeft:-54},
+                                {text:"Stahlfelgen", fontSize:10,marginLeft:-54}                                
                             ]
                         },
                         {

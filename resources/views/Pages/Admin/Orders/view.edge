@@ -185,18 +185,18 @@
                         <hr>
                         <a href="{{book.id}}/agreement" target="_blank" type="submit" class="btn btn-primary btn-block">Haftungsvereinbarung</a>
                         <hr>
-                        <a href="{{book.id}}/receiptdeposit" target="_blank" type="submit" class="btn btn-primary btn-block">Kaution Erhalt</a>
+                        <button onclick="onKaution({{book.id}});" class="btn btn-primary btn-block">Kaution Erhalt</button>
                         <div style="display: flex; justify-content: space-between; line-height: 1; margin-top: 15px;">
-                            <input type="checkbox">per Kreditkarte
-                            <input type="checkbox">per EC-Karte
-                            <input type="checkbox">in bar    
+                            <input type="checkbox" id="ch_kredit">per Kreditkarte
+                            <input type="checkbox" id="ch_ec">per EC-Karte
+                            <input type="checkbox" id="ch_bar">in bar    
                         </div>                          
                         <hr>
-                        <a href="{{book.id}}/receiptdeposit1" target="_blank" type="submit" class="btn btn-primary btn-block">Kaution Rückgabe</a>
+                        <button onclick="onKaution1({{book.id}})" class="btn btn-primary btn-block">Kaution Rückgabe</button>
                         <div style="display: flex; justify-content: space-between; line-height: 1; margin-top: 15px;">
-                            <input type="checkbox">per Kreditkarte
-                            <input type="checkbox">per EC-Karte
-                            <input type="checkbox">in bar    
+                            <input type="checkbox" id="ch_kredit1">per Kreditkarte
+                            <input type="checkbox" id="ch_ec1">per EC-Karte
+                            <input type="checkbox" id="ch_bar1">in bar    
                         </div>
                         <hr>
                         <a href="{{book.id}}/contract1" target="_blank" type="submit" class="btn btn-primary btn-block">Mietvertrag</a>
@@ -228,4 +228,59 @@
 {{ script('vendor/datatables/jquery.dataTables.min.js') }}
 {{ script('vendor/datatables/dataTables.bootstrap4.min.js') }}
 {{ script('/js/tables.js') }}
+<script type="text/javascript">    
+    function onKaution(book_id){        
+        var kredit;
+        var ec;
+        var bar;
+        if ($('#ch_kredit').is(":checked")){
+            kredit = 1;
+        }else{
+            kredit = 0;
+        }
+        if ($('#ch_ec').is(":checked")){
+            ec = 1;
+        }else{
+            ec = 0;
+        }
+        if ($('#ch_bar').is(":checked")){
+            bar = 1;
+        }else{
+            bar = 0;
+        }
+        if(kredit == 0 && ec == 0 && bar == 0){
+            alert("Bitte wählen Sie die kostenpflichtige Methode!");
+            return 0;
+        }
+        window.open(book_id+"/receiptdeposit?kredit="+kredit+"&ec="+ec+"&bar="+bar, "_blank");
+        //location.href = book_id+"/receiptdeposit?kredit="+kredit+"&ec="+ec+"&bar="+bar;
+    }
+    function onKaution1(book_id){
+        var kredit1;
+        var ec1;
+        var bar1;
+        if ($('#ch_kredit1').is(":checked")){
+            kredit1 = 1;
+        }else{
+            kredit1 = 0;
+        }
+        if ($('#ch_ec1').is(":checked")){
+            ec1 = 1;
+        }else{
+            ec1 = 0;
+        }
+        if ($('#ch_bar1').is(":checked")){
+            bar1 = 1;
+        }else{
+            bar1 = 0;
+        }
+        if(kredit1 == 0 && ec1 == 0 && bar1 == 0){
+            alert("Bitte wählen Sie die kostenpflichtige Methode!");
+            return 0;
+        }
+        $('.text-center button').attr('target', '_blank');
+        window.open(book_id+"/receiptdeposit1?kredit1="+kredit1+"&ec1="+ec1+"&bar1="+bar1, "_blank");
+        //location.href = book_id+"/receiptdeposit1?kredit1="+kredit1+"&ec1="+ec1+"&bar1="+bar1;
+    }
+</script>
 @endsection
