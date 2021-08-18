@@ -190,10 +190,7 @@ class OrderController {
         } 
         const content = [
             { 
-                style:"default",
-                marginLeft: 30,
-                marginRight: 30,
-                marginBottom: 20,
+                style:"default",                
                 fontFamily: 'open sans-serif',
                 columns: [
                     [
@@ -1249,7 +1246,7 @@ class OrderController {
                         " ",  
                         " ",                      
                         {text:book.car.title.replace(/<[^>]*>?/gm, '')+' - '+book.car.plate,bold:true,fontSize:11},                      
-                        {text:"Leistungszeitraum: "+ checkin_array +' - '+checkout_array,fontSize:11}, 
+                        {text:"Leistungszeitraum: "+ checkin_array +' - '+checkout_array,bold:true,fontSize:11}, 
                         " ",
                         " ",
                         " ",             
@@ -1309,8 +1306,7 @@ class OrderController {
                             columns:[                                                                                               
                                 [
                                     {text:"Bremen, den "+moment(book.checkin).format("DD.MM.YYYY"),fontSize:11},                                     
-                                    " ",
-                                    " ",
+                                    " ",                                    
                                     {text:"Ort, Datum",fontSize:11,alignment:'left'},
                                 ],
                                 [
@@ -1419,7 +1415,7 @@ class OrderController {
                         " ",
                         " ",
                         {text:book.car.title.replace(/<[^>]*>?/gm, '')+' - '+book.car.plate,bold:true,fontSize:11},                      
-                        {text:"Leistungszeitraum: "+ checkin_array +' - '+ checkout_array,fontSize:11}, 
+                        {text:"Leistungszeitraum: "+ checkin_array +' - '+ checkout_array,bold:true,fontSize:11}, 
                         " ",
                         " ",
                         " ",
@@ -1479,8 +1475,7 @@ class OrderController {
                             columns:[                                                                                               
                                 [
                                     {text:"Bremen, den "+moment(book.checkin).format("DD.MM.YYYY"),fontSize:11},                                     
-                                    " ",
-                                    " ",
+                                    " ",                                    
                                     {text:"Ort, Datum",fontSize:11,alignment:'left'},
                                 ],
                                 [
